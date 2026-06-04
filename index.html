@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Acodax — AI-Powered ERP for UAE Businesses</title>
+<meta name="description" content="Acodax ERP — AI-driven cloud business management for UAE. Accounting, inventory, CRM, payroll, manufacturing & more. ZATCA compliant, VAT ready, WPS payroll for Dubai businesses."/>
+<meta name="keywords" content="ERP software UAE, cloud ERP Dubai, accounting software UAE, inventory management UAE, CRM software Dubai, payroll software UAE, WPS payroll UAE, VAT accounting software UAE, ZATCA e-invoicing, manufacturing ERP UAE, HR software UAE, Acodax ERP, business management software Dubai, small business ERP UAE, AI ERP system, ERP for trading companies UAE, ERP for manufacturing UAE, best ERP UAE, online accounting UAE, purchase management software UAE"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="Acodax Technology LLC"/>
+<meta property="og:title" content="Acodax — AI-Powered ERP for UAE Businesses"/>
+<meta property="og:description" content="Unified ERP with AI automation — accounting, inventory, CRM, payroll, manufacturing and more. ZATCA compliant, VAT ready. Built for UAE businesses."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://acodax.com"/>
+<meta property="og:image" content="assets/images/dashboard1.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Acodax — AI-Powered ERP for UAE Businesses"/>
+<meta name="twitter:description" content="Unified cloud ERP with AI — accounting, CRM, inventory, payroll & more for UAE. ZATCA & VAT compliant."/>
+<link rel="canonical" href="https://acodax.com"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* ── DARK THEME — INTUIT-INSPIRED DEEP NAVY ── */
+:root {
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", Arial, sans-serif;
+  --bg:       #071e38;
+  --surface:  #0d2744;
+  --surface2: #102f52;
+  --border:   rgba(255,255,255,.09);
+  --border2:  rgba(255,255,255,.05);
+  --text:     #eef2ff;
+  --text2:    #9ab0cc;
+  --text3:    #546880;
+  --cyan:     #4fa8e8;
+  --cyan-lt:  rgba(79,168,232,.14);
+  --purple:   #a78bfa;
+  --orange:   #fb923c;
+  --green:    #34d399;
+  --red:      #f87171;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#071e38}::-webkit-scrollbar-thumb{background:#1e3a5f;border-radius:3px}
+
+/* ── NAVBAR ── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200;transition:all .35s cubic-bezier(.4,0,.2,1)}
+.navbar-inner{background:rgba(7,30,56,.92);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.1);padding:.75rem 0}
+.nav-link{font-size:.875rem;font-weight:500;color:var(--text2);transition:color .2s;letter-spacing:-.01em}
+.nav-link:hover,.nav-link.active{color:var(--cyan)}
+.btn-cta{background:var(--cyan);color:#fff;font-size:.875rem;font-weight:600;padding:.5rem 1.1rem;border-radius:980px;transition:all .25s;letter-spacing:-.01em}
+.btn-cta:hover{background:#60b9f0;transform:scale(1.02)}
+.btn-outline{background:transparent;color:var(--cyan);font-size:.875rem;font-weight:500;padding:.5rem 1rem;border-radius:980px;transition:color .2s;letter-spacing:-.01em}
+.btn-outline:hover{color:#60b9f0}
+
+/* ── HERO CANVAS ── */
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* ── GRADIENT TEXT ── */
+.grad-blue{background:linear-gradient(135deg,#0071e3,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-warm{background:linear-gradient(135deg,#f97316,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-all{background:linear-gradient(135deg,#0071e3 0%,#a855f7 50%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── CARDS ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;transition:all .35s cubic-bezier(.4,0,.2,1)}
+.card:hover{border-color:rgba(79,168,232,.3);box-shadow:0 8px 40px rgba(79,168,232,.1);transform:translateY(-4px)}
+.card-blue{background:linear-gradient(135deg,rgba(79,168,232,.12),rgba(167,139,250,.10))}
+.card-orange{background:linear-gradient(135deg,rgba(251,146,60,.12),rgba(167,139,250,.10))}
+.card-green{background:linear-gradient(135deg,rgba(52,211,153,.12),rgba(79,168,232,.10))}
+
+/* ── SECTION LABEL ── */
+.section-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:.75rem}
+.section-tag::before,.section-tag::after{content:'';height:1px;width:18px;background:currentColor;opacity:.5}
+
+/* ── FLOATING ANIMATIONS ── */
+.float-slow{animation:floatSlow 7s ease-in-out infinite}
+.float-med{animation:floatMed 5s ease-in-out infinite}
+@keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes floatMed{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-32px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1)}
+.reveal-l.visible{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(32px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1)}
+.reveal-r.visible{opacity:1;transform:none}
+
+/* ── MARQUEE ── */
+.marquee-wrap{overflow:hidden;mask:linear-gradient(to right,transparent,black 12%,black 88%,transparent)}
+.marquee-track{display:flex;gap:2.5rem;animation:marquee 22s linear infinite;width:max-content}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── MACBOOK MOCKUP ── */
+.mac-lid{background:linear-gradient(to bottom,#e0e0e0,#d0d0d0);border-radius:12px 12px 0 0;padding:18px 14px 0;box-shadow:0 -2px 0 rgba(0,0,0,.06),0 30px 80px rgba(0,0,0,.12)}
+.mac-screen{background:#1d1d1f;border-radius:5px;overflow:hidden;aspect-ratio:16/10;position:relative}
+.mac-screen::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.03),transparent);pointer-events:none;z-index:1}
+.mac-camera{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:6px;height:6px;background:#555;border-radius:50%}
+.mac-chin{background:linear-gradient(to bottom,#d8d8d8,#c8c8c8);height:18px;border-radius:0 0 6px 6px}
+.mac-base-bar{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:56px;height:4px;background:#b0b0b0;border-radius:3px 3px 0 0}
+
+/* ── PHONE MOCKUP — iPhone 17 Pro Max ── */
+.phone-shell{
+  width:248px;height:520px;
+  background:linear-gradient(160deg,#c8cdd4 0%,#a8adb5 25%,#b8bdc5 50%,#9ea3ab 75%,#c0c5cc 100%);
+  border-radius:52px;
+  padding:0;
+  position:relative;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.45),
+    inset 0 0 0 1px rgba(0,0,0,.18),
+    0 40px 100px rgba(0,0,0,.45),
+    0 8px 32px rgba(0,0,0,.3);
+}
+/* Titanium brushed texture shimmer */
+.phone-shell::before{
+  content:'';position:absolute;inset:0;border-radius:52px;
+  background:linear-gradient(105deg,
+    rgba(255,255,255,.35) 0%,
+    rgba(255,255,255,.05) 30%,
+    rgba(255,255,255,.18) 50%,
+    rgba(255,255,255,.03) 70%,
+    rgba(255,255,255,.28) 100%);
+  pointer-events:none;z-index:2
+}
+/* Inner bezel */
+.phone-shell::after{
+  content:'';position:absolute;
+  top:8px;left:8px;right:8px;bottom:8px;
+  border-radius:44px;
+  background:#0a0a0a;
+  z-index:0
+}
+/* Screen area */
+.phone-display{
+  position:absolute;
+  top:9px;left:9px;right:9px;bottom:9px;
+  border-radius:43px;
+  overflow:hidden;
+  background:#f2f2f7;
+  z-index:1
+}
+/* Volume buttons — left side */
+.phone-shell .btn-vol-up{position:absolute;left:-3px;top:110px;width:3px;height:38px;background:linear-gradient(to right,#8a8f97,#b0b5bd);border-radius:3px 0 0 3px;z-index:3}
+.phone-shell .btn-vol-dn{position:absolute;left:-3px;top:158px;width:3px;height:38px;background:linear-gradient(to right,#8a8f97,#b0b5bd);border-radius:3px 0 0 3px;z-index:3}
+/* Action button — left side */
+.phone-shell .btn-action{position:absolute;left:-3px;top:76px;width:3px;height:26px;background:linear-gradient(to right,#8a8f97,#b0b5bd);border-radius:3px 0 0 3px;z-index:3}
+/* Power button — right side */
+.phone-shell .btn-power{position:absolute;right:-3px;top:120px;width:3px;height:62px;background:linear-gradient(to left,#8a8f97,#b0b5bd);border-radius:0 3px 3px 0;z-index:3}
+/* Dynamic Island */
+.phone-dynamic-island{
+  position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  width:90px;height:30px;
+  background:#000;
+  border-radius:20px;
+  z-index:10;
+  display:flex;align-items:center;justify-content:flex-end;padding-right:10px;gap:5px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.06)
+}
+.phone-dynamic-island .di-camera{width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2a2a2a,#0a0a0a);border:1px solid #111;position:relative}
+.phone-dynamic-island .di-camera::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:4px;height:4px;border-radius:50%;background:#0d0d0d;box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+.phone-dynamic-island .di-sensor{width:6px;height:6px;border-radius:50%;background:#1a0a0a;border:1px solid #2a0000}
+
+/* ── MODULE CARDS ── */
+.module-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:1.5rem;transition:all .35s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative;overflow:hidden}
+.module-card::after{content:'';position:absolute;inset:0;border-radius:18px;opacity:0;transition:opacity .35s;background:radial-gradient(ellipse at 30% 0%,rgba(79,168,232,.07),transparent 70%)}
+.module-card:hover{border-color:rgba(79,168,232,.28);box-shadow:0 6px 30px rgba(79,168,232,.10);transform:translateY(-4px)}
+.module-card:hover::after{opacity:1}
+.mod-icon{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem}
+
+/* ── ACOBOT CHATBOT ── */
+.acobot-widget{width:300px;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15),0 2px 8px rgba(0,0,0,.08);position:relative;font-family:var(--font)}
+.acobot-header{background:linear-gradient(135deg,#3a8fc7,#2979b8);padding:14px 16px;display:flex;align-items:center;gap:10px}
+.acobot-avatar{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.3)}
+.acobot-body{background:#f0f0f5;padding:14px;min-height:320px;max-height:320px;overflow:hidden;position:relative}
+.acobot-footer{background:linear-gradient(135deg,#3a8fc7,#2979b8);padding:12px 14px;display:flex;align-items:center;gap:8px}
+.acobot-input{flex:1;background:transparent;border:none;outline:none;color:rgba(255,255,255,.7);font-family:var(--font);font-size:.82rem;font-style:italic}
+.acobot-input::placeholder{color:rgba(255,255,255,.5)}
+.mic-btn{width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+
+/* CHAT BUBBLES */
+.chat-msg{display:flex;align-items:flex-end;gap:7px;margin-bottom:10px;animation:bubbleIn .4s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(10px) scale(.92)}to{opacity:1;transform:none}}
+.chat-msg.user{flex-direction:row-reverse}
+.bubble{max-width:190px;padding:9px 13px;border-radius:18px;font-size:.8rem;line-height:1.5;font-family:var(--font);-webkit-font-smoothing:antialiased}
+.bubble.bot{background:#fff;color:#1c1c1e;border-radius:4px 18px 18px 18px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.bubble.user{background:linear-gradient(135deg,#3a8fc7,#2979b8);color:#fff;border-radius:18px 18px 4px 18px}
+.bubble.metric{background:#fff;border-left:3px solid #3a8fc7}
+.bot-av{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#3a8fc7,#2979b8);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.typing-dots{display:flex;gap:4px;padding:11px 14px}
+.dot{width:7px;height:7px;border-radius:50%;background:#b0b8c4;animation:dotPulse 1.2s ease-in-out infinite}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+@keyframes dotPulse{0%,60%,100%{transform:scale(1);opacity:.5}30%{transform:scale(1.3);opacity:1}}
+@keyframes acoBubble{from{opacity:0;transform:translateY(6px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes sparkleGlow{0%,100%{transform:rotate(0deg) scale(1);opacity:.85}50%{transform:rotate(22deg) scale(1.18);opacity:1}}
+@keyframes macTypingPulse{0%,60%,100%{transform:scale(1);opacity:.4}30%{transform:scale(1.25);opacity:1}}
+.mac-quick-btn{transition:opacity .3s,transform .3s}
+.mac-quick-btn.active{opacity:.6;transform:scale(.97)}
+
+/* ── STAT COUNTER ── */
+.stat-num{font-size:2.8rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--text)}
+.stat-label{font-size:.75rem;font-weight:500;color:var(--text3);letter-spacing:.04em;text-transform:uppercase;margin-top:.25rem}
+
+/* ── FEATURE ROW ── */
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:5rem 0}
+.feature-row+.feature-row{border-top:1px solid var(--border2)}
+.feature-img-wrap{border-radius:22px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.1),0 2px 8px rgba(0,0,0,.05);background:var(--surface)}
+
+/* ── PRICING ── */
+.plan{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:2.25rem;transition:all .35s}
+.plan:hover{box-shadow:0 12px 40px rgba(79,168,232,.12)}
+.plan.featured{background:linear-gradient(145deg,#1a5fa8,#2979b8);border-color:rgba(79,168,232,.3);color:#fff}
+
+/* ── BLOG CARD ── */
+.blog-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;overflow:hidden;transition:all .35s cubic-bezier(.4,0,.2,1)}
+.blog-card:hover{box-shadow:0 12px 40px rgba(79,168,232,.12);transform:translateY(-5px);border-color:rgba(79,168,232,.25)}
+.blog-img{transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.blog-card:hover .blog-img{transform:scale(1.06)}
+
+/* ── FAQ ── */
+.faq{border:1px solid var(--border2);border-radius:14px;overflow:hidden;transition:all .3s}
+.faq.open,.faq:hover{border-color:rgba(79,168,232,.3)}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+.faq.open .faq-body{max-height:160px}
+.faq.open .faq-chevron{transform:rotate(180deg)}
+.faq-chevron{transition:transform .3s}
+
+/* ── CTA ── */
+.cta-section{background:linear-gradient(135deg,#0071e3 0%,#5856d6 50%,#a855f7 100%);position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+
+/* ── FOOTER ── */
+footer{background:#1d1d1f;color:#f5f5f7}
+
+/* ── HERO BADGE ── */
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(79,168,232,.1);border:1px solid rgba(79,168,232,.22);border-radius:980px;padding:.35rem 1rem;font-size:.78rem;font-weight:600;color:var(--cyan);letter-spacing:-.01em}
+
+/* ── PULSE RING ── */
+.pulse-ring{position:absolute;border-radius:50%;animation:pulseRing 2.5s ease-out infinite}
+@keyframes pulseRing{0%{transform:scale(.8);opacity:.6}100%{transform:scale(1.8);opacity:0}}
+
+/* ── CHECK LIST ── */
+.check-li{display:flex;align-items:center;gap:.625rem;font-size:.875rem;color:var(--text2);padding:.3rem 0}
+.check-li::before{content:'';width:18px;height:18px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='10' fill='%2334c759'/%3E%3Cpath d='M6 10l3 3 5-5' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;flex-shrink:0}
+
+/* ── TECH PILL ── */
+.tech-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--surface);border:1px solid var(--border);border-radius:980px;padding:.5rem 1rem;font-size:.8rem;font-weight:500;color:var(--text2);transition:all .25s}
+.tech-pill:hover{border-color:#c7d8f0;color:var(--cyan);background:var(--cyan-lt)}
+
+@media(max-width:768px){
+  .feature-row{grid-template-columns:1fr;gap:2rem}
+  .feature-row .order-first{order:-1}
+}
+
+/* ── HERO WORD ANIMATION ── */
+@keyframes heroWord{
+  from{opacity:0;transform:translateY(32px);filter:blur(3px)}
+  to{opacity:1;transform:none;filter:blur(0)}
+}
+@keyframes twBlink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── HERO FEATURE LIST ── */
+.hero-feat{display:flex;align-items:flex-start;gap:.875rem;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.hero-feat:last-child{border-bottom:none}
+.feat-icon-wrap{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.05rem}
+.feat-title{font-size:.88rem;font-weight:700;color:var(--text);letter-spacing:-.015em;margin-bottom:.18rem;line-height:1.3}
+.feat-desc{font-size:.76rem;color:var(--text3);line-height:1.55}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <div class="max-w-7xl mx-auto px-5 flex items-center justify-between">
+      <a href="index.html">
+        <img src="assets/images/Acodax-logo-2.png" alt="Acodax" class="h-8" style="filter:brightness(0) invert(1)"
+             onerror="this.onerror=null;this.outerHTML='<span style=\'font-size:1.4rem;font-weight:900;color:#fff;letter-spacing:-.03em\'>aco<span style=\'color:#4fa8e8\'>dax</span></span>'" />
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html"    class="nav-link active">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="modules.html"  class="nav-link">Modules</a>
+        <a href="pricing.html"  class="nav-link">Pricing</a>
+        <a href="blog.html"     class="nav-link">Blog</a>
+        <a href="contact.html"  class="nav-link">Contact</a>
+      </div>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://app.acodax.com" target="_blank" class="btn-outline">Log In</a>
+        <a href="contact.html" class="btn-cta">Free Demo</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 rounded-xl hover:bg-black/5 transition-colors">
+        <i class="fa-solid fa-bars text-[var(--text)] text-lg"></i>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden" style="background:rgba(245,245,247,.97);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,.06)">
+    <div class="max-w-7xl mx-auto px-5 py-4 space-y-1">
+      <a href="index.html"    class="block py-2.5 text-sm font-medium text-[var(--text)]">Home</a>
+      <a href="features.html" class="block py-2.5 text-sm font-medium text-[var(--text2)]">Features</a>
+      <a href="modules.html"  class="block py-2.5 text-sm font-medium text-[var(--text2)]">Modules</a>
+      <a href="pricing.html"  class="block py-2.5 text-sm font-medium text-[var(--text2)]">Pricing</a>
+      <a href="blog.html"     class="block py-2.5 text-sm font-medium text-[var(--text2)]">Blog</a>
+      <a href="contact.html"  class="block py-2.5 text-sm font-medium text-[var(--text2)]">Contact</a>
+      <a href="contact.html"  class="block mt-3 btn-cta text-center py-3 rounded-2xl">Get Free Demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════════ -->
+<section id="hero" class="relative overflow-hidden pt-24" style="background:linear-gradient(160deg,#071e38 0%,#0a2540 30%,#0d1a45 65%,#071e38 100%);min-height:100vh;display:flex;align-items:center">
+  <canvas id="heroCanvas"></canvas>
+
+  <!-- Soft background orbs -->
+  <div style="position:absolute;top:-120px;right:-120px;width:600px;height:600px;background:radial-gradient(circle,rgba(79,168,232,.14),transparent 70%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(167,139,250,.12),transparent 70%);pointer-events:none"></div>
+  <div style="position:absolute;top:40%;left:40%;width:400px;height:400px;background:radial-gradient(circle,rgba(26,95,168,.1),transparent 70%);pointer-events:none;transform:translate(-50%,-50%)"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 w-full py-16">
+    <div class="grid items-center" style="grid-template-columns:5fr 7fr;gap:2.5rem">
+
+      <!-- LEFT — Copy -->
+      <div>
+        <!-- Badge -->
+        <div class="hero-badge mb-4" style="animation:heroWord .6s .05s cubic-bezier(.22,1,.36,1) both">
+          <span class="w-2 h-2 rounded-full bg-[var(--green)] animate-pulse"></span>
+          AI-Powered ERP — Built for UAE
+        </div>
+
+        <!-- Feature Showcase — H1 style, no card box -->
+        <div id="featCard" style="margin-bottom:1.5rem;animation:heroWord .65s .18s cubic-bezier(.22,1,.36,1) both;opacity:0">
+          <h1 id="featTitle" style="font-size:clamp(2.6rem,5.2vw,4rem);font-weight:900;letter-spacing:-.04em;line-height:1.05;color:var(--text);margin-bottom:.6rem;position:relative"></h1>
+          <div id="featDesc" style="font-size:1rem;color:var(--text3);line-height:1.7;min-height:3.2em;max-width:440px"></div>
+          <div id="featDots" style="display:flex;gap:5px;margin-top:.9rem"></div>
+        </div>
+
+        <!-- CTAs -->
+        <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem;animation:heroWord .65s .54s ease both;opacity:0">
+          <a href="contact.html" class="btn-cta" style="padding:.7rem 1.6rem;border-radius:14px;font-size:.92rem;display:inline-flex;align-items:center;gap:.5rem">
+            <i class="fa-solid fa-rocket text-sm"></i>Start Free Demo
+          </a>
+          <a href="features.html" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.12);color:var(--text2);font-size:.92rem;font-weight:600;padding:.7rem 1.6rem;border-radius:14px;transition:all .25s;letter-spacing:-.01em" onmouseover="this.style.borderColor='rgba(79,168,232,.4)';this.style.color='var(--cyan)'" onmouseout="this.style.borderColor='rgba(255,255,255,.12)';this.style.color='var(--text2)'">
+            <i class="fa-solid fa-play text-xs"></i>See Features
+          </a>
+        </div>
+
+        <!-- Stats row -->
+        <div style="display:flex;gap:2rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.07);animation:heroWord .65s .72s ease both;opacity:0">
+          <div>
+            <div class="stat-num" id="cnt1">0</div>
+            <div class="stat-label">Businesses</div>
+          </div>
+          <div>
+            <div class="stat-num" id="cnt2">0</div>
+            <div class="stat-label">Modules</div>
+          </div>
+          <div>
+            <div class="stat-num" id="cnt3">0</div>
+            <div class="stat-label">Uptime</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — MacBook + AcoBot -->
+      <div class="hidden lg:block relative" style="animation:fadeUp .9s .3s ease both">
+        <!-- MacBook -->
+        <div class="float-slow">
+          <div class="mac-lid" style="position:relative">
+            <div class="mac-camera"></div>
+            <div class="mac-screen">
+              <!-- Hero Dashboard Screenshot -->
+              <img id="heroScreenImg" src="assets/images/hero-dashboard.png"
+                   alt="Acodax ERP Dashboard with AI Chatbot"
+                   style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block"
+                   onerror="this.src='assets/images/dashboard1.png'"/>
+
+              <!-- Animated AcoBot overlay (bottom-right corner of screen) -->
+              <div id="heroChatOverlay" style="position:absolute;bottom:10px;right:10px;width:260px;background:rgba(10,22,46,.97);border:1px solid rgba(79,168,232,.3);border-radius:16px;overflow:hidden;z-index:5;box-shadow:0 12px 40px rgba(0,0,0,.5)">
+                <!-- Header -->
+                <div style="background:linear-gradient(135deg,#1a3a5c,#2979b8);padding:8px 12px;display:flex;align-items:center;gap:7px">
+                  <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(255,255,255,.3)">
+                    <i class="fa-solid fa-robot" style="font-size:10px;color:#fff"></i>
+                  </div>
+                  <div>
+                    <div style="font-size:10px;font-weight:700;color:#fff;line-height:1">AcoBot</div>
+                    <div style="font-size:7.5px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:3px;margin-top:1px">
+                      <span style="width:5px;height:5px;border-radius:50%;background:#34d399;display:inline-block"></span>Online
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-xmark" style="font-size:10px;color:rgba(255,255,255,.4);margin-left:auto"></i>
+                </div>
+                <!-- Chat body -->
+                <div id="macChatBody" style="padding:8px 10px;display:flex;flex-direction:column;gap:6px;min-height:90px;max-height:130px;overflow:hidden"></div>
+                <!-- Input bar -->
+                <div style="padding:7px 10px;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.03)">
+                  <input id="macChatInput" style="flex:1;background:transparent;border:none;outline:none;font-size:9px;color:rgba(255,255,255,.45);font-style:italic;font-family:inherit" placeholder="Ask me anything..." readonly/>
+                  <div style="width:20px;height:20px;border-radius:50%;background:#2979b8;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <i class="fa-solid fa-microphone" style="font-size:8px;color:#fff"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screen overlay shimmer -->
+              <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.03),transparent 50%);pointer-events:none;z-index:2"></div>
+            </div>
+          </div>
+          <div class="mac-chin" style="position:relative"><div class="mac-base-bar"></div></div>
+        </div>
+
+        <!-- Intuit-style floating AI agent elements -->
+
+        <!-- Sparkles -->
+        <div style="position:absolute;top:7%;left:13%;pointer-events:none;z-index:4;animation:sparkleGlow 8s ease-in-out infinite">
+          <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M10 0L12.1 7.9L20 10L12.1 12.1L10 20L7.9 12.1L0 10L7.9 7.9Z" fill="#22d3ee"/></svg>
+        </div>
+        <div style="position:absolute;top:13%;right:5%;pointer-events:none;z-index:4;animation:sparkleGlow 6.5s ease-in-out infinite .9s both">
+          <svg width="28" height="28" viewBox="0 0 20 20" fill="none"><path d="M10 0L12.1 7.9L20 10L12.1 12.1L10 20L7.9 12.1L0 10L7.9 7.9Z" fill="#22d3ee"/></svg>
+        </div>
+        <div style="position:absolute;bottom:22%;left:6%;pointer-events:none;z-index:4;animation:sparkleGlow 10s ease-in-out infinite 2s both">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 0L12.1 7.9L20 10L12.1 12.1L10 20L7.9 12.1L0 10L7.9 7.9Z" fill="#22d3ee" opacity=".7"/></svg>
+        </div>
+
+        <!-- 1. Blue notification card — top -->
+        <div style="position:absolute;top:-20px;right:52px;background:linear-gradient(135deg,#3b5bdb,#4fa8e8);border-radius:14px;padding:.65rem 1rem;box-shadow:0 8px 30px rgba(59,91,219,.45);z-index:15;animation:floatMed 5s ease-in-out infinite">
+          <div style="font-size:.6rem;font-weight:700;color:rgba(255,255,255,.72);letter-spacing:.09em;text-transform:uppercase;display:flex;align-items:center;gap:.3rem;margin-bottom:.22rem">
+            <svg width="9" height="9" viewBox="0 0 10 10"><path d="M5 0L6.2 3.8L10 5L6.2 6.2L5 10L3.8 6.2L0 5L3.8 3.8Z" fill="currentColor"/></svg>
+            AcoBot AI
+          </div>
+          <div style="font-size:.88rem;font-weight:700;color:#fff;white-space:nowrap">New invoice matched!</div>
+        </div>
+
+        <!-- 2. Revenue metric chip — top left -->
+        <div style="position:absolute;top:16px;left:-50px;background:rgba(6,16,34,.96);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.5rem .9rem;box-shadow:0 6px 22px rgba(0,0,0,.45);z-index:15;animation:floatSlow 7s ease-in-out .8s infinite">
+          <div style="font-size:.57rem;font-weight:700;color:rgba(255,255,255,.42);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.18rem">Revenue</div>
+          <div style="display:flex;align-items:center;gap:.32rem">
+            <svg width="13" height="11" viewBox="0 0 13 11"><path d="M6.5 0L13 11H0Z" fill="#34c759"/></svg>
+            <span style="font-size:1.05rem;font-weight:800;color:#fff;line-height:1">12%</span>
+          </div>
+        </div>
+
+        <!-- 3. Sales Agent dark pill — mid left -->
+        <div style="position:absolute;top:43%;left:-16px;background:#0d1c32;border:1.5px solid rgba(255,255,255,.1);border-radius:40px;padding:.45rem 1rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:15;animation:floatMed 5s ease-in-out 1.3s infinite">
+          <div style="width:22px;height:22px;border-radius:8px;background:rgba(79,168,232,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fa-solid fa-chart-line" style="font-size:9px;color:#4fa8e8"></i>
+          </div>
+          <span style="font-size:.78rem;font-weight:600;color:#e2e8f0;white-space:nowrap">Sales Agent</span>
+        </div>
+
+        <!-- 4. Generate Invoice — gradient-border pill, right -->
+        <div style="position:absolute;top:25%;right:-40px;padding:1.5px;border-radius:40px;background:linear-gradient(135deg,#22d3ee,#34d399);box-shadow:0 6px 20px rgba(34,211,238,.18);z-index:15;animation:floatSlow 7s ease-in-out .4s infinite">
+          <div style="background:#06101e;border-radius:38px;padding:.48rem 1.15rem;display:flex;align-items:center;gap:.48rem">
+            <svg width="12" height="12" viewBox="0 0 12 12" style="flex-shrink:0"><path d="M6 0L7.2 4.6L12 6L7.2 7.4L6 12L4.8 7.4L0 6L4.8 4.6Z" fill="#22d3ee"/></svg>
+            <span style="font-size:.78rem;font-weight:600;color:#fff;white-space:nowrap">Generate Invoice</span>
+          </div>
+        </div>
+
+        <!-- 5. Customer Agent dark pill — bottom left -->
+        <div style="position:absolute;bottom:66px;left:-34px;background:#0d1c32;border:1.5px solid rgba(255,255,255,.1);border-radius:40px;padding:.45rem 1rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:15;animation:floatMed 5s ease-in-out 2s infinite">
+          <div style="width:22px;height:22px;border-radius:8px;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fa-solid fa-headset" style="font-size:9px;color:#22d3ee"></i>
+          </div>
+          <span style="font-size:.78rem;font-weight:600;color:#e2e8f0;white-space:nowrap">Customer Agent</span>
+        </div>
+
+        <!-- 6. VAT Assistant progress card — bottom right -->
+        <div style="position:absolute;bottom:34px;right:-38px;background:linear-gradient(135deg,#3b5bdb,#2979b8);border-radius:14px;padding:.75rem 1rem;width:160px;box-shadow:0 8px 28px rgba(59,91,219,.4);z-index:15;animation:floatSlow 7s ease-in-out 1.6s infinite">
+          <div style="font-size:.58rem;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:.3rem;margin-bottom:.35rem">
+            <i class="fa-solid fa-circle-check" style="color:#34d399;font-size:.68rem"></i>
+            VAT Assistant
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.45rem">
+            <span style="font-size:.78rem;font-weight:600;color:#fff">Filing Completion</span>
+            <span style="font-size:.82rem;font-weight:800;color:#fff">85%</span>
+          </div>
+          <div style="background:rgba(255,255,255,.18);border-radius:4px;height:5px;overflow:hidden">
+            <div style="background:linear-gradient(to right,#22d3ee,#34d399);width:85%;height:100%;border-radius:4px"></div>
+          </div>
+        </div>
+
+        <!-- 7. Send Invoice — gradient-border pill, bottom center -->
+        <div style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);padding:1.5px;border-radius:40px;background:linear-gradient(135deg,#22d3ee,#34d399);box-shadow:0 6px 22px rgba(52,211,153,.18);z-index:15;animation:floatMed 5s ease-in-out .7s infinite;white-space:nowrap">
+          <div style="background:#06101e;border-radius:38px;padding:.48rem 1.2rem;display:flex;align-items:center;gap:.5rem">
+            <div style="width:20px;height:20px;border-radius:7px;background:rgba(52,211,153,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <i class="fa-solid fa-paper-plane" style="font-size:8px;color:#34d399"></i>
+            </div>
+            <span style="font-size:.78rem;font-weight:600;color:#fff">Send Invoice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.35">
+      <span style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--text3)">Scroll</span>
+      <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--text3),transparent)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TRUSTED LOGOS
+══════════════════════════════════════════ -->
+<section style="background:#091f3a;padding:3rem 0;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)">
+  <div class="max-w-7xl mx-auto px-5">
+    <p style="text-align:center;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1.75rem">Trusted by businesses across UAE</p>
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <img src="assets/images/32.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/34.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/35.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/36.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/38.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/40.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/41.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
+        <!-- duplicate for loop -->
+        <img src="assets/images/32.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
+        <img src="assets/images/34.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
+        <img src="assets/images/35.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
+        <img src="assets/images/36.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
+        <img src="assets/images/38.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
+        <img src="assets/images/40.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
+        <img src="assets/images/41.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MODULES GRID
+══════════════════════════════════════════ -->
+<section style="padding:6rem 0;background:var(--bg)">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center reveal" style="margin-bottom:3.5rem">
+      <div class="section-tag" style="justify-content:center">All-In-One Platform</div>
+      <h2 style="font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-.035em;color:var(--text);line-height:1.1">Every Module Your<br/>Business Needs</h2>
+      <p style="font-size:1rem;color:var(--text3);margin-top:.75rem;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6">Finance, sales, inventory, production, HR — deeply integrated, fully automated.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem">
+      <!-- 9 module cards -->
+      <div class="module-card reveal" style="transition-delay:.04s" onclick="openModuleModal('finance')">
+        <div class="mod-icon" style="background:#e8f1fb"><i class="fa-solid fa-calculator" style="color:#0071e3"></i></div>
+        <div style="font-weight:700;font-size:.95rem;color:var(--text);letter-spacing:-.01em;margin-bottom:.35rem">Finance & Accounting</div>
+        <div style="font-size:.82rem;color:var(--text3);line-height:1.5">Invoices, VAT, expenses, budgeting & reports</div>
+        <div style="margin-top:.9rem;font-size:.8rem;font-weight:600;color:var(--cyan);display:flex;align-items:center;gap:.3rem">Explore <i class="fa-solid fa-arrow-right text-xs"></i></div>
+      </div>
+
+      <div class="module-card reveal" style="transition-delay:.08s" onclick="openModuleModal('inventory')">
+        <div class="mod-icon" style="background:#e8f8ee"><i class="fa-solid fa-boxes-stacked" style="color:#34c759"></i></div>
+        <div style="font-weight:700;font-size:.95rem;color:var(--text);letter-spacing:-.01em;margin-bottom:.35rem">Inventory & Warehouse</div>
+        <div style="font-size:.82rem;color:var(--text3);line-height:1.5">Real-time stock, barcode, multi-warehouse</div>
+        <div style="margin-top:.9rem;font-size:.8rem;font-weight:600;color:#34c759;display:flex;align-items:center;gap:.3rem">Explore <i class="fa-solid fa-arrow-right text-xs"></i></div>
+      </div>
+
+      <div class="module-card reveal" style="transition-delay:.12s" onclick="openModuleModal('sales')">
+        <div class="mod-icon" style="background:#fff3e8"><i class="fa-solid fa-handshake" style="color:#f97316"></i></div>
+        <div style="font-weight:700;font-size:.95rem;color:var(--text);letter-spacing:-.01em;margin-bottom:.35rem">Sales & CRM</div>
+        <div style="font-size:.82rem;color:var(--text3);line-height:1.5">AI-powered leads, pipeline & customer management</div>
+        <div style="margin-top:.9rem;font-size:.8rem;font-weight:600;color:#f97316;display:flex;align-items:center;gap:.3rem">Explore <i class="fa-solid fa-arrow-right text-xs"></i></div>
+      </div>
+
+      <div class="module-card reveal" style="transition-delay:.16s" onclick="openModuleModal('project')">
+        <div class="mod-icon" style="background:#f3ebff"><i class="fa-solid fa-diagram-project" style="color:#a855f7"></i></div>
+        <div style="font-weight:700;font-size:.95rem;color:var(--text);letter-spacing:-.01em;margin-bottom:.35rem">Project Management</div>
+        <div style="font-size:.82rem;color:var(--text3);line-height:1.5">Tasks, milestones, resources & reports</div>
+        <div style="margin-top:.9rem;font-size:.8rem;font-weight:600;color:#a855f7;display:flex;align-items:center;gap:.3rem">Explore <i class="fa-solid fa-arrow-right text-xs"></i></div>
+      </div>
+
+      <div class="module-card reveal" style="transition-delay:.2s" onclick="openModuleModal('manufacturing')">
+        <div class="mod-icon" style="background:#ffe8e8"><i class="fa-solid fa-industry" style="color:#ff3b30"></i></div>
+        <div style="font-weight:700;font-size:.95rem;color:var(--text);letter-spacing:-.01em;margin-bottom:.35rem">Production & Manufacturing</div>
+        <div style="font-size:.82rem;color:var(--text3);line-height:1.5">Work orders, BoM, cost tracking & planning</div>
+        <div style="margin-top:.9rem;font-size:.8rem;font-weight:600;color:#ff3b30;display:flex;align-items:center;gap:.3rem">Explore <i class="fa-solid fa-arrow-right text-xs"></i></div>
+      </div>
+
+      <div class="module-card reveal" style="transition-delay:.24s" onclick="openModuleModal('purchase')">
+        <div class="mod-icon" style="background:#e8faf5"><i class="fa-solid fa-truck" style="color:#2dbf87"></i></div>
+        <div style="font-weight:700;font-size:.95rem;color:var(--text);letter-spacing:-.01em;margin-bottom:.35rem">Purchase & Vendor</div>
+        <div style="font-size:.82rem;color:var(--text3);line-height:1.5">Procurement, POs, vendor management</div>
+        <div style="margin-top:.9rem;font-size:.8rem;font-weight:600;color:#2dbf87;display:flex;align-items:center;gap:.3rem">Explore <i class="fa-solid fa-arrow-right text-xs"></i></div>
+      </div>
+
+      <div class="module-card reveal" style="transition-delay:.28s" onclick="openModuleModal('hr')">
+        <div class="mod-icon" style="background:#ffe8f5"><i class="fa-solid fa-users" style="color:#ec4899"></i></div>
+        <div style="font-weight:700;font-size:.95rem;color:var(--text);letter-spacing:-.01em;margin-bottom:.35rem">HR & Payroll</div>
+        <div style="font-size:.82rem;color:var(--text3);line-height:1.5">Attendance, leaves, WPS payroll processing</div>
+        <div style="margin-top:.9rem;font-size:.8rem;font-weight:600;color:#ec4899;display:flex;align-items:center;gap:.3rem">Explore <i class="fa-solid fa-arrow-right text-xs"></i></div>
+      </div>
+
+      <div class="module-card reveal" style="transition-delay:.32s" onclick="openModuleModal('mobile')">
+        <div class="mod-icon" style="background:#e8f1fb"><i class="fa-solid fa-mobile-screen" style="color:#0071e3"></i></div>
+        <div style="font-weight:700;font-size:.95rem;color:var(--text);letter-spacing:-.01em;margin-bottom:.35rem">Mobile App</div>
+        <div style="font-size:.82rem;color:var(--text3);line-height:1.5">Full ERP on Android & iOS, anywhere</div>
+        <div style="margin-top:.9rem;font-size:.8rem;font-weight:600;color:var(--cyan);display:flex;align-items:center;gap:.3rem">Explore <i class="fa-solid fa-arrow-right text-xs"></i></div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="modules.html" style="display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1.5px solid var(--border);color:var(--text2);font-size:.9rem;font-weight:600;padding:.75rem 2rem;border-radius:14px;letter-spacing:-.01em;transition:all .25s" onmouseover="this.style.borderColor='#c7d8f0';this.style.color='var(--cyan)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text2)'">
+        View All Modules <i class="fa-solid fa-arrow-right text-xs"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURES — ALTERNATING ROWS
+══════════════════════════════════════════ -->
+<section style="padding:5rem 0;background:#091f3a">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center reveal" style="margin-bottom:4rem">
+      <div class="section-tag" style="justify-content:center">Features</div>
+      <h2 style="font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-.035em;line-height:1.1">AI Intelligence<br/>Built Into Everything</h2>
+    </div>
+
+    <!-- Feature 1 -->
+    <div class="feature-row reveal">
+      <div class="reveal-l">
+        <div class="section-tag"><i class="fa-solid fa-robot"></i>AI Powered</div>
+        <h3 style="font-size:1.9rem;font-weight:800;letter-spacing:-.03em;color:var(--text);line-height:1.15;margin-bottom:1rem">Intelligent Automation<br/>Across Your Business</h3>
+        <p style="font-size:.95rem;color:var(--text3);line-height:1.7;margin-bottom:1.5rem">AI chatbot for instant support, CRM lead scoring, customer behaviour prediction, and document summarisation — reducing manual work by up to 70%.</p>
+        <div class="space-y-1">
+          <div class="check-li">AI lead scoring & predictive analytics</div>
+          <div class="check-li">Smart chatbot with business context</div>
+          <div class="check-li">Auto invoice summarisation</div>
+          <div class="check-li">Automated follow-up suggestions</div>
+        </div>
+        <a href="features.html" class="btn-cta" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1.75rem;padding:.7rem 1.5rem;border-radius:12px">
+          Explore AI Features <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+      <div class="feature-img-wrap reveal-r">
+        <img src="assets/images/Ai-powered.png" alt="AI Features" style="width:100%;display:block" onerror="this.parentElement.style.background='#f0f4ff';this.parentElement.style.height='300px'"/>
+      </div>
+    </div>
+
+    <!-- Feature 2 -->
+    <div class="feature-row reveal">
+      <div class="feature-img-wrap reveal-l">
+        <img src="assets/images/E-invoice.png" alt="E-Invoice" style="width:100%;display:block" onerror="this.parentElement.style.background='#f0fff4';this.parentElement.style.height='300px'"/>
+      </div>
+      <div class="reveal-r">
+        <div class="section-tag"><i class="fa-solid fa-file-invoice"></i>E-Invoice</div>
+        <h3 style="font-size:1.9rem;font-weight:800;letter-spacing:-.03em;color:var(--text);line-height:1.15;margin-bottom:1rem">ZATCA-Compliant<br/>E-Invoicing, Auto-Generated</h3>
+        <p style="font-size:.95rem;color:var(--text3);line-height:1.7;margin-bottom:1.5rem">Fully compliant with UAE VAT 5% and Saudi Arabia ZATCA Phase 2 — structured XML, mandatory fields, QR codes and PDF output, all automated.</p>
+        <div style="display:flex;gap:.625rem;flex-wrap:wrap;margin-top:1rem">
+          <span style="font-size:.8rem;font-weight:600;padding:.35rem .9rem;border-radius:980px;background:#e8f8ee;color:#34c759;border:1px solid #c8f0d7">UAE VAT</span>
+          <span style="font-size:.8rem;font-weight:600;padding:.35rem .9rem;border-radius:980px;background:#f3ebff;color:#a855f7;border:1px solid #e2d0ff">ZATCA Phase 2</span>
+          <span style="font-size:.8rem;font-weight:600;padding:.35rem .9rem;border-radius:980px;background:#e8f1fb;color:#0071e3;border:1px solid #c7d8f0">Auto QR Code</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3 -->
+    <div class="feature-row reveal">
+      <div class="reveal-l">
+        <div class="section-tag"><i class="fa-solid fa-plug"></i>Integrations</div>
+        <h3 style="font-size:1.9rem;font-weight:800;letter-spacing:-.03em;color:var(--text);line-height:1.15;margin-bottom:1rem">Connect Everything<br/>You Already Use</h3>
+        <p style="font-size:.95rem;color:var(--text3);line-height:1.7;margin-bottom:1.5rem">Seamlessly integrates with payment gateways, eCommerce platforms, accounting tools, and any third-party API — with real-time data sync.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:.625rem;margin-top:1.5rem">
+          <div class="tech-pill"><img src="assets/images/laravel.png" class="h-5" onerror="this.remove()"/>Laravel</div>
+          <div class="tech-pill"><img src="assets/images/aws.png" class="h-5" onerror="this.remove()"/>AWS</div>
+          <div class="tech-pill"><img src="assets/images/mysql.webp" class="h-5" onerror="this.remove()"/>MySQL</div>
+          <div class="tech-pill"><img src="assets/images/python-3.svg" class="h-5" onerror="this.remove()"/>Python</div>
+          <div class="tech-pill"><i class="fa-solid fa-brain" style="color:#a855f7"></i>AI / ML</div>
+        </div>
+      </div>
+      <div class="feature-img-wrap reveal-r">
+        <img src="assets/images/Effortless-Integrations.png" alt="Integrations" style="width:100%;display:block" onerror="this.parentElement.style.background='#f0f4ff';this.parentElement.style.height='300px'"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MOBILE APP SHOWCASE
+══════════════════════════════════════════ -->
+<section style="padding:6rem 0;background:linear-gradient(135deg,#030d1c 0%,#051628 50%,#08102a 100%);overflow:hidden">
+  <div class="max-w-7xl mx-auto px-5">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center" class="reveal">
+      <!-- Text -->
+      <div class="reveal-l">
+        <div class="section-tag">Mobile App</div>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-.035em;color:var(--text);line-height:1.12;margin-bottom:1rem">Your Entire ERP<br/><span class="grad-blue">In Your Pocket</span></h2>
+        <p style="font-size:.95rem;color:var(--text3);line-height:1.7;margin-bottom:1.75rem">Full business management on Android & iOS. Approve work orders, track receivables, manage invoices — with an AI assistant always on call.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="#" style="display:flex;align-items:center;gap:.625rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.75rem 1.25rem;border-radius:14px;font-size:.85rem;font-weight:600;transition:all .25s;letter-spacing:-.01em" onmouseover="this.style.background='rgba(255,255,255,.14)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
+            <i class="fa-brands fa-apple text-xl"></i><div><div style="font-size:.65rem;opacity:.6">Download on</div><div>App Store</div></div>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:.625rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.75rem 1.25rem;border-radius:14px;font-size:.85rem;font-weight:600;transition:all .25s;letter-spacing:-.01em" onmouseover="this.style.background='rgba(255,255,255,.14)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
+            <i class="fa-brands fa-google-play text-xl" style="color:#34d399"></i><div><div style="font-size:.65rem;opacity:.6">Get it on</div><div>Google Play</div></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Phones -->
+      <div style="display:flex;justify-content:center;align-items:flex-end;gap:1.5rem" class="reveal-r">
+        <div class="phone-shell float-slow">
+          <!-- Side buttons -->
+          <div class="btn-action"></div>
+          <div class="btn-vol-up"></div>
+          <div class="btn-vol-dn"></div>
+          <div class="btn-power"></div>
+          <!-- Dynamic Island -->
+          <div class="phone-dynamic-island">
+            <div class="di-sensor"></div>
+            <div class="di-camera"></div>
+          </div>
+          <div class="phone-display" style="background:#f2f2f7;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column">
+            <!-- Acodax App Screenshot Replica -->
+            <div style="background:#f2f2f7;flex:1;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif">
+              <!-- Status bar — spaced for Dynamic Island -->
+              <div style="background:#f2f2f7;padding:14px 12px 4px;display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:.55rem;font-weight:700;color:#1c1c1e">2:28</span>
+                <div style="display:flex;gap:3px;align-items:center">
+                  <div style="width:10px;height:5px;border:1px solid #1c1c1e;border-radius:1px;position:relative"><div style="position:absolute;right:-3px;top:50%;transform:translateY(-50%);width:2px;height:3px;background:#1c1c1e;border-radius:1px"></div><div style="background:#1c1c1e;width:70%;height:100%;border-radius:0"></div></div>
+                </div>
+              </div>
+              <!-- App Header -->
+              <div style="background:#f2f2f7;padding:4px 12px 8px;display:flex;justify-content:space-between;align-items:center">
+                <i class="fa-solid fa-bars" style="color:#1c1c1e;font-size:.8rem"></i>
+                <span style="font-size:.9rem;font-weight:800;letter-spacing:-.03em;color:#1c1c1e">aco<span style="color:#e07920">dax</span></span>
+                <div style="display:flex;gap:6px">
+                  <i class="fa-solid fa-download" style="color:#1c1c1e;font-size:.7rem"></i>
+                  <i class="fa-solid fa-bell" style="color:#1c1c1e;font-size:.7rem"></i>
+                </div>
+              </div>
+              <!-- Hello card -->
+              <div style="margin:0 10px 8px;background:#fff;border-radius:14px;padding:10px 12px;position:relative;overflow:hidden">
+                <div style="position:absolute;right:0;top:0;bottom:0;width:60%;background:linear-gradient(135deg,rgba(255,150,150,.15),rgba(150,200,255,.2),rgba(200,255,200,.15));border-radius:0 14px 14px 0"></div>
+                <div style="font-size:.75rem;font-weight:700;color:#e07920">Hello 👋 Navas</div>
+                <div style="font-size:.58rem;color:#8e8e93;margin-top:2px">Here are some quick data for you to start</div>
+              </div>
+              <!-- Receivables card -->
+              <div style="margin:0 10px 8px;background:#fff;border-radius:14px;padding:10px 12px;position:relative;overflow:hidden">
+                <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,200,150,.08),rgba(150,220,200,.1),rgba(150,200,255,.08));pointer-events:none"></div>
+                <div style="font-size:.65rem;font-weight:700;color:#1c1c1e;margin-bottom:6px">Receivables and Payments</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+                  <div>
+                    <div style="font-size:.5rem;color:#8e8e93">Total Receivables</div>
+                    <div style="font-size:.62rem;font-weight:800;color:#1c1c1e;line-height:1.2">AED<br/>733,777.28</div>
+                    <div style="margin-top:4px;color:#34c759;font-size:.9rem">💰</div>
+                  </div>
+                  <div>
+                    <div style="font-size:.5rem;color:#8e8e93">Total Payables</div>
+                    <div style="font-size:.62rem;font-weight:800;color:#1c1c1e;line-height:1.2">AED<br/>30,499.75</div>
+                    <div style="margin-top:4px;color:#5856d6;font-size:.9rem">💸</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Sales card -->
+              <div style="margin:0 10px 8px;background:#fff;border-radius:14px;padding:10px 12px">
+                <div style="font-size:.65rem;font-weight:700;color:#1c1c1e;margin-bottom:6px">Sales</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                  <span style="font-size:.5rem;background:#e8f8ee;color:#34c759;padding:2px 6px;border-radius:6px;font-weight:600">Mon Apr 13 2026</span>
+                  <div>
+                    <div style="font-size:.48rem;color:#8e8e93;display:flex;align-items:center;gap:3px"><span style="width:5px;height:5px;border-radius:50%;background:#3a8fc7;display:inline-block"></span>Total invoice <span style="color:#3a8fc7">AED 46,25...</span></div>
+                    <div style="font-size:.48rem;color:#8e8e93;display:flex;align-items:center;gap:3px"><span style="width:5px;height:5px;border-radius:50%;background:#34c759;display:inline-block"></span>Amount paid <span style="color:#34c759">AED 31,027...</span></div>
+                    <div style="font-size:.48rem;color:#8e8e93;display:flex;align-items:center;gap:3px"><span style="width:5px;height:5px;border-radius:50%;background:#ff3b30;display:inline-block"></span>Balance <span style="color:#ff3b30">AED 15,225.00</span></div>
+                  </div>
+                </div>
+                <div style="font-size:.72rem;font-weight:800;color:#1c1c1e">AED 46,252.50</div>
+                <div style="display:flex;gap:3px;justify-content:center;margin-top:4px">
+                  <div style="width:6px;height:6px;border-radius:50%;background:#3a8fc7"></div>
+                  <div style="width:6px;height:6px;border-radius:50%;background:#d0d0d0"></div>
+                  <div style="width:6px;height:6px;border-radius:50%;background:#d0d0d0"></div>
+                  <div style="width:6px;height:6px;border-radius:50%;background:#d0d0d0"></div>
+                  <div style="width:6px;height:6px;border-radius:50%;background:#d0d0d0"></div>
+                </div>
+              </div>
+              <!-- Bottom nav -->
+              <div style="background:#fff;border-top:1px solid #e5e5ea;display:flex;align-items:center;justify-content:space-around;padding:8px 4px;margin:0 10px;border-radius:0 0 10px 10px">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                  <i class="fa-solid fa-grip" style="color:#3a8fc7;font-size:.7rem"></i>
+                  <span style="font-size:.45rem;color:#3a8fc7;font-weight:600">Dashboard</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                  <div style="width:20px;height:20px;border-radius:50%;background:#e5e5ea"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Second phone — AcoBot animated chat -->
+        <div class="phone-shell float-med" style="margin-bottom:36px">
+          <!-- Side buttons -->
+          <div class="btn-action"></div>
+          <div class="btn-vol-up"></div>
+          <div class="btn-vol-dn"></div>
+          <div class="btn-power"></div>
+          <!-- Dynamic Island -->
+          <div class="phone-dynamic-island">
+            <div class="di-sensor"></div>
+            <div class="di-camera"></div>
+          </div>
+          <div class="phone-display" style="background:#f0f0f5;overflow:hidden;display:flex;flex-direction:column">
+            <!-- AcoBot header inside phone -->
+            <div style="background:linear-gradient(135deg,#3a8fc7,#2979b8);padding:52px 10px 10px;display:flex;align-items:center;gap:8px;flex-shrink:0">
+              <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;border:1.5px solid rgba(255,255,255,.3)">🤖</div>
+              <div>
+                <div style="color:#fff;font-weight:700;font-size:.78rem;letter-spacing:-.01em">AcoBot</div>
+                <div style="color:rgba(255,255,255,.65);font-size:.58rem;display:flex;align-items:center;gap:3px"><span style="width:5px;height:5px;border-radius:50%;background:#34d399;display:inline-block"></span>Online</div>
+              </div>
+            </div>
+            <!-- Chat body -->
+            <div id="phoneChatBody" style="flex:1;padding:8px;display:flex;flex-direction:column;gap:6px;overflow:hidden;background:#f0f0f5"></div>
+            <!-- Footer -->
+            <div style="background:linear-gradient(135deg,#3a8fc7,#2979b8);padding:7px 10px;display:flex;align-items:center;gap:6px;flex-shrink:0">
+              <div style="flex:1;background:rgba(255,255,255,.18);border-radius:980px;padding:5px 10px;font-size:.65rem;color:rgba(255,255,255,.6);font-style:italic">Ask anything…</div>
+              <div style="width:26px;height:26px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center">
+                <i class="fa-solid fa-microphone" style="color:#3a8fc7;font-size:.6rem"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     WEB DASHBOARD — MACBOOK
+══════════════════════════════════════════ -->
+<section style="padding:6rem 0;background:#091f3a">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center reveal" style="margin-bottom:2.5rem">
+      <div class="section-tag" style="justify-content:center">Web Dashboard</div>
+      <h2 style="font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-.035em;line-height:1.1">Complete Business Intelligence<br/><span class="grad-all">at a Glance</span></h2>
+      <p style="font-size:.95rem;color:var(--text3);margin-top:.75rem">All your data unified — sales, finance, projects, inventory — live in one beautiful view.</p>
+    </div>
+
+    <!-- Tab switcher -->
+    <div style="display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem" class="reveal">
+      <button onclick="switchDash('assets/images/dashboard1.png',this)" class="dash-tab" style="background:var(--cyan);color:#fff;border:none;padding:.5rem 1.1rem;border-radius:980px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:var(--font)">Main Dashboard</button>
+      <button onclick="switchDash('assets/images/Ai-powered.png',this)"  class="dash-tab" style="background:#f5f5f7;color:var(--text3);border:none;padding:.5rem 1.1rem;border-radius:980px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:var(--font)">AI Features</button>
+      <button onclick="switchDash('assets/images/E-invoice.png',this)"   class="dash-tab" style="background:#f5f5f7;color:var(--text3);border:none;padding:.5rem 1.1rem;border-radius:980px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:var(--font)">E-Invoice</button>
+      <button onclick="switchDash('assets/images/Accounting-2.jpg',this)"class="dash-tab" style="background:#f5f5f7;color:var(--text3);border:none;padding:.5rem 1.1rem;border-radius:980px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:var(--font)">Finance</button>
+    </div>
+
+    <div class="reveal" style="position:relative">
+      <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80%;height:200px;background:radial-gradient(ellipse,rgba(0,113,227,.06),transparent 70%);pointer-events:none"></div>
+      <div class="mac-lid" style="max-width:900px;margin:0 auto;position:relative">
+        <div class="mac-camera"></div>
+        <div class="mac-screen" style="height:420px">
+          <img id="macScreenImg" src="assets/images/dashboard1.png"
+               style="width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .4s" onerror="this.style.background='#1d1d1f'"/>
+        </div>
+      </div>
+      <div class="mac-chin" style="max-width:900px;margin:0 auto;position:relative"><div class="mac-base-bar"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BLOG PREVIEW
+══════════════════════════════════════════ -->
+<section style="padding:6rem 0;background:var(--bg)">
+  <div class="max-w-7xl mx-auto px-5">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem" class="reveal">
+      <div>
+        <div class="section-tag">Latest Insights</div>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;letter-spacing:-.035em;color:var(--text)">From the Acodax Blog</h2>
+      </div>
+      <a href="blog.html" style="font-size:.9rem;font-weight:600;color:var(--cyan);display:flex;align-items:center;gap:.35rem;transition:gap .2s">View all <i class="fa-solid fa-arrow-right text-xs"></i></a>
+    </div>
+    <div id="blogGrid" class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem">
+      <!-- Skeleton -->
+      <div class="blog-card"><div style="height:180px;background:#0d2240;animation:shimmer 1.5s infinite"></div><div style="padding:1.25rem"><div style="height:10px;background:#0d2240;border-radius:5px;width:30%;margin-bottom:10px;animation:shimmer 1.5s infinite"></div><div style="height:14px;background:#0d2240;border-radius:5px;margin-bottom:6px;animation:shimmer 1.5s infinite"></div></div></div>
+      <div class="blog-card"><div style="height:180px;background:#0d2240;animation:shimmer 1.5s infinite"></div><div style="padding:1.25rem"><div style="height:10px;background:#0d2240;border-radius:5px;width:30%;margin-bottom:10px;animation:shimmer 1.5s infinite"></div><div style="height:14px;background:#0d2240;border-radius:5px;margin-bottom:6px;animation:shimmer 1.5s infinite"></div></div></div>
+      <div class="blog-card"><div style="height:180px;background:#0d2240;animation:shimmer 1.5s infinite"></div><div style="padding:1.25rem"><div style="height:10px;background:#0d2240;border-radius:5px;width:30%;margin-bottom:10px;animation:shimmer 1.5s infinite"></div><div style="height:14px;background:#0d2240;border-radius:5px;margin-bottom:6px;animation:shimmer 1.5s infinite"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FAQ
+══════════════════════════════════════════ -->
+<section style="padding:5rem 0;background:#071e38">
+  <div style="max-width:700px;margin:0 auto;padding:0 1.25rem">
+    <div class="text-center reveal" style="margin-bottom:2.5rem">
+      <div class="section-tag" style="justify-content:center">FAQ</div>
+      <h2 style="font-size:2.2rem;font-weight:800;letter-spacing:-.035em;color:var(--text)">Common Questions</h2>
+    </div>
+    <div id="faqList" class="reveal" style="display:flex;flex-direction:column;gap:.625rem"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA
+══════════════════════════════════════════ -->
+<section class="cta-section" style="padding:5.5rem 0">
+  <div style="position:relative;z-index:1;max-width:700px;margin:0 auto;padding:0 1.25rem;text-align:center" class="reveal">
+    <h2 style="font-size:clamp(2rem,4.5vw,3rem);font-weight:800;letter-spacing:-.04em;color:#fff;line-height:1.1;margin-bottom:1rem">Ready to Transform<br/>Your Business?</h2>
+    <p style="color:rgba(255,255,255,.7);font-size:1rem;margin-bottom:2rem;line-height:1.6">Join 500+ UAE businesses already running smarter with Acodax ERP. Get your free demo today.</p>
+    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+      <a href="contact.html" style="display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:#0071e3;font-size:.95rem;font-weight:700;padding:.875rem 2rem;border-radius:14px;transition:all .25s;letter-spacing:-.01em" onmouseover="this.style.background='#f0f8ff'" onmouseout="this.style.background='#fff'">
+        <i class="fa-solid fa-calendar-check"></i>Book Free Demo
+      </a>
+      <a href="tel:+97152106906" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:.95rem;font-weight:600;padding:.875rem 2rem;border-radius:14px;transition:all .25s;letter-spacing:-.01em" onmouseover="this.style.background='rgba(255,255,255,.2)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
+        <i class="fa-solid fa-phone"></i>+971 52 1069062
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer style="background:#1d1d1f;padding:3.5rem 0 2rem">
+  <div class="max-w-7xl mx-auto px-5">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.07)" class="responsive-footer">
+      <div>
+        <a href="index.html">
+          <img src="assets/images/Acodax-logo-4.png" alt="Acodax" style="height:32px;margin-bottom:1rem;filter:brightness(2)" onerror="this.onerror=null;this.outerHTML='<span style=\'font-size:1.3rem;font-weight:900;color:#fff;letter-spacing:-.03em\'>aco<span style=\'color:#3a8fc7\'>dax</span></span>'"/>
+        </a>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.35);line-height:1.65;max-width:240px">AI-Powered ERP for UAE businesses. Simplify, automate, and grow smarter.</p>
+        <div style="display:flex;gap:.625rem;margin-top:1.25rem">
+          <a href="https://www.facebook.com/people/Acodax-Technologies/61578203908048/" target="_blank" style="width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:.75rem;transition:all .25s" onmouseover="this.style.color='#3a8fc7';this.style.borderColor='#3a8fc7'" onmouseout="this.style.color='rgba(255,255,255,.4)';this.style.borderColor='rgba(255,255,255,.08)'"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/acodax/" target="_blank" style="width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:.75rem;transition:all .25s" onmouseover="this.style.color='#3a8fc7'" onmouseout="this.style.color='rgba(255,255,255,.4)'"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" style="width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:.75rem;transition:all .25s" onmouseover="this.style.color='#3a8fc7'" onmouseout="this.style.color='rgba(255,255,255,.4)'"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:.72rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:1rem">Navigation</p>
+        <div style="display:flex;flex-direction:column;gap:.625rem">
+          <a href="index.html"    style="font-size:.85rem;color:rgba(255,255,255,.45);transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Home</a>
+          <a href="features.html" style="font-size:.85rem;color:rgba(255,255,255,.45);transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Features</a>
+          <a href="modules.html"  style="font-size:.85rem;color:rgba(255,255,255,.45);transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Modules</a>
+          <a href="pricing.html"  style="font-size:.85rem;color:rgba(255,255,255,.45);transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Pricing</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:.72rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:1rem">Solutions</p>
+        <div style="display:flex;flex-direction:column;gap:.625rem">
+          <a href="modules.html" style="font-size:.85rem;color:rgba(255,255,255,.45);transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">ERP Software</a>
+          <a href="modules.html" style="font-size:.85rem;color:rgba(255,255,255,.45);transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Retail POS</a>
+          <a href="modules.html" style="font-size:.85rem;color:rgba(255,255,255,.45);transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">CRM</a>
+          <a href="modules.html" style="font-size:.85rem;color:rgba(255,255,255,.45);transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Manufacturing</a>
+          <a href="partner.html" style="font-size:.85rem;color:#3a8fc7;transition:color .2s;font-weight:600" onmouseover="this.style.color='#60b8e8'" onmouseout="this.style.color='#3a8fc7'"><i class="fa-solid fa-handshake mr-1"></i>Partner Registration</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:.72rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:1rem">Contact</p>
+        <div style="display:flex;flex-direction:column;gap:.625rem">
+          <a href="tel:+97152106906" style="font-size:.85rem;color:rgba(255,255,255,.45);transition:color .2s;display:flex;align-items:center;gap:.4rem" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'"><i class="fa-solid fa-phone text-xs" style="color:#3a8fc7"></i>+971 52 1069062</a>
+          <a href="mailto:info@acodax.com" style="font-size:.85rem;color:rgba(255,255,255,.45);transition:color .2s;display:flex;align-items:center;gap:.4rem" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'"><i class="fa-solid fa-envelope text-xs" style="color:#3a8fc7"></i>info@acodax.com</a>
+          <span style="font-size:.85rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:.4rem"><i class="fa-solid fa-location-dot text-xs" style="color:#3a8fc7"></i>Dubai, UAE</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;flex-wrap:wrap;gap:.75rem">
+      <p style="font-size:.78rem;color:rgba(255,255,255,.2)">© 2026 Acodax Technology LLC. All rights reserved.</p>
+      <div style="display:flex;gap:1.5rem">
+        <a href="#" style="font-size:.78rem;color:rgba(255,255,255,.2);transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,.6)'" onmouseout="this.style.color='rgba(255,255,255,.2)'">Privacy Policy</a>
+        <a href="#" style="font-size:.78rem;color:rgba(255,255,255,.2);transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,.6)'" onmouseout="this.style.color='rgba(255,255,255,.2)'">Terms</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE MODAL -->
+<div id="moduleModal" style="display:none;position:fixed;inset:0;z-index:1000;align-items:center;justify-content:center;padding:1.25rem" onclick="if(event.target===this)closeModuleModal()">
+  <div style="position:absolute;inset:0;background:rgba(3,13,28,.75);backdrop-filter:blur(8px)"></div>
+  <div id="moduleModalInner" style="position:relative;z-index:1;background:var(--surface);border:1px solid rgba(79,168,232,.25);border-radius:28px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.4);animation:fadeUp .35s cubic-bezier(.34,1.56,.64,1) both">
+    <div id="moduleModalContent" style="padding:2rem"></div>
+  </div>
+</div>
+
+<style>
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+@keyframes shimmer{0%{opacity:.6}50%{opacity:.9}100%{opacity:.6}}
+@media(max-width:900px){.responsive-footer{grid-template-columns:1fr 1fr !important;gap:2rem !important}}
+@media(max-width:600px){.responsive-footer{grid-template-columns:1fr !important}}
+</style>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+// ── NAVBAR SCROLL ──
+window.addEventListener('scroll',()=>{
+  const n=document.getElementById('navbar');
+  // Already handled by CSS opacity — just a class toggle for JS hooks
+  n.classList.toggle('at-top',scrollY<40);
+});
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
+
+// ── HERO CANVAS — soft floating orbs ──
+(function(){
+  const c=document.getElementById('heroCanvas'),ctx=c.getContext('2d');
+  let W,H,orbs=[];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight}
+  resize();window.addEventListener('resize',()=>{resize();initOrbs()});
+  function initOrbs(){
+    orbs=Array.from({length:18},()=>({
+      x:Math.random()*W,y:Math.random()*H,
+      r:Math.random()*3+1,
+      vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
+      hue:Math.random()<.5?210:270, // blue or purple
+      a:Math.random()*.4+.1,
+      pulse:Math.random()*Math.PI*2
+    }));
+  }
+  initOrbs();
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const t=Date.now()*.0005;
+    for(let i=0;i<orbs.length;i++){
+      for(let j=i+1;j<orbs.length;j++){
+        const dx=orbs[i].x-orbs[j].x,dy=orbs[i].y-orbs[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<130){
+          ctx.strokeStyle=`hsla(210,90%,65%,${(1-d/130)*.18})`;
+          ctx.lineWidth=.9;
+          ctx.beginPath();ctx.moveTo(orbs[i].x,orbs[i].y);ctx.lineTo(orbs[j].x,orbs[j].y);ctx.stroke();
+        }
+      }
+    }
+    orbs.forEach((o,i)=>{
+      o.pulse+=.018;
+      const p=Math.sin(o.pulse)*.4+1;
+      ctx.beginPath();ctx.arc(o.x,o.y,o.r*p,0,Math.PI*2);
+      ctx.fillStyle=`hsla(${o.hue},85%,68%,${o.a})`;ctx.fill();
+      o.x+=o.vx;o.y+=o.vy;
+      if(o.x<0||o.x>W)o.vx*=-1;
+      if(o.y<0||o.y>H)o.vy*=-1;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── COUNTER ANIMATION ──
+const counters=[
+  {el:document.getElementById('cnt1'),target:500,suffix:'+'},
+  {el:document.getElementById('cnt2'),target:15,suffix:'+'},
+  {el:document.getElementById('cnt3'),target:99,suffix:'.9%'},
+];
+let countersRan=false;
+function runCounters(){
+  if(countersRan)return;countersRan=true;
+  counters.forEach(({el,target,suffix})=>{
+    let v=0;const step=Math.ceil(target/55);
+    const t=setInterval(()=>{v=Math.min(v+step,target);el.textContent=v+suffix;if(v>=target)clearInterval(t);},28);
+  });
+}
+setTimeout(runCounters,900);
+
+// ── SCROLL REVEAL ──
+const revObs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');if(x.target.closest('#hero'))runCounters();}}),{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>revObs.observe(el));
+
+// ── DASHBOARD SWITCHER ──
+function switchDash(src,btn){
+  const img=document.getElementById('macScreenImg');
+  img.style.opacity=0;
+  setTimeout(()=>{img.src=src;img.style.opacity=1;},350);
+  document.querySelectorAll('.dash-tab').forEach(b=>{b.style.background='#f5f5f7';b.style.color='var(--text3)'});
+  btn.style.background='var(--cyan)';btn.style.color='#fff';
+}
+
+// ── BLOG POSTS ──
+const fallbackPosts=[
+  {title:'Common ERP Implementation Mistakes',link:'https://acodax.com/2026/01/24/common-erp-implementation-mistakes-and-how-to-avoid-them/',cat:'ERP UAE',date:'Jan 24, 2026',bg:'#e8f4ff',icon:'fa-triangle-exclamation',ic:'#0071e3',ex:'Learn the most common ERP pitfalls and how to avoid them for a successful rollout in your UAE business.'},
+  {title:'Why SMEs in UAE Are Moving to Cloud ERP',link:'https://acodax.com/2026/01/24/why-smes-in-uae-are-moving-to-cloud-erp-systems/',cat:'Operations',date:'Jan 24, 2026',bg:'#f3ebff',icon:'fa-cloud',ic:'#a855f7',ex:'SMEs across the UAE are rapidly shifting from traditional systems to cloud ERP for better agility and cost savings.'},
+  {title:'How ERP Helps Trading Businesses Manage Inventory',link:'https://acodax.com/2026/01/24/how-erp-helps-trading-businesses-manage-inventory/',cat:'Operations',date:'Jan 24, 2026',bg:'#fff3e8',icon:'fa-boxes-stacked',ic:'#f97316',ex:'See how Acodax ERP streamlines stock management with real-time tracking and automated reorder alerts.'},
+];
+async function loadBlog(){
+  const grid=document.getElementById('blogGrid');
+  let posts=[];
+  try{const r=await fetch('https://acodax.com/wp-json/wp/v2/posts?per_page=3&_embed',{signal:AbortSignal.timeout(6000)});if(r.ok)posts=await r.json();}catch{}
+  const render=posts.length?posts.map((p,i)=>{
+    const thumb=p._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+    const cat=p._embedded?.['wp:term']?.[0]?.[0]?.name||'ERP';
+    const date=new Date(p.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    const ex=p.excerpt?.rendered?.replace(/<[^>]*>/g,'').trim().substring(0,110)+'...';
+    const bgs=['#e8f4ff','#f3ebff','#fff3e8'];
+    return `<a href="${p.link}" target="_blank" class="blog-card" style="text-decoration:none">
+      <div style="height:180px;overflow:hidden;background:${bgs[i%3]}">
+        ${thumb?`<img src="${thumb}" class="blog-img" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<div style=height:180px;background:${bgs[i%3]};display:flex;align-items:center;justify-content:center><i class=fa-solid fa-newspaper style=font-size:3rem;color:#ccc></i></div>'" />`:`<div style="display:flex;align-items:center;justify-content:center;height:100%"><i class="fa-solid fa-newspaper" style="font-size:3rem;color:#ccc"></i></div>`}
+      </div>
+      <div style="padding:1.25rem">
+        <div style="font-size:.72rem;font-weight:600;color:var(--cyan);margin-bottom:.5rem">${cat} · ${date}</div>
+        <div style="font-size:.95rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.4">${p.title.rendered}</div>
+        <div style="font-size:.82rem;color:var(--text3);line-height:1.55">${ex}</div>
+        <div style="display:flex;align-items:center;gap:.35rem;font-size:.82rem;font-weight:600;color:var(--cyan);margin-top:1rem">Read more <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i></div>
+      </div>
+    </a>`;
+  }):fallbackPosts.map(p=>`<a href="${p.link}" target="_blank" class="blog-card" style="text-decoration:none">
+    <div style="height:180px;background:${p.bg};display:flex;align-items:center;justify-content:center">
+      <i class="fa-solid ${p.icon}" style="font-size:3rem;color:${p.ic};opacity:.5"></i>
+    </div>
+    <div style="padding:1.25rem">
+      <div style="font-size:.72rem;font-weight:600;color:var(--cyan);margin-bottom:.5rem">${p.cat} · ${p.date}</div>
+      <div style="font-size:.95rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.4">${p.title}</div>
+      <div style="font-size:.82rem;color:var(--text3);line-height:1.55">${p.ex}</div>
+      <div style="display:flex;align-items:center;gap:.35rem;font-size:.82rem;font-weight:600;color:var(--cyan);margin-top:1rem">Read more <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i></div>
+    </div>
+  </a>`);
+  grid.innerHTML=render.join('');
+}
+loadBlog();
+
+// ── FAQ ──
+const faqs=[
+  {q:'Is ACODAX ERP compliant with UAE VAT and ZATCA?',a:'Yes. ACODAX ERP is fully compliant with UAE VAT and Saudi Arabia ZATCA Phase 2 — auto-generated XML, QR codes, and mandatory invoice fields.'},
+  {q:'Does it support multi-company and multi-currency?',a:'Yes. Manage multiple companies, branches, and currencies from one login — with inter-company transactions and consolidated reporting.'},
+  {q:'How does the AI chatbot help my business?',a:'AcoBot provides instant answers, analyses CRM data, predicts customer needs, and summarises documents — reducing manual effort significantly.'},
+  {q:'Is there a mobile app available?',a:'Yes. Full ERP functionality on Android and iOS. Approve, track, manage and view dashboards on the go, anywhere.'},
+  {q:'How secure is my data?',a:'Your data is protected with SSL encryption, role-based access controls, and AWS cloud hosting — with daily automated backups and 99.9% uptime.'},
+];
+document.getElementById('faqList').innerHTML=faqs.map((f,i)=>`
+  <div class="faq" id="faq-${i}" onclick="toggleFaq(${i})">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.25rem;cursor:pointer;gap:1rem">
+      <span style="font-size:.9rem;font-weight:600;color:var(--text);letter-spacing:-.01em;line-height:1.4">${f.q}</span>
+      <i class="fa-solid fa-chevron-down faq-chevron" style="color:var(--text3);font-size:.75rem;flex-shrink:0"></i>
+    </div>
+    <div class="faq-body"><p style="padding:.25rem 1.25rem 1.1rem;font-size:.875rem;color:var(--text3);line-height:1.65">${f.a}</p></div>
+  </div>`).join('');
+function toggleFaq(i){
+  document.querySelectorAll('.faq').forEach((el,j)=>{if(j!==i)el.classList.remove('open')});
+  document.getElementById('faq-'+i).classList.toggle('open');
+}
+
+// ══════════════════════════════════════════
+// ACOBOT — AUTO-ANIMATED CHAT DEMO
+// ══════════════════════════════════════════
+const conversations=[
+  [
+    {type:'bot', text:'Hello! 👋<br/>How can I help you today?'},
+    {type:'user',text:'What is my total receivable?'},
+    {type:'bot', text:'<b>Total Receivables: AED 733,777</b><br/><span style="color:#34c759;font-size:.75rem">▲ 12% from last month</span>',metric:true},
+  ],
+  [
+    {type:'bot', text:'Hi there! 🤖 Ask me anything about your business.'},
+    {type:'user',text:'Show me today\'s profit summary'},
+    {type:'bot', text:'<b>Gross Profit: AED 7.7M</b><br/>Income: 8.2M &nbsp;|&nbsp; Cost: 0.5M',metric:true},
+  ],
+  [
+    {type:'bot', text:'Hello! 👋 I\'m AcoBot, your AI assistant.'},
+    {type:'user',text:'Any pending invoices?'},
+    {type:'bot', text:'<b>93 Unpaid Invoices</b><br/>Outstanding: <span style="color:#ff3b30">AED 2,415</span>',metric:true},
+  ],
+  [
+    {type:'bot', text:'Good day! 🌟 How can I assist?'},
+    {type:'user',text:'What are this week\'s sales?'},
+    {type:'bot', text:'<b>Weekly Sales: AED 124,165</b><br/>16 invoices · AED 9,240 received',metric:true},
+  ],
+  [
+    {type:'bot', text:'Hey! AcoBot here. What would you like to know?'},
+    {type:'user',text:'How many active projects?'},
+    {type:'bot', text:'<b>47 Active Projects</b><br/>12 on-track · 3 need attention ⚠️',metric:true},
+  ],
+];
+
+let convIdx=0,msgIdx=0,chatTimer=null;
+
+function getBotAvatar(){
+  return `<div class="bot-av"><i class="fa-solid fa-robot" style="color:#fff;font-size:.6rem"></i></div>`;
+}
+
+function appendMsg(msg){
+  const body=document.getElementById('chatBody');
+  if(!body)return;
+  const div=document.createElement('div');
+  div.className='chat-msg '+(msg.type==='user'?'user':'');
+  if(msg.type==='bot'){
+    div.innerHTML=`${getBotAvatar()}<div class="bubble bot${msg.metric?' metric':''}">${msg.text}</div>`;
+  }else{
+    div.innerHTML=`<div class="bubble user">${msg.text}</div>`;
+  }
+  body.appendChild(div);
+  body.scrollTop=body.scrollHeight;
+}
+
+function showTyping(){
+  const body=document.getElementById('chatBody');
+  if(!body)return null;
+  const div=document.createElement('div');
+  div.className='chat-msg';div.id='typingIndicator';
+  div.innerHTML=`${getBotAvatar()}<div class="bubble bot" style="padding:0"><div class="typing-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
+  body.appendChild(div);
+  body.scrollTop=body.scrollHeight;
+  return div;
+}
+
+function removeTyping(){document.getElementById('typingIndicator')?.remove();}
+
+function playConversation(){
+  const body=document.getElementById('chatBody');
+  if(!body)return;
+  // clear after delay
+  if(msgIdx===0)body.innerHTML='';
+  const conv=conversations[convIdx];
+  if(msgIdx>=conv.length){
+    // pause, then next conversation
+    chatTimer=setTimeout(()=>{
+      convIdx=(convIdx+1)%conversations.length;
+      msgIdx=0;
+      chatTimer=setTimeout(playConversation,600);
+    },3500);
+    return;
+  }
+  const msg=conv[msgIdx];
+  if(msg.type==='bot'){
+    const t=showTyping();
+    chatTimer=setTimeout(()=>{removeTyping();appendMsg(msg);msgIdx++;chatTimer=setTimeout(playConversation,msg.metric?1800:900);},1100);
+  }else{
+    appendMsg(msg);msgIdx++;chatTimer=setTimeout(playConversation,700);
+  }
+}
+
+// Start AcoBot after hero loads
+setTimeout(playConversation,1500);
+
+// ── MAC MINI ACOBOT — animated chat inside MacBook screen ──
+(function(){
+  const macQA=[
+    {btn:0,q:'What is my total sales amount?',a:'<b>Total Sales: AED 124,165</b><br/><span style="color:#34c759;font-size:.65em">▲ 8% from last month</span>',metric:true},
+    {btn:1,q:'Top 5 customers by sale',a:'<b>1.</b> Astra Trading · 45K<br/><b>2.</b> Gulf Corp · 32K<br/><b>3.</b> Al Noor · 28K',metric:true},
+    {btn:2,q:'Customer balance?',a:'<b>Outstanding: AED 2,415</b><br/>93 unpaid invoices',metric:true},
+    {btn:3,q:'How to set user profile image?',a:'Settings → Profile → click your avatar to upload a new image.',metric:false},
+  ];
+  let qaIdx=0;
+
+  function runMacChat(){
+    const body=document.getElementById('macChatBody');
+    if(!body)return;
+    body.innerHTML='';
+    const qa=macQA[qaIdx];
+    qaIdx=(qaIdx+1)%macQA.length;
+
+    // Highlight the clicked quick-action button
+    const btns=document.querySelectorAll('.mac-quick-btn');
+    if(btns[qa.btn])btns[qa.btn].classList.add('active');
+
+    setTimeout(()=>{
+      if(btns[qa.btn])btns[qa.btn].classList.remove('active');
+      // User message
+      const ud=document.createElement('div');
+      ud.style.cssText='display:flex;justify-content:flex-end;animation:acoBubble .3s ease both';
+      ud.innerHTML=`<div style="max-width:92%;background:linear-gradient(135deg,#3a8fc7,#2979b8);color:#fff;border-radius:7px 7px 2px 7px;padding:3px 5px;font-size:5px;line-height:1.45;font-family:inherit">${qa.q}</div>`;
+      body.appendChild(ud);
+
+      // Typing indicator
+      setTimeout(()=>{
+        const td=document.createElement('div');
+        td.id='macTypingDots';
+        td.style.cssText='display:flex;align-items:flex-end;gap:3px;animation:acoBubble .3s ease both';
+        td.innerHTML=`<div style="width:13px;height:13px;border-radius:50%;background:linear-gradient(135deg,#3a8fc7,#2979b8);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-robot" style="font-size:5px;color:#fff"></i></div><div style="background:#f1f5f9;border-radius:2px 7px 7px 7px;padding:3px 5px;display:flex;gap:2px;align-items:center"><div style="width:2.5px;height:2.5px;border-radius:50%;background:#94a3b8;animation:macTypingPulse 1.2s infinite"></div><div style="width:2.5px;height:2.5px;border-radius:50%;background:#94a3b8;animation:macTypingPulse 1.2s .2s infinite"></div><div style="width:2.5px;height:2.5px;border-radius:50%;background:#94a3b8;animation:macTypingPulse 1.2s .4s infinite"></div></div>`;
+        body.appendChild(td);
+
+        // Bot response
+        setTimeout(()=>{
+          document.getElementById('macTypingDots')?.remove();
+          const bd=document.createElement('div');
+          bd.style.cssText='display:flex;align-items:flex-start;gap:3px;animation:acoBubble .3s ease both';
+          bd.innerHTML=`<div style="width:13px;height:13px;border-radius:50%;background:linear-gradient(135deg,#3a8fc7,#2979b8);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-robot" style="font-size:5px;color:#fff"></i></div><div style="max-width:88%;background:#f1f5f9;${qa.metric?'border-left:2px solid #3a8fc7;':''}border-radius:2px 7px 7px 7px;padding:3px 5px;font-size:5px;color:#1e3a5f;line-height:1.55;font-family:inherit">${qa.a}</div>`;
+          body.appendChild(bd);
+          setTimeout(runMacChat,3800);
+        },1200);
+      },750);
+    },900);
+  }
+
+  setTimeout(runMacChat,2000);
+})();
+
+// ── PHONE ACOBOT — animated chat inside phone mockup ──
+(function(){
+  const phoneConvs=[
+    [{type:'bot',text:'Hello! 👋 How can I help?'},{type:'user',text:'What is my receivable?'},{type:'bot',text:'<b>AED 733,777</b><br/><span style="color:#34d399;font-size:.7rem">▲ 12% this month</span>',metric:true}],
+    [{type:'bot',text:'Hi! 🤖 Ask me anything.'},{type:'user',text:"Today's profit?"},{type:'bot',text:'<b>Gross: AED 7.7M</b><br/>Income 8.2M · Cost 0.5M',metric:true}],
+    [{type:'bot',text:"I'm AcoBot — your AI assistant."},{type:'user',text:'Pending invoices?'},{type:'bot',text:'<b>93 Unpaid</b><br/>Outstanding AED 2,415',metric:true}],
+    [{type:'bot',text:'Good day! 🌟 Ready to help.'},{type:'user',text:'Weekly sales?'},{type:'bot',text:'<b>AED 124,165</b><br/>16 invoices issued',metric:true}],
+  ];
+  let ci=0,mi=0,pt=null;
+  const body=document.getElementById('phoneChatBody');
+  if(!body)return;
+
+  function pMsg(m){
+    const d=document.createElement('div');
+    const isUser=m.type==='user';
+    d.style.cssText='display:flex;align-items:flex-end;gap:5px;animation:acoBubble .3s cubic-bezier(.34,1.5,.64,1) both'+(isUser?';flex-direction:row-reverse':'');
+    if(!isUser) d.innerHTML=`<div style="width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#3a8fc7,#2979b8);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.55rem">🤖</div>`;
+    const b=document.createElement('div');
+    b.style.cssText=`max-width:155px;padding:6px 9px;border-radius:${isUser?'14px 14px 3px 14px':'3px 14px 14px 14px'};font-size:.68rem;line-height:1.45;font-family:var(--font);`+(isUser?'background:linear-gradient(135deg,#3a8fc7,#2979b8);color:#fff;':'background:#fff;color:#1c1c1e;box-shadow:0 1px 3px rgba(0,0,0,.1);'+(m.metric?'border-left:2px solid #3a8fc7;':''));
+    b.innerHTML=m.text;
+    d.appendChild(b);
+    body.appendChild(d);
+    body.scrollTop=body.scrollHeight;
+  }
+  function pTyping(){
+    const d=document.createElement('div');
+    d.id='phoneTyping';
+    d.style.cssText='display:flex;align-items:flex-end;gap:5px';
+    d.innerHTML=`<div style="width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#3a8fc7,#2979b8);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.55rem">🤖</div><div style="background:#fff;border-radius:3px 14px 14px 14px;padding:7px 10px;display:flex;gap:3px;box-shadow:0 1px 3px rgba(0,0,0,.1)"><span style="width:5px;height:5px;border-radius:50%;background:#b0b8c4;display:inline-block;animation:acoDot 1.2s ease-in-out infinite"></span><span style="width:5px;height:5px;border-radius:50%;background:#b0b8c4;display:inline-block;animation:acoDot 1.2s .2s ease-in-out infinite"></span><span style="width:5px;height:5px;border-radius:50%;background:#b0b8c4;display:inline-block;animation:acoDot 1.2s .4s ease-in-out infinite"></span></div>`;
+    body.appendChild(d);body.scrollTop=body.scrollHeight;
+  }
+  function playPhone(){
+    const msgs=phoneConvs[ci%phoneConvs.length];
+    if(mi>=msgs.length){body.innerHTML='';ci++;mi=0;pt=setTimeout(playPhone,1800);return;}
+    const m=msgs[mi];
+    if(m.type==='user'){pMsg(m);mi++;pt=setTimeout(playPhone,800);}
+    else{pTyping();pt=setTimeout(()=>{const t=document.getElementById('phoneTyping');if(t)t.remove();pMsg(m);mi++;pt=setTimeout(playPhone,m.metric?1600:800);},1000);}
+  }
+  setTimeout(playPhone,2500);
+})();
+
+// ── MODULE MODAL ──
+const moduleData = {
+  finance: {
+    icon: 'fa-calculator', color: '#0071e3', bg: '#e8f1fb',
+    title: 'Finance & Accounting',
+    desc: 'A complete cloud accounting suite built for UAE businesses — from invoices to financial statements, all automated.',
+    stats: [
+      {label:'Invoices Processed',value:'10,000+',icon:'fa-file-invoice',color:'#0071e3'},
+      {label:'VAT Auto-filed',value:'100%',icon:'fa-percent',color:'#34c759'},
+      {label:'Report Generation',value:'< 2 sec',icon:'fa-chart-bar',color:'#a855f7'},
+      {label:'Multi-Currency',value:'150+',icon:'fa-coins',color:'#f97316'},
+    ],
+    features: ['UAE VAT 5% compliant invoicing','ZATCA Phase 2 e-invoicing (Saudi)','Multi-company & multi-branch accounts','Bank reconciliation & cash flow','Budget vs actual variance reports','Profit & loss, balance sheet, trial balance','Expense management & approvals','Journal entries & audit trail'],
+    link: 'modules.html'
+  },
+  inventory: {
+    icon: 'fa-boxes-stacked', color: '#34c759', bg: '#e8f8ee',
+    title: 'Inventory & Warehouse',
+    desc: 'Real-time inventory control across multiple warehouses with barcode scanning, auto-reorder, and batch tracking.',
+    stats: [
+      {label:'Warehouses Supported',value:'Unlimited',icon:'fa-warehouse',color:'#34c759'},
+      {label:'Stock Accuracy',value:'99.8%',icon:'fa-bullseye',color:'#0071e3'},
+      {label:'Auto Reorder',value:'AI-driven',icon:'fa-robot',color:'#a855f7'},
+      {label:'Barcode Formats',value:'All',icon:'fa-barcode',color:'#f97316'},
+    ],
+    features: ['Real-time stock tracking across locations','Barcode & QR code scanning','Batch & serial number tracking','Min/max auto-reorder rules','Stock valuation (FIFO, AVCO)','Inter-warehouse transfers','Inventory adjustment & audits','Product variants & bundles'],
+    link: 'modules.html'
+  },
+  sales: {
+    icon: 'fa-handshake', color: '#f97316', bg: '#fff3e8',
+    title: 'Sales & CRM',
+    desc: 'AI-powered sales pipeline management — from lead capture to invoice, with predictive scoring and automated follow-ups.',
+    stats: [
+      {label:'Lead Conversion Lift',value:'+35%',icon:'fa-arrow-trend-up',color:'#34c759'},
+      {label:'AI Lead Scoring',value:'Real-time',icon:'fa-brain',color:'#a855f7'},
+      {label:'Pipeline Stages',value:'Custom',icon:'fa-filter',color:'#0071e3'},
+      {label:'Avg. Deal Close Time',value:'-22%',icon:'fa-clock',color:'#f97316'},
+    ],
+    features: ['AI lead scoring & priority ranking','Drag-and-drop sales pipeline','Quotation to invoice automation','Customer 360° profile & history','Email & WhatsApp integration','Sales team performance reports','Commission calculation','Territory & target management'],
+    link: 'modules.html'
+  },
+  project: {
+    icon: 'fa-diagram-project', color: '#a855f7', bg: '#f3ebff',
+    title: 'Project Management',
+    desc: 'Plan, track and deliver projects on time with Gantt charts, resource allocation, and real-time budget tracking.',
+    stats: [
+      {label:'On-time Delivery',value:'+40%',icon:'fa-calendar-check',color:'#34c759'},
+      {label:'Task Automation',value:'AI Rules',icon:'fa-robot',color:'#a855f7'},
+      {label:'Resource Utilisation',value:'Live',icon:'fa-users',color:'#0071e3'},
+      {label:'Budget Overrun Alert',value:'Instant',icon:'fa-bell',color:'#f97316'},
+    ],
+    features: ['Gantt chart & Kanban board views','Milestone & deadline tracking','Resource allocation & capacity planning','Budget vs actual cost monitoring','Project-wise P&L reporting','Document & file attachment','Client portal access','Timesheets & billable hours'],
+    link: 'modules.html'
+  },
+  manufacturing: {
+    icon: 'fa-industry', color: '#ff3b30', bg: '#ffe8e8',
+    title: 'Production & Manufacturing',
+    desc: 'End-to-end production management with Bill of Materials, work orders, costing, and quality control.',
+    stats: [
+      {label:'Production Efficiency',value:'+28%',icon:'fa-gauge-high',color:'#34c759'},
+      {label:'Scrap Reduction',value:'-18%',icon:'fa-recycle',color:'#0071e3'},
+      {label:'BoM Levels',value:'Multi',icon:'fa-layer-group',color:'#a855f7'},
+      {label:'Work Order Auto',value:'Enabled',icon:'fa-gear',color:'#f97316'},
+    ],
+    features: ['Multi-level Bill of Materials (BoM)','Work order planning & scheduling','Raw material consumption tracking','Production cost analysis','Finished goods costing','Quality control checkpoints','Scrap & by-product tracking','MRP planning & demand forecasting'],
+    link: 'modules.html'
+  },
+  purchase: {
+    icon: 'fa-truck', color: '#2dbf87', bg: '#e8faf5',
+    title: 'Purchase & Vendor',
+    desc: 'Streamline procurement from purchase requests to vendor payment — with approval workflows and price comparisons.',
+    stats: [
+      {label:'Cost Savings',value:'Up to 15%',icon:'fa-piggy-bank',color:'#34c759'},
+      {label:'Vendor Scorecards',value:'Auto',icon:'fa-star',color:'#f97316'},
+      {label:'PO Approval',value:'Mobile',icon:'fa-mobile-screen',color:'#0071e3'},
+      {label:'3-Way Matching',value:'Built-in',icon:'fa-check-double',color:'#a855f7'},
+    ],
+    features: ['Purchase requisition & approval flow','Vendor comparison & bidding','Purchase order generation','3-way matching (PO, GRN, Invoice)','Vendor scorecards & performance','Credit terms & payment scheduling','Landed cost tracking','Vendor portal access'],
+    link: 'modules.html'
+  },
+  hr: {
+    icon: 'fa-users', color: '#ec4899', bg: '#ffe8f5',
+    title: 'HR & Payroll',
+    desc: 'Manage your entire workforce — from hiring to payroll — with WPS compliance and UAE labour law automation.',
+    stats: [
+      {label:'WPS Compliance',value:'100%',icon:'fa-shield-halved',color:'#34c759'},
+      {label:'Payroll Processing',value:'< 1 min',icon:'fa-bolt',color:'#f97316'},
+      {label:'Leave Types',value:'Unlimited',icon:'fa-umbrella-beach',color:'#0071e3'},
+      {label:'Employee Self-Service',value:'Mobile',icon:'fa-mobile-screen',color:'#a855f7'},
+    ],
+    features: ['WPS (Wage Protection System) payroll','UAE labour law compliant contracts','Attendance & biometric integration','Leave management & approval','Expense claims & reimbursements','Performance appraisals','Document management & visas','End-of-service calculation (Gratuity)'],
+    link: 'modules.html'
+  },
+  mobile: {
+    icon: 'fa-mobile-screen', color: '#0071e3', bg: '#e8f1fb',
+    title: 'Mobile App',
+    desc: 'Full ERP power on Android & iOS — approve, track, invoice, and get AI insights from anywhere.',
+    stats: [
+      {label:'Platform Support',value:'iOS & Android',icon:'fa-mobile-screen',color:'#0071e3'},
+      {label:'Offline Mode',value:'Yes',icon:'fa-wifi-slash',color:'#34c759'},
+      {label:'Push Notifications',value:'Real-time',icon:'fa-bell',color:'#f97316'},
+      {label:'AI Assistant',value:'AcoBot',icon:'fa-robot',color:'#a855f7'},
+    ],
+    features: ['Real-time dashboard on mobile','Approve invoices & purchase orders','Attendance check-in / check-out','CRM lead management on the go','Inventory stock checks','AcoBot AI chat assistant','Offline data sync capability','Biometric authentication'],
+    link: 'modules.html'
+  },
+};
+
+function openModuleModal(key){
+  const m = moduleData[key];
+  if(!m) return;
+  const statsHtml = m.stats.map(s=>`
+    <div style="background:var(--surface2);border-radius:16px;padding:1rem;text-align:center;border:1px solid var(--border2)">
+      <div style="width:36px;height:36px;border-radius:10px;background:${s.color}22;display:flex;align-items:center;justify-content:center;margin:0 auto .5rem">
+        <i class="fa-solid ${s.icon}" style="color:${s.color};font-size:.85rem"></i>
+      </div>
+      <div style="font-size:1.1rem;font-weight:800;color:var(--text);letter-spacing:-.02em">${s.value}</div>
+      <div style="font-size:.7rem;color:var(--text3);margin-top:.15rem">${s.label}</div>
+    </div>`).join('');
+  const featHtml = m.features.map(f=>`<div class="check-li">${f}</div>`).join('');
+  document.getElementById('moduleModalContent').innerHTML = `
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem;gap:1rem;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:1rem">
+        <div style="width:52px;height:52px;border-radius:15px;background:${m.bg};display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">
+          <i class="fa-solid ${m.icon}" style="color:${m.color}"></i>
+        </div>
+        <div>
+          <div style="font-size:1.3rem;font-weight:800;color:var(--text);letter-spacing:-.03em">${m.title}</div>
+          <div style="font-size:.82rem;color:var(--text3);margin-top:.2rem">${m.desc}</div>
+        </div>
+      </div>
+      <button onclick="closeModuleModal()" style="background:var(--surface2);border:1px solid var(--border2);color:var(--text3);border-radius:10px;padding:.35rem .7rem;cursor:pointer;font-size:.8rem;font-family:var(--font);flex-shrink:0">✕ Close</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.625rem;margin-bottom:1.5rem">${statsHtml}</div>
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem">Key Features</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.1rem">${featHtml}</div>
+    </div>
+    <a href="${m.link}" style="display:inline-flex;align-items:center;gap:.5rem;background:${m.color};color:#fff;font-size:.875rem;font-weight:700;padding:.7rem 1.5rem;border-radius:12px;text-decoration:none;letter-spacing:-.01em">
+      View Full Module <i class="fa-solid fa-arrow-right text-xs"></i>
+    </a>`;
+  const modal = document.getElementById('moduleModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  // re-trigger animation
+  const inner = document.getElementById('moduleModalInner');
+  inner.style.animation = 'none';
+  inner.offsetHeight;
+  inner.style.animation = 'fadeUp .35s cubic-bezier(.34,1.56,.64,1) both';
+}
+function closeModuleModal(){
+  document.getElementById('moduleModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModuleModal(); });
+
+// ── MAC DASHBOARD CHATBOT ANIMATION ──
+(function(){
+  // Alias: chatBody was removed with the floating widget; macChatBody is the live one
+  const body = document.getElementById('macChatBody');
+  const quickBtns = document.getElementById('macQuickBtns');
+  if (!body) return;
+
+  const convos = [
+    {
+      q: 'What is my total sales amount?',
+      a: 'Weekly Sales: AED 124,165\n16 invoices · AED 9,240 received',
+      metric: true
+    },
+    {
+      q: 'Top 5 customers by sale',
+      a: '1. Astra Trading — AED 45,200\n2. Gulf Tech LLC — AED 32,100\n3. Al Noor Grp — AED 28,500',
+      metric: true
+    },
+    {
+      q: 'Show gross profit summary',
+      a: 'Gross Profit: QAR 709\nIncome: 1,300 · Cost: 591',
+      metric: true
+    },
+    {
+      q: 'How many unpaid invoices?',
+      a: '93 unpaid invoices\nOutstanding: AED 2,415',
+      metric: true
+    },
+    {
+      q: 'Total receivables this month?',
+      a: 'Total Receivables: AED 733,777\n▲ 12% from last month',
+      metric: true
+    },
+    {
+      q: 'Pending purchase orders?',
+      a: '12 open POs · AED 89,400\n3 awaiting approval',
+      metric: true
+    },
+    {
+      q: 'Payroll status this month?',
+      a: 'WPS Payroll: AED 214,600\n47 employees · Processed ✓',
+      metric: true
+    },
+  ];
+
+  let ci = 0;
+
+  function botAvatar() {
+    return `<div style="width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#3a8fc7,#1e5fa8);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid fa-robot" style="font-size:7px;color:#fff"></i></div>`;
+  }
+
+  function addMsg(text, isUser) {
+    const wrap = document.createElement('div');
+    wrap.style.cssText = `display:flex;align-items:flex-end;gap:4px;animation:bubbleIn .3s ease both;${isUser ? 'flex-direction:row-reverse' : ''}`;
+    if (!isUser) wrap.innerHTML = botAvatar();
+    const b = document.createElement('div');
+    b.style.cssText = `max-width:188px;padding:6px 10px;border-radius:${isUser ? '10px 10px 3px 10px' : '3px 10px 10px 10px'};font-size:9px;line-height:1.6;white-space:pre-line;word-break:break-word;${isUser ? 'background:linear-gradient(135deg,#2979b8,#3a8fc7);color:#fff;' : 'background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.12);font-weight:500;'}`;
+    b.textContent = text;
+    wrap.appendChild(b);
+    body.appendChild(wrap);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function addTyping() {
+    const wrap = document.createElement('div');
+    wrap.id = 'macTypingDot';
+    wrap.style.cssText = 'display:flex;align-items:flex-end;gap:2px;animation:bubbleIn .3s ease both';
+    wrap.innerHTML = botAvatar() + `<div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:3px 10px 10px 10px;padding:6px 10px;display:flex;gap:4px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);display:inline-block;animation:dotPulse 1.2s infinite"></span><span style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);display:inline-block;animation:dotPulse 1.2s .2s infinite"></span><span style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);display:inline-block;animation:dotPulse 1.2s .4s infinite"></span></div>`;
+    body.appendChild(wrap);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function updateInput(text) {
+    const inp = document.getElementById('macChatInput');
+    if (inp) inp.placeholder = text;
+  }
+
+  function runConvo() {
+    body.innerHTML = '';
+    const c = convos[ci % convos.length];
+    ci++;
+
+    // Hide quick btns after first cycle
+    if (quickBtns) quickBtns.style.display = 'none';
+
+    // AcoBot greeting
+    setTimeout(() => {
+      addMsg('Hello! 👋 How can I help?', false);
+
+      // User types
+      setTimeout(() => {
+        updateInput(c.q);
+        setTimeout(() => {
+          addMsg(c.q, true);
+          updateInput('Ask me anything...');
+
+          // Bot typing
+          setTimeout(() => {
+            addTyping();
+            setTimeout(() => {
+              document.getElementById('macTypingDot')?.remove();
+              addMsg(c.a, false);
+              // Pause then next convo
+              setTimeout(runConvo, 4000);
+            }, 1100);
+          }, 500);
+        }, 700);
+      }, 800);
+    }, 300);
+  }
+
+  // Start after page settles
+  setTimeout(runConvo, 2800);
+})();
+
+// ── TYPEWRITER FEATURE SHOWCASE ──
+(function(){
+  const features = [
+    {
+      icon:'fa-brain', iconColor:'#4fa8e8', iconBg:'rgba(79,168,232,.15)', borderColor:'rgba(79,168,232,.3)',
+      title:'AI-Powered Features',
+      desc:'Lead scoring, smart chatbot, document analysis & predictive business insights — cutting manual work by 70%'
+    },
+    {
+      icon:'fa-file-invoice', iconColor:'#fb923c', iconBg:'rgba(251,146,60,.13)', borderColor:'rgba(251,146,60,.3)',
+      title:'Purchase Invoice Scanning',
+      desc:'AI OCR captures & digitises supplier invoices automatically — zero manual data entry, instant 3-way matching'
+    },
+    {
+      icon:'fa-microphone', iconColor:'#a78bfa', iconBg:'rgba(167,139,250,.13)', borderColor:'rgba(167,139,250,.3)',
+      title:'Voice Commands in AI Assist',
+      desc:'Speak to AcoBot — get live sales totals, pending invoices & approvals hands-free, in seconds'
+    },
+    {
+      icon:'fa-brands fa-whatsapp', iconColor:'#25d366', iconBg:'rgba(37,211,102,.12)', borderColor:'rgba(37,211,102,.3)',
+      title:'WhatsApp & Social Media',
+      desc:'Send invoices, collect payments & support customers directly via WhatsApp, Instagram & Facebook'
+    },
+    {
+      icon:'fa-link', iconColor:'#34d399', iconBg:'rgba(52,211,153,.12)', borderColor:'rgba(52,211,153,.3)',
+      title:'Payment Link Generation',
+      desc:'Create & share instant payment links via SMS, email or WhatsApp — get paid faster with one tap'
+    },
+  ];
+
+  const titleEl  = document.getElementById('featTitle');
+  const descEl   = document.getElementById('featDesc');
+  const dotsEl   = document.getElementById('featDots');
+  if (!titleEl) return;
+
+  // Build progress dots
+  dotsEl.innerHTML = features.map((_, i) =>
+    `<div class="feat-dot" data-i="${i}" style="width:${i===0?'20':'6'}px;height:6px;border-radius:3px;background:${i===0?'var(--cyan)':'rgba(255,255,255,.2)'};transition:all .4s"></div>`
+  ).join('');
+
+  function updateDots(idx){
+    dotsEl.querySelectorAll('.feat-dot').forEach((d,i)=>{
+      d.style.width = i===idx?'20px':'6px';
+      d.style.background = i===idx?'var(--cyan)':'rgba(255,255,255,.2)';
+    });
+  }
+
+  // Typing helpers
+  const CURSOR = '<span id="tw-cursor" style="display:inline-block;width:2px;height:1em;background:var(--cyan);margin-left:2px;border-radius:1px;animation:twBlink .7s step-end infinite;vertical-align:text-bottom"></span>';
+  let fi = 0, stopped = false;
+
+  async function delay(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+  async function typeInto(el, text, speed){
+    el.innerHTML = CURSOR;
+    const cursor = el.querySelector('#tw-cursor');
+    for(const ch of text){
+      if(stopped) return;
+      cursor.insertAdjacentText('beforebegin', ch);
+      await delay(speed);
+    }
+  }
+
+  async function eraseFrom(el, speed){
+    const text = el.textContent.replace(/\s*$/, '');
+    for(let i = text.length; i >= 0; i--){
+      if(stopped) return;
+      el.innerHTML = text.slice(0, i) + CURSOR;
+      await delay(speed * .4);
+    }
+  }
+
+  async function runFeature(){
+    const f = features[fi % features.length];
+
+    updateDots(fi % features.length);
+
+    // Type title
+    titleEl.innerHTML = '';
+    descEl.innerHTML = '';
+    await delay(180);
+    await typeInto(titleEl, f.title, 42);
+    // Remove cursor from title, keep in desc
+    titleEl.innerHTML = f.title;
+
+    await delay(220);
+
+    // Type description
+    await typeInto(descEl, f.desc, 18);
+    descEl.querySelector('#tw-cursor')?.remove();
+    descEl.innerHTML += '<span style="display:inline-block;width:2px;height:.85em;background:var(--cyan);margin-left:2px;border-radius:1px;animation:twBlink .7s step-end infinite;vertical-align:text-bottom"></span>';
+
+    // Hold
+    await delay(3200);
+
+    // Erase desc
+    await eraseFrom(descEl, 12);
+    descEl.innerHTML = '';
+
+    // Erase title
+    await eraseFrom(titleEl, 25);
+    titleEl.innerHTML = '';
+
+    await delay(260);
+    fi = (fi + 1) % features.length;
+    runFeature();
+  }
+
+  // Start after the headline animation settles
+  setTimeout(runFeature, 1200);
+})();
+</script>
+<script src="acobot.js"></script>
+</body>
+</html>

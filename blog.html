@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blog — Acodax ERP</title>
+<meta name="description" content="Insights, guides, and news from the Acodax team on ERP, AI, and UAE business."/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Inter",Arial,sans-serif;
+  --bg:#f5f5f7;--surface:#ffffff;
+  --border:#e5e7eb;--border2:#f0f0f0;
+  --text:#1d1d1f;--text2:#424245;--text3:#86868b;
+  --cyan:#0071e3;--purple:#a855f7;--orange:#f97316;--green:#34c759;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f5f5f7}::-webkit-scrollbar-thumb{background:#c7c7cc;border-radius:3px}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200}
+.navbar-inner{background:rgba(245,245,247,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06);padding:.75rem 0}
+.nav-link{font-size:.875rem;font-weight:500;color:var(--text2);transition:color .2s}
+.nav-link:hover,.nav-link.active{color:var(--cyan)}
+.btn-cta{background:var(--cyan);color:#fff;font-size:.875rem;font-weight:600;padding:.5rem 1.1rem;border-radius:980px;transition:all .25s}
+.btn-cta:hover{background:#0077ed;transform:scale(1.02)}
+.grad-blue{background:linear-gradient(135deg,#0071e3,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:.75rem}
+.section-tag::before,.section-tag::after{content:'';height:1px;width:18px;background:currentColor;opacity:.5}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:blobMove 10s ease-in-out infinite alternate}
+@keyframes blobMove{0%{transform:scale(1)}100%{transform:scale(1.12) translate(15px,-15px)}}
+
+/* SEARCH BAR */
+.search-bar{background:#fff;border:1.5px solid var(--border);border-radius:980px;padding:.65rem 1.25rem;display:flex;align-items:center;gap:.75rem;max-width:520px;margin:0 auto;transition:border-color .2s,box-shadow .2s}
+.search-bar:focus-within{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,113,227,.1)}
+.search-bar input{flex:1;border:none;outline:none;font-size:.9rem;font-family:var(--font);background:transparent;color:var(--text)}
+.search-bar input::placeholder{color:var(--text3)}
+
+/* CATEGORY PILLS */
+.cat-pill{padding:.4rem 1rem;border-radius:980px;font-size:.8rem;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.cat-pill:hover,.cat-pill.active{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+
+/* BLOG CARD */
+.blog-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .35s cubic-bezier(.4,0,.2,1);cursor:pointer}
+.blog-card:hover{border-color:#c7d8f0;box-shadow:0 8px 40px rgba(0,113,227,.08);transform:translateY(-4px)}
+.blog-img{width:100%;height:180px;object-fit:cover;background:linear-gradient(135deg,#e8f1fb,#f0e8ff)}
+.blog-img-placeholder{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+.blog-cat{font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.blog-title{font-size:1rem;font-weight:700;line-height:1.4;margin:.4rem 0 .5rem;color:var(--text)}
+.blog-excerpt{font-size:.85rem;color:var(--text3);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.blog-meta{font-size:.75rem;color:var(--text3)}
+
+/* SHIMMER */
+.shimmer{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* NEWSLETTER */
+.newsletter{background:linear-gradient(135deg,#e8f1fb,#f0e8ff);border-radius:24px}
+
+/* FEATURED */
+.featured-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;overflow:hidden}
+.featured-img{height:260px;object-fit:cover;width:100%;background:linear-gradient(135deg,#0071e3,#a855f7)}
+.featured-img-placeholder{height:260px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:linear-gradient(135deg,#e8f1fb,#f0e8ff)}
+
+.cta-section{background:linear-gradient(135deg,#0071e3 0%,#a855f7 100%)}
+footer{background:#1d1d1f;color:#f5f5f7}
+.footer-link{color:#86868b;font-size:.85rem;transition:color .2s}
+.footer-link:hover{color:#f5f5f7}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/Acodax-logo-2.png" alt="Acodax" class="h-8"
+             onerror="this.onerror=null;this.outerHTML='<span style=\'font-size:1.3rem;font-weight:900;color:#1d1d1f;letter-spacing:-.03em\'>aco<span style=\'color:#0071e3\'>dax</span></span>'"/>
+        <span style="display:none"></span>
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="modules.html" class="nav-link">Modules</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="blog.html" class="nav-link active">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://app.acodax.com" class="hidden md:block" style="color:var(--cyan);font-size:.875rem;font-weight:500;padding:.5rem 1rem;border-radius:980px">Sign In</a>
+        <a href="contact.html" class="btn-cta">Get Started</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative pt-32 pb-16 overflow-hidden" style="background:linear-gradient(180deg,#eef5ff 0%,var(--bg) 100%)">
+  <div class="hero-blob w-96 h-96 bg-blue-300" style="top:-60px;right:-80px"></div>
+  <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+    <div class="reveal">
+      <span class="section-tag">Insights</span>
+      <h1 class="text-5xl font-bold tracking-tight mt-2 mb-5">The Acodax <span class="grad-blue">Blog</span></h1>
+      <p class="text-xl text-gray-500 leading-relaxed mb-8">ERP guides, business insights, and UAE industry news — written by our team of experts.</p>
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+        <input type="text" id="searchInput" placeholder="Search articles…" oninput="filterPosts()"/>
+        <i class="fa-solid fa-xmark text-gray-300 cursor-pointer" onclick="clearSearch()"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY FILTER -->
+<div class="py-5 bg-white border-b border-gray-100 sticky z-40" style="top:64px">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex gap-2 overflow-x-auto" style="scrollbar-width:none">
+      <button class="cat-pill active" data-cat="all" onclick="filterCat(this)">All Posts</button>
+      <button class="cat-pill" data-cat="erp" onclick="filterCat(this)">ERP</button>
+      <button class="cat-pill" data-cat="ai" onclick="filterCat(this)">AI & Tech</button>
+      <button class="cat-pill" data-cat="accounting" onclick="filterCat(this)">Accounting</button>
+      <button class="cat-pill" data-cat="uae" onclick="filterCat(this)">UAE Business</button>
+      <button class="cat-pill" data-cat="guides" onclick="filterCat(this)">How-to Guides</button>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG CONTENT -->
+<section class="py-16 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- FEATURED POST (first) -->
+    <div id="featuredPost" class="mb-14 reveal"></div>
+
+    <!-- POSTS GRID -->
+    <div id="postsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    <!-- SHIMMER LOADING -->
+    <div id="shimmerGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="blog-card"><div class="shimmer" style="height:180px"></div><div class="p-5"><div class="shimmer h-3 w-20 rounded mb-3"></div><div class="shimmer h-4 rounded mb-2"></div><div class="shimmer h-4 w-4/5 rounded mb-3"></div><div class="shimmer h-3 w-1/2 rounded"></div></div></div>
+      <div class="blog-card"><div class="shimmer" style="height:180px"></div><div class="p-5"><div class="shimmer h-3 w-20 rounded mb-3"></div><div class="shimmer h-4 rounded mb-2"></div><div class="shimmer h-4 w-4/5 rounded mb-3"></div><div class="shimmer h-3 w-1/2 rounded"></div></div></div>
+      <div class="blog-card"><div class="shimmer" style="height:180px"></div><div class="p-5"><div class="shimmer h-3 w-20 rounded mb-3"></div><div class="shimmer h-4 rounded mb-2"></div><div class="shimmer h-4 w-4/5 rounded mb-3"></div><div class="shimmer h-3 w-1/2 rounded"></div></div></div>
+    </div>
+
+    <!-- NO RESULTS -->
+    <div id="noResults" class="hidden text-center py-20">
+      <i class="fa-solid fa-magnifying-glass text-5xl text-gray-200 mb-4"></i>
+      <h3 class="text-xl font-semibold text-gray-500">No articles found</h3>
+      <p class="text-gray-400 mt-2 text-sm">Try a different search or category</p>
+    </div>
+
+    <!-- LOAD MORE -->
+    <div class="text-center mt-12">
+      <button id="loadMoreBtn" class="hidden px-8 py-3 rounded-xl border border-gray-200 bg-white text-gray-700 font-semibold text-sm hover:border-blue-300 transition-all" onclick="loadMore()">Load more articles</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="py-16 px-6 bg-white">
+  <div class="max-w-2xl mx-auto">
+    <div class="newsletter p-10 text-center reveal">
+      <span class="section-tag">Newsletter</span>
+      <h2 class="text-3xl font-bold mt-2 mb-3">Stay in the loop</h2>
+      <p class="text-gray-500 mb-7">Get the latest ERP guides and UAE business insights delivered to your inbox — no spam, ever.</p>
+      <form onsubmit="handleSubscribe(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" placeholder="your@email.com" required class="flex-1 px-4 py-3 rounded-xl border border-gray-200 outline-none font-family:var(--font);font-size:.9rem focus:border-blue-400" style="font-family:var(--font)"/>
+        <button type="submit" class="px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all" style="background:linear-gradient(135deg,#0071e3,#a855f7)">Subscribe</button>
+      </form>
+      <p id="subscribeMsg" class="hidden mt-4 text-sm font-semibold" style="color:#34c759">✓ You're subscribed! Welcome aboard.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section py-20 text-center text-white">
+  <div class="max-w-2xl mx-auto px-6 reveal">
+    <h2 class="text-3xl font-bold mb-4">Ready to transform your business?</h2>
+    <p class="text-blue-100 mb-7">Join 500+ UAE businesses already running on Acodax.</p>
+    <a href="contact.html" style="background:#fff;color:#0071e3;font-weight:700;padding:.85rem 2.2rem;border-radius:980px;font-size:1rem;display:inline-block">Start Free Trial</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <img src="assets/images/Acodax-logo-4.png" alt="Acodax" class="h-7" style="filter:brightness(2)"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+          <span style="display:none;font-size:1.1rem;font-weight:900;color:#fff">aco<span style="color:#3a8fc7">dax</span></span>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">AI-powered ERP built for UAE businesses.</p>
+      </div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Product</h5><div class="flex flex-col gap-2"><a href="features.html" class="footer-link">Features</a><a href="modules.html" class="footer-link">Modules</a><a href="pricing.html" class="footer-link">Pricing</a></div></div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Company</h5><div class="flex flex-col gap-2"><a href="blog.html" class="footer-link">Blog</a><a href="contact.html" class="footer-link">Contact</a><a href="partner.html" class="footer-link" style="color:#3a8fc7">Partner Registration</a></div></div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Contact</h5><div class="flex flex-col gap-2 text-gray-500 text-sm"><span><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+971 4 123 4567</span><span><i class="fa-solid fa-envelope mr-2 text-blue-400"></i>info@acodax.com</span><span><i class="fa-solid fa-location-dot mr-2 text-blue-400"></i>Dubai, UAE</span></div></div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-gray-600 text-sm">© 2024 Acodax. All rights reserved.</p>
+      <div class="flex gap-4"><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-twitter"></i></a><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-facebook"></i></a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Fallback posts
+const fallbackPosts=[
+  {id:1,title:'How UAE Businesses Are Using AI to Close the Books Faster',excerpt:'Discover how AI-powered accounting tools are helping UAE finance teams reduce month-end close time by up to 60%.',cat:'ai',emoji:'🤖',date:'15 May 2024',read:'6 min',link:'blog-post.html?id=1'},
+  {id:2,title:'UAE VAT Filing 2024: What Every Business Needs to Know',excerpt:'A complete guide to FTA VAT requirements, deadlines, and how ERP software can automate your quarterly submissions.',cat:'accounting',emoji:'📋',date:'8 May 2024',read:'8 min',link:'blog-post.html?id=2'},
+  {id:3,title:'The Complete Guide to ERP Implementation in Dubai',excerpt:'Step-by-step walkthrough for selecting, implementing, and going live with an ERP system — from a Dubai SME perspective.',cat:'erp',emoji:'🏗️',date:'2 May 2024',read:'12 min',link:'blog-post.html?id=3'},
+  {id:4,title:"5 Signs Your Business Has Outgrown QuickBooks",excerpt:"If you're managing multiple companies, struggling with inventory, or can't get real-time reports — it might be time to upgrade.",cat:'guides',emoji:'📊',date:'25 Apr 2024',read:'5 min',link:'blog-post.html?id=4'},
+  {id:5,title:"UAE Free Zone Business Setup: ERP Requirements",excerpt:"A look at the accounting, payroll, and compliance requirements for free zone entities in Dubai, Abu Dhabi, and Sharjah.",cat:'uae',emoji:'🇦🇪',date:'18 Apr 2024',read:'7 min',link:'blog-post.html?id=5'},
+  {id:6,title:"Inventory Valuation Methods Explained: FIFO vs Average Cost",excerpt:"Which inventory valuation method is right for your UAE business? We break down FIFO, LIFO, and average cost with real examples.",cat:'accounting',emoji:'📦',date:'10 Apr 2024',read:'6 min',link:'blog-post.html?id=6'},
+  {id:7,title:"How to Build a Real-Time Financial Dashboard for Your CEO",excerpt:"A step-by-step guide to setting up executive dashboards that update live — with no spreadsheet exports needed.",cat:'guides',emoji:'📈',date:'3 Apr 2024',read:'9 min',link:'blog-post.html?id=7'},
+  {id:8,title:"WPS Payroll in the UAE: Complete Compliance Guide",excerpt:"Everything you need to know about the Wage Protection System — submission timelines, formats, and how to automate it.",cat:'uae',emoji:'💼',date:'27 Mar 2024',read:'7 min',link:'blog-post.html?id=8'},
+  {id:9,title:"AI in ERP: What's Actually Real vs What's Marketing Hype",excerpt:"We cut through the buzzwords to explain which AI features in modern ERP systems deliver genuine value for mid-sized businesses.",cat:'ai',emoji:'🧠',date:'20 Mar 2024',read:'10 min',link:'blog-post.html?id=9'},
+];
+
+const catColors={erp:['#e8f1fb','#0071e3'],ai:['#f0e8ff','#a855f7'],accounting:['#e8fff3','#34c759'],uae:['#fff3e8','#f97316'],guides:['#e8f1fb','#0071e3']};
+let allPosts=[],displayedCount=6,activeCat='all',searchQuery='';
+
+function formatDate(d){try{return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}catch{return d}}
+function decodeHtml(h){const t=document.createElement('textarea');t.innerHTML=h;return t.value}
+function stripTags(h){return h.replace(/<[^>]+>/g,'')}
+
+function buildCard(p,featured=false){
+  const c=p.cat||'erp';
+  const [cbg,cfg]=catColors[c]||['#e8f1fb','#0071e3'];
+  const imgHtml=p.img?`<img src="${p.img}" class="blog-img" onerror="this.outerHTML='<div class=\'blog-img-placeholder\' style=\'background:linear-gradient(135deg,${cbg},#f0f0f5)\'>${p.emoji||'📰'}</div>'">`:`<div class="blog-img-placeholder" style="background:linear-gradient(135deg,${cbg},#f0f0f5)">${p.emoji||'📰'}</div>`;
+  if(featured){
+    return`<a href="${p.link}" class="featured-card block hover:shadow-lg transition-shadow overflow-hidden rounded-2xl border border-gray-100 bg-white flex flex-col lg:flex-row">
+      <div class="lg:w-1/2"><div class="featured-img-placeholder" style="background:linear-gradient(135deg,${cbg},#f0f0f5);height:300px;display:flex;align-items:center;justify-content:center;font-size:4rem">${p.emoji||'📰'}</div></div>
+      <div class="p-8 lg:w-1/2 flex flex-col justify-center">
+        <span class="blog-cat pill mb-3" style="background:${cbg};color:${cfg}">${(c||'ERP').toUpperCase()}</span>
+        <h2 class="text-2xl font-bold leading-snug mb-3">${decodeHtml(p.title)}</h2>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5">${p.excerpt}</p>
+        <div class="blog-meta flex items-center gap-3"><i class="fa-regular fa-calendar"></i>${p.date}<span>·</span><i class="fa-regular fa-clock"></i>${p.read}</div>
+      </div>
+    </a>`;
+  }
+  return`<a href="${p.link}" class="blog-card block">
+    ${imgHtml}
+    <div class="p-5">
+      <span class="blog-cat" style="color:${cfg}">${(c||'ERP').toUpperCase()}</span>
+      <h3 class="blog-title">${decodeHtml(p.title)}</h3>
+      <p class="blog-excerpt">${p.excerpt}</p>
+      <div class="blog-meta mt-3 flex items-center gap-2"><i class="fa-regular fa-calendar"></i>${p.date}<span>·</span><i class="fa-regular fa-clock"></i>${p.read}</div>
+    </div>
+  </a>`;
+}
+
+function getFiltered(){
+  return allPosts.filter(p=>{
+    const matchCat=activeCat==='all'||p.cat===activeCat;
+    const matchSearch=!searchQuery||p.title.toLowerCase().includes(searchQuery)||p.excerpt.toLowerCase().includes(searchQuery);
+    return matchCat&&matchSearch;
+  });
+}
+
+function render(){
+  const filtered=getFiltered();
+  const featured=document.getElementById('featuredPost');
+  const grid=document.getElementById('postsGrid');
+  const noRes=document.getElementById('noResults');
+  const lmBtn=document.getElementById('loadMoreBtn');
+  if(filtered.length===0){featured.innerHTML='';grid.innerHTML='';noRes.classList.remove('hidden');lmBtn.classList.add('hidden');return}
+  noRes.classList.add('hidden');
+  featured.innerHTML=buildCard(filtered[0],true);
+  const rest=filtered.slice(1,displayedCount+1);
+  grid.innerHTML=rest.map(p=>buildCard(p)).join('');
+  lmBtn.classList.toggle('hidden',filtered.length<=displayedCount+1);
+}
+
+function loadMore(){displayedCount+=6;render()}
+function filterCat(btn){activeCat=btn.dataset.cat;document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');displayedCount=6;render()}
+function filterPosts(){searchQuery=document.getElementById('searchInput').value.toLowerCase();displayedCount=6;render()}
+function clearSearch(){document.getElementById('searchInput').value='';searchQuery='';render()}
+
+// Fetch from WordPress
+async function fetchPosts(){
+  try{
+    const r=await fetch('https://acodax.com/wp-json/wp/v2/posts?per_page=12&_embed');
+    if(!r.ok)throw new Error();
+    const data=await r.json();
+    allPosts=data.map((p,i)=>{
+      const cats=['erp','ai','accounting','uae','guides'];
+      const emojis=['📊','🤖','📋','🇦🇪','📖','💡','🏗️','📦','💼'];
+      return{
+        id:p.id,title:p.title.rendered,
+        excerpt:stripTags(p.excerpt.rendered).slice(0,140)+'…',
+        link:'blog-post.html?id='+p.id,
+        img:p._embedded?.['wp:featuredmedia']?.[0]?.source_url||null,
+        date:formatDate(p.date),read:Math.max(3,Math.ceil(stripTags(p.content.rendered).split(' ').length/200))+' min',
+        cat:cats[i%cats.length],emoji:emojis[i%emojis.length]
+      };
+    });
+  }catch{allPosts=fallbackPosts}
+  document.getElementById('shimmerGrid').style.display='none';
+  render();
+}
+
+// Reveal
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function handleSubscribe(e){e.preventDefault();document.getElementById('subscribeMsg').classList.remove('hidden')}
+
+fetchPosts();
+</script>
+<script src="acobot.js"></script>
+</body>
+</html>

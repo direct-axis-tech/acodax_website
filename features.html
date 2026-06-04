@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Features — Acodax ERP</title>
+<meta name="description" content="Explore Acodax ERP features: AI insights, automation, real-time analytics, multi-company support and more."/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Inter",Arial,sans-serif;
+  --bg:#f5f5f7;--surface:#ffffff;--surface2:#fafafa;
+  --border:#e5e7eb;--border2:#f0f0f0;
+  --text:#1d1d1f;--text2:#424245;--text3:#86868b;
+  --cyan:#0071e3;--cyan-lt:#e8f1fb;
+  --purple:#a855f7;--orange:#f97316;--green:#34c759;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f5f5f7}::-webkit-scrollbar-thumb{background:#c7c7cc;border-radius:3px}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200}
+.navbar-inner{background:rgba(245,245,247,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06);padding:.75rem 0}
+.nav-link{font-size:.875rem;font-weight:500;color:var(--text2);transition:color .2s;letter-spacing:-.01em}
+.nav-link:hover,.nav-link.active{color:var(--cyan)}
+.btn-cta{background:var(--cyan);color:#fff;font-size:.875rem;font-weight:600;padding:.5rem 1.1rem;border-radius:980px;transition:all .25s}
+.btn-cta:hover{background:#0077ed;transform:scale(1.02)}
+.grad-blue{background:linear-gradient(135deg,#0071e3,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-warm{background:linear-gradient(135deg,#f97316,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:.75rem}
+.section-tag::before,.section-tag::after{content:'';height:1px;width:18px;background:currentColor;opacity:.5}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;transition:all .35s cubic-bezier(.4,0,.2,1)}
+.card:hover{border-color:#c7d8f0;box-shadow:0 8px 40px rgba(0,113,227,.08);transform:translateY(-4px)}
+.feat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-l.visible{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-r.visible{opacity:1;transform:none}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.18;animation:blobMove 10s ease-in-out infinite alternate}
+@keyframes blobMove{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.15) translate(20px,-20px)}}
+.prog-bar{height:6px;border-radius:3px;background:var(--border);overflow:hidden}
+.prog-fill{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.pill{display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;font-weight:600;padding:.25rem .6rem;border-radius:980px;letter-spacing:.02em}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;text-align:left;padding:1.25rem 0;font-size:1rem;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:none;border:none;font-family:var(--font)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+.faq-a p{padding-bottom:1.25rem;color:var(--text2);line-height:1.7;font-size:.925rem}
+.faq-item.open .faq-a{max-height:200px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-icon{transition:transform .3s;color:var(--text3);font-size:.85rem}
+.cta-section{background:linear-gradient(135deg,#0071e3 0%,#a855f7 100%)}
+footer{background:#1d1d1f;color:#f5f5f7}
+.footer-link{color:#86868b;font-size:.85rem;transition:color .2s}
+.footer-link:hover{color:#f5f5f7}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/Acodax-logo-2.png" alt="Acodax" class="h-8" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <span style="display:none;align-items:center;gap:.4rem;font-weight:700;font-size:1.1rem;color:var(--cyan)"><i class="fa-solid fa-hexagon-nodes"></i> Acodax</span>
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link active">Features</a>
+        <a href="modules.html" class="nav-link">Modules</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://app.acodax.com" class="hidden md:block" style="color:var(--cyan);font-size:.875rem;font-weight:500;padding:.5rem 1rem;border-radius:980px">Sign In</a>
+        <a href="contact.html" class="btn-cta">Get Started</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative pt-32 pb-20 overflow-hidden" style="background:linear-gradient(180deg,#eef5ff 0%,var(--bg) 100%)">
+  <div class="hero-blob w-96 h-96 bg-blue-400" style="top:-80px;left:-60px"></div>
+  <div class="hero-blob w-80 h-80 bg-purple-400" style="bottom:-40px;right:-40px;animation-delay:3s"></div>
+  <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+    <div class="reveal">
+      <span class="section-tag">Platform Features</span>
+      <h1 class="text-5xl md:text-6xl font-bold tracking-tight mt-2 mb-5">Built for how<br/><span class="grad-blue">modern business works</span></h1>
+      <p class="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">Every feature is designed to reduce manual work, surface real-time intelligence, and help your team move faster.</p>
+      <div class="flex flex-wrap gap-3 justify-center mt-8">
+        <a href="contact.html" class="btn-cta text-base px-7 py-3">Start Free Trial</a>
+        <a href="modules.html" style="background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:1rem;font-weight:500;padding:.75rem 1.75rem;border-radius:980px;transition:all .25s">Explore Modules →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<section class="py-12 bg-white border-y border-gray-100">
+  <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal">
+    <div><div class="text-4xl font-bold grad-blue">99.9%</div><div class="text-sm text-gray-500 mt-1">Uptime SLA</div></div>
+    <div><div class="text-4xl font-bold grad-blue">&lt;1s</div><div class="text-sm text-gray-500 mt-1">Report Generation</div></div>
+    <div><div class="text-4xl font-bold grad-blue">256-bit</div><div class="text-sm text-gray-500 mt-1">Encryption</div></div>
+    <div><div class="text-4xl font-bold grad-blue">500+</div><div class="text-sm text-gray-500 mt-1">Automations</div></div>
+  </div>
+</section>
+
+<!-- CORE FEATURES GRID -->
+<section class="py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <span class="section-tag">Core Capabilities</span>
+      <h2 class="text-4xl font-bold mt-2">Everything your business needs</h2>
+      <p class="text-gray-500 mt-3 max-w-xl mx-auto">From AI-powered insights to seamless integrations — all in one platform.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="card p-7 reveal">
+        <div class="feat-icon mb-4" style="background:#e8f1fb"><i class="fa-solid fa-brain text-blue-500"></i></div>
+        <h3 class="text-lg font-bold mb-2">AI-Powered Insights</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">AcoBot analyses your data in real-time — predicting cash flow gaps, flagging anomalies, and answering business questions in plain English.</p>
+        <div class="prog-bar mb-1"><div class="prog-fill bg-blue-500" style="width:92%"></div></div>
+        <div class="flex justify-between text-xs text-gray-400 mb-4"><span>AI Accuracy</span><span>92%</span></div>
+        <div class="flex flex-wrap gap-2"><span class="pill" style="background:#e8f1fb;color:#0071e3">Natural Language</span><span class="pill" style="background:#e8f1fb;color:#0071e3">Predictive</span></div>
+      </div>
+
+      <div class="card p-7 reveal" style="transition-delay:.08s">
+        <div class="feat-icon mb-4" style="background:#f0e8ff"><i class="fa-solid fa-bolt text-purple-500"></i></div>
+        <h3 class="text-lg font-bold mb-2">Smart Automation</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Automate recurring invoices, purchase orders, payroll runs, and approval workflows. Set it once and let Acodax handle the rest.</p>
+        <div class="prog-bar mb-1"><div class="prog-fill" style="width:88%;background:#a855f7"></div></div>
+        <div class="flex justify-between text-xs text-gray-400 mb-4"><span>Time Saved</span><span>88%</span></div>
+        <div class="flex flex-wrap gap-2"><span class="pill" style="background:#f0e8ff;color:#a855f7">Workflows</span><span class="pill" style="background:#f0e8ff;color:#a855f7">Approvals</span></div>
+      </div>
+
+      <div class="card p-7 reveal" style="transition-delay:.16s">
+        <div class="feat-icon mb-4" style="background:#e8fff3"><i class="fa-solid fa-chart-line text-green-500"></i></div>
+        <h3 class="text-lg font-bold mb-2">Real-Time Analytics</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Dashboards that refresh live. Drill into revenue, costs, margins, and KPIs by branch, department, or project — at any time.</p>
+        <div class="prog-bar mb-1"><div class="prog-fill bg-green-500" style="width:95%"></div></div>
+        <div class="flex justify-between text-xs text-gray-400 mb-4"><span>Data Freshness</span><span>Live</span></div>
+        <div class="flex flex-wrap gap-2"><span class="pill" style="background:#e8fff3;color:#34c759">Dashboards</span><span class="pill" style="background:#e8fff3;color:#34c759">KPIs</span></div>
+      </div>
+
+      <div class="card p-7 reveal" style="transition-delay:.24s">
+        <div class="feat-icon mb-4" style="background:#fff3e8"><i class="fa-solid fa-building text-orange-500"></i></div>
+        <h3 class="text-lg font-bold mb-2">Multi-Company & Branch</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Manage multiple legal entities, branches, and cost centres under one login. Consolidated reporting across your entire group.</p>
+        <div class="prog-bar mb-1"><div class="prog-fill bg-orange-400" style="width:100%"></div></div>
+        <div class="flex justify-between text-xs text-gray-400 mb-4"><span>Coverage</span><span>Full</span></div>
+        <div class="flex flex-wrap gap-2"><span class="pill" style="background:#fff3e8;color:#f97316">Consolidation</span><span class="pill" style="background:#fff3e8;color:#f97316">Multi-entity</span></div>
+      </div>
+
+      <div class="card p-7 reveal" style="transition-delay:.32s">
+        <div class="feat-icon mb-4" style="background:#e8f1fb"><i class="fa-solid fa-mobile-screen text-blue-500"></i></div>
+        <h3 class="text-lg font-bold mb-2">Mobile-First Access</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Full ERP functionality on iOS and Android. Approve POs, check inventory, and raise invoices from anywhere, anytime.</p>
+        <div class="prog-bar mb-1"><div class="prog-fill bg-blue-500" style="width:96%"></div></div>
+        <div class="flex justify-between text-xs text-gray-400 mb-4"><span>Mobile Feature Parity</span><span>96%</span></div>
+        <div class="flex flex-wrap gap-2"><span class="pill" style="background:#e8f1fb;color:#0071e3">iOS</span><span class="pill" style="background:#e8f1fb;color:#0071e3">Android</span></div>
+      </div>
+
+      <div class="card p-7 reveal" style="transition-delay:.40s">
+        <div class="feat-icon mb-4" style="background:#f0e8ff"><i class="fa-solid fa-shield-halved text-purple-500"></i></div>
+        <h3 class="text-lg font-bold mb-2">Enterprise Security</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">256-bit encryption, role-based access control, audit trails, and data hosted in UAE-region data centres for full compliance.</p>
+        <div class="prog-bar mb-1"><div class="prog-fill" style="width:100%;background:#a855f7"></div></div>
+        <div class="flex justify-between text-xs text-gray-400 mb-4"><span>Compliance Score</span><span>100%</span></div>
+        <div class="flex flex-wrap gap-2"><span class="pill" style="background:#f0e8ff;color:#a855f7">UAE Hosted</span><span class="pill" style="background:#f0e8ff;color:#a855f7">RBAC</span></div>
+      </div>
+
+      <div class="card p-7 reveal">
+        <div class="feat-icon mb-4" style="background:#e8fff3"><i class="fa-solid fa-plug text-green-500"></i></div>
+        <h3 class="text-lg font-bold mb-2">Open API & Integrations</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Connect bank feeds, payment gateways, e-commerce stores, and third-party tools via REST API or ready-made connectors.</p>
+        <div class="prog-bar mb-1"><div class="prog-fill bg-green-500" style="width:80%"></div></div>
+        <div class="flex justify-between text-xs text-gray-400 mb-4"><span>Connectors</span><span>80+</span></div>
+        <div class="flex flex-wrap gap-2"><span class="pill" style="background:#e8fff3;color:#34c759">REST API</span><span class="pill" style="background:#e8fff3;color:#34c759">Webhooks</span></div>
+      </div>
+
+      <div class="card p-7 reveal" style="transition-delay:.08s">
+        <div class="feat-icon mb-4" style="background:#fff3e8"><i class="fa-solid fa-file-invoice text-orange-500"></i></div>
+        <h3 class="text-lg font-bold mb-2">UAE VAT & e-Invoicing</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Native UAE VAT compliance with FTA-ready reports, e-invoice generation, and automatic tax calculations across all transactions.</p>
+        <div class="prog-bar mb-1"><div class="prog-fill bg-orange-400" style="width:100%"></div></div>
+        <div class="flex justify-between text-xs text-gray-400 mb-4"><span>FTA Compliance</span><span>100%</span></div>
+        <div class="flex flex-wrap gap-2"><span class="pill" style="background:#fff3e8;color:#f97316">FTA Ready</span><span class="pill" style="background:#fff3e8;color:#f97316">e-Invoice</span></div>
+      </div>
+
+      <div class="card p-7 reveal" style="transition-delay:.16s">
+        <div class="feat-icon mb-4" style="background:#e8f1fb"><i class="fa-solid fa-sliders text-blue-500"></i></div>
+        <h3 class="text-lg font-bold mb-2">Deep Customisation</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Custom fields, workflows, document templates, and user interfaces tailored to your industry — no coding required.</p>
+        <div class="prog-bar mb-1"><div class="prog-fill bg-blue-500" style="width:85%"></div></div>
+        <div class="flex justify-between text-xs text-gray-400 mb-4"><span>Configurability</span><span>High</span></div>
+        <div class="flex flex-wrap gap-2"><span class="pill" style="background:#e8f1fb;color:#0071e3">No-Code</span><span class="pill" style="background:#e8f1fb;color:#0071e3">Templates</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVE: AI -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex-1 reveal-l">
+      <span class="section-tag">Artificial Intelligence</span>
+      <h2 class="text-4xl font-bold mt-2 mb-5">AcoBot — your AI business advisor</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">Ask AcoBot anything about your business in plain English. Get instant answers on receivables, profit, inventory levels, project status — no reports needed.</p>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-5 h-5 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center text-xs" style="background:#e8f1fb;color:#0071e3;font-weight:700">✓</span><span class="text-gray-600 text-sm">"What is my total receivable this month?"</span></li>
+        <li class="flex items-start gap-3"><span class="w-5 h-5 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center text-xs" style="background:#e8f1fb;color:#0071e3;font-weight:700">✓</span><span class="text-gray-600 text-sm">Cash flow predictions & anomaly detection</span></li>
+        <li class="flex items-start gap-3"><span class="w-5 h-5 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center text-xs" style="background:#e8f1fb;color:#0071e3;font-weight:700">✓</span><span class="text-gray-600 text-sm">Auto-generated management summaries & board reports</span></li>
+        <li class="flex items-start gap-3"><span class="w-5 h-5 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center text-xs" style="background:#e8f1fb;color:#0071e3;font-weight:700">✓</span><span class="text-gray-600 text-sm">Smart recommendations to improve profitability</span></li>
+      </ul>
+    </div>
+    <div class="flex-1 reveal-r">
+      <div style="border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,113,227,.12);border:1px solid #e5e7eb">
+        <img src="assets/images/Ai-powered.png" alt="AcoBot AI" style="width:100%;display:block" onerror="this.style.background='#f0f4ff';this.style.height='280px'"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVE: Automation -->
+<section class="py-24" style="background:var(--bg)">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row-reverse items-center gap-16">
+    <div class="flex-1 reveal-r">
+      <span class="section-tag">Automation</span>
+      <h2 class="text-4xl font-bold mt-2 mb-5">Stop doing the same task twice</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">Acodax's visual workflow builder automates any repetitive process. Trigger actions based on dates, amounts, statuses, or user actions.</p>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card p-4 text-center"><div class="text-2xl font-bold grad-blue">70%</div><div class="text-xs text-gray-500 mt-1">Less manual entry</div></div>
+        <div class="card p-4 text-center"><div class="text-2xl font-bold grad-warm">3×</div><div class="text-xs text-gray-500 mt-1">Faster approvals</div></div>
+        <div class="card p-4 text-center"><div class="text-2xl font-bold grad-blue">500+</div><div class="text-xs text-gray-500 mt-1">Automation rules</div></div>
+        <div class="card p-4 text-center"><div class="text-2xl font-bold grad-warm">24/7</div><div class="text-xs text-gray-500 mt-1">Always running</div></div>
+      </div>
+    </div>
+    <div class="flex-1 reveal-l">
+      <div class="card p-8">
+        <div class="text-sm font-semibold text-gray-500 mb-6">Invoice Approval Workflow</div>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3 p-3 rounded-xl" style="background:#e8f1fb"><span class="w-8 h-8 rounded-full flex items-center justify-center text-sm" style="background:#0071e3;color:#fff">1</span><span class="text-sm font-medium text-gray-700">Invoice created &gt; AED 5,000</span></div>
+          <div class="text-center text-gray-300 text-lg">↓</div>
+          <div class="flex items-center gap-3 p-3 rounded-xl" style="background:#f0e8ff"><span class="w-8 h-8 rounded-full flex items-center justify-center text-sm" style="background:#a855f7;color:#fff">2</span><span class="text-sm font-medium text-gray-700">Auto-notify Finance Manager</span></div>
+          <div class="text-center text-gray-300 text-lg">↓</div>
+          <div class="flex items-center gap-3 p-3 rounded-xl" style="background:#e8fff3"><span class="w-8 h-8 rounded-full flex items-center justify-center text-sm" style="background:#34c759;color:#fff">3</span><span class="text-sm font-medium text-gray-700">One-click approve from mobile</span></div>
+          <div class="text-center text-gray-300 text-lg">↓</div>
+          <div class="flex items-center gap-3 p-3 rounded-xl" style="background:#fff3e8"><span class="w-8 h-8 rounded-full flex items-center justify-center text-sm" style="background:#f97316;color:#fff">4</span><span class="text-sm font-medium text-gray-700">Payment scheduled automatically</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <span class="section-tag">FAQ</span>
+      <h2 class="text-3xl font-bold mt-2">Common questions</h2>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>Does Acodax work offline?</span><i class="fa-solid fa-plus faq-icon"></i></button>
+      <div class="faq-a"><p>The mobile app supports limited offline mode for key tasks like viewing records, raising sales orders, and capturing expenses. Data syncs automatically when connectivity is restored.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>How long does implementation take?</span><i class="fa-solid fa-plus faq-icon"></i></button>
+      <div class="faq-a"><p>Most businesses are live within 2–6 weeks depending on complexity. Our onboarding team handles data migration, configuration, and training to ensure a smooth go-live.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>Can I migrate data from my existing system?</span><i class="fa-solid fa-plus faq-icon"></i></button>
+      <div class="faq-a"><p>Yes. We support data import from Excel, CSV, QuickBooks, Tally, Zoho, and most other ERP systems. Our migration specialists ensure data accuracy throughout.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>Is training included?</span><i class="fa-solid fa-plus faq-icon"></i></button>
+      <div class="faq-a"><p>All plans include onboarding training. Business and Enterprise plans include live virtual training sessions, a dedicated account manager, and ongoing webinars.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section py-24 text-center text-white">
+  <div class="max-w-2xl mx-auto px-6 reveal">
+    <h2 class="text-4xl font-bold mb-4">Ready to modernise your business?</h2>
+    <p class="text-blue-100 mb-8 text-lg">Start your free trial today — no credit card, no commitment.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="contact.html" style="background:#fff;color:#0071e3;font-weight:700;padding:.85rem 2.2rem;border-radius:980px;font-size:1rem;display:inline-block">Start Free Trial</a>
+      <a href="pricing.html" style="border:2px solid rgba(255,255,255,.5);color:#fff;font-weight:600;padding:.85rem 2.2rem;border-radius:980px;font-size:1rem;display:inline-block">View Pricing →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <img src="assets/images/Acodax-logo-4.png" alt="Acodax" class="h-7 brightness-200" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <span style="display:none;align-items:center;gap:.4rem;font-weight:700;font-size:1rem;color:#0071e3"><i class="fa-solid fa-hexagon-nodes"></i> Acodax</span>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">AI-powered ERP built for UAE businesses.</p>
+      </div>
+      <div>
+        <h5 class="font-semibold text-gray-200 mb-4 text-sm">Product</h5>
+        <div class="flex flex-col gap-2"><a href="features.html" class="footer-link">Features</a><a href="modules.html" class="footer-link">Modules</a><a href="pricing.html" class="footer-link">Pricing</a></div>
+      </div>
+      <div>
+        <h5 class="font-semibold text-gray-200 mb-4 text-sm">Company</h5>
+        <div class="flex flex-col gap-2"><a href="blog.html" class="footer-link">Blog</a><a href="contact.html" class="footer-link">Contact</a><a href="partner.html" class="footer-link" style="color:#3a8fc7">Partner Registration</a></div>
+      </div>
+      <div>
+        <h5 class="font-semibold text-gray-200 mb-4 text-sm">Contact</h5>
+        <div class="flex flex-col gap-2 text-gray-500 text-sm">
+          <span><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+971 4 123 4567</span>
+          <span><i class="fa-solid fa-envelope mr-2 text-blue-400"></i>info@acodax.com</span>
+          <span><i class="fa-solid fa-location-dot mr-2 text-blue-400"></i>Dubai, UAE</span>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-gray-600 text-sm">© 2024 Acodax. All rights reserved.</p>
+      <div class="flex gap-4">
+        <a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+const progObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const fill=e.target.querySelector('.prog-fill');if(fill){const w=fill.style.width;fill.style.width='0';setTimeout(()=>fill.style.width=w,100)}progObs.unobserve(e.target)}})},{threshold:.5});
+document.querySelectorAll('.prog-bar').forEach(el=>progObs.observe(el));
+function toggleFaq(btn){const item=btn.closest('.faq-item');document.querySelectorAll('.faq-item.open').forEach(o=>{if(o!==item)o.classList.remove('open')});item.classList.toggle('open')}
+</script>
+<script src="acobot.js"></script>
+</body>
+</html>

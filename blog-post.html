@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blog — Acodax ERP</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Inter",Arial,sans-serif;
+  --bg:#f5f5f7;--surface:#ffffff;--border:#e5e7eb;
+  --text:#1d1d1f;--text2:#424245;--text3:#86868b;
+  --cyan:#0071e3;--purple:#a855f7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f5f5f7}::-webkit-scrollbar-thumb{background:#c7c7cc;border-radius:3px}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200}
+.navbar-inner{background:rgba(245,245,247,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06);padding:.75rem 0}
+.nav-link{font-size:.875rem;font-weight:500;color:var(--text2);transition:color .2s}
+.nav-link:hover,.nav-link.active{color:var(--cyan)}
+.btn-cta{background:var(--cyan);color:#fff;font-size:.875rem;font-weight:600;padding:.5rem 1.1rem;border-radius:980px;transition:all .25s}
+.btn-cta:hover{background:#0077ed;transform:scale(1.02)}
+.grad-blue{background:linear-gradient(135deg,#0071e3,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Article typography */
+.article-body{line-height:1.8;color:var(--text2);font-size:1.05rem}
+.article-body h1,.article-body h2,.article-body h3,.article-body h4{color:var(--text);font-weight:700;margin:1.75rem 0 .75rem;line-height:1.25;letter-spacing:-.02em}
+.article-body h2{font-size:1.5rem}
+.article-body h3{font-size:1.2rem}
+.article-body p{margin-bottom:1.25rem}
+.article-body ul,.article-body ol{margin:1rem 0 1.25rem 1.5rem}
+.article-body li{margin-bottom:.4rem}
+.article-body img{border-radius:14px;max-width:100%;margin:1.5rem 0;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.article-body a{color:var(--cyan);text-decoration:underline;text-decoration-color:rgba(0,113,227,.3)}
+.article-body a:hover{text-decoration-color:var(--cyan)}
+.article-body blockquote{border-left:3px solid var(--cyan);padding:.75rem 1.25rem;background:#e8f1fb;border-radius:0 12px 12px 0;margin:1.5rem 0;font-style:italic}
+.article-body code{background:#f0f0f5;padding:.15rem .4rem;border-radius:5px;font-size:.88rem;font-family:ui-monospace,monospace}
+.article-body pre{background:#1d1d1f;color:#f5f5f7;border-radius:12px;padding:1.25rem;overflow-x:auto;margin:1.5rem 0}
+.article-body pre code{background:none;color:inherit}
+.article-body table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.9rem}
+.article-body th,.article-body td{padding:.65rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+.article-body th{background:#f5f5f7;font-weight:700}
+.article-body hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+
+/* Shimmer */
+.shimmer{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* Related card */
+.rel-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s;cursor:pointer}
+.rel-card:hover{border-color:#c7d8f0;box-shadow:0 6px 24px rgba(0,113,227,.08);transform:translateY(-3px)}
+
+footer{background:#1d1d1f;color:#f5f5f7}
+.footer-link{color:#86868b;font-size:.85rem;transition:color .2s}
+.footer-link:hover{color:#f5f5f7}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href="index.html">
+        <img src="assets/images/Acodax-logo-2.png" alt="Acodax" class="h-8"
+             onerror="this.onerror=null;this.outerHTML='<span style=\'font-size:1.3rem;font-weight:900;color:#1d1d1f;letter-spacing:-.03em\'>aco<span style=\'color:#0071e3\'>dax</span></span>'"/>
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="modules.html" class="nav-link">Modules</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="blog.html" class="nav-link active">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://app.acodax.com" class="hidden md:block" style="color:var(--cyan);font-size:.875rem;font-weight:500;padding:.5rem 1rem;border-radius:980px">Sign In</a>
+        <a href="contact.html" class="btn-cta">Get Started</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ARTICLE -->
+<main class="pt-24 pb-20">
+  <div class="max-w-3xl mx-auto px-6">
+
+    <!-- BACK -->
+    <a href="blog.html" class="inline-flex items-center gap-2 text-sm font-semibold mb-8 mt-4" style="color:var(--cyan)">
+      <i class="fa-solid fa-arrow-left text-xs"></i> Back to Blog
+    </a>
+
+    <!-- LOADING SKELETON -->
+    <div id="skeleton">
+      <div class="shimmer h-7 w-24 rounded-full mb-5"></div>
+      <div class="shimmer h-10 rounded-xl mb-3"></div>
+      <div class="shimmer h-10 w-3/4 rounded-xl mb-6"></div>
+      <div class="shimmer h-5 w-48 rounded mb-8"></div>
+      <div class="shimmer rounded-2xl mb-8" style="height:340px"></div>
+      <div class="space-y-3">
+        <div class="shimmer h-4 rounded"></div>
+        <div class="shimmer h-4 rounded"></div>
+        <div class="shimmer h-4 w-5/6 rounded"></div>
+        <div class="shimmer h-4 rounded"></div>
+        <div class="shimmer h-4 w-4/5 rounded"></div>
+      </div>
+    </div>
+
+    <!-- POST CONTENT -->
+    <article id="postContent" class="hidden">
+      <div id="postCat" class="inline-block text-xs font-bold px-3 py-1 rounded-full mb-5" style="background:#e8f1fb;color:#0071e3;text-transform:uppercase;letter-spacing:.05em"></div>
+      <h1 id="postTitle" class="text-4xl font-bold leading-tight mb-4" style="letter-spacing:-.03em"></h1>
+      <div class="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white" style="background:linear-gradient(135deg,#0071e3,#a855f7)">A</div>
+        <div>
+          <div class="text-sm font-semibold" style="color:var(--text)">Acodax Team</div>
+          <div id="postMeta" class="text-xs" style="color:var(--text3)"></div>
+        </div>
+      </div>
+      <div id="postFeatImg" class="mb-8"></div>
+      <div id="postBody" class="article-body"></div>
+    </article>
+
+    <!-- ERROR -->
+    <div id="postError" class="hidden text-center py-20">
+      <i class="fa-solid fa-circle-exclamation text-5xl text-gray-200 mb-4"></i>
+      <h3 class="text-xl font-semibold text-gray-500">Post not found</h3>
+      <p class="text-gray-400 mt-2 text-sm mb-6">This article couldn't be loaded.</p>
+      <a href="blog.html" class="btn-cta inline-block">Back to Blog</a>
+    </div>
+
+  </div>
+
+  <!-- RELATED POSTS -->
+  <div id="relatedSection" class="hidden max-w-6xl mx-auto px-6 mt-16 pt-12 border-t border-gray-100">
+    <h3 class="text-2xl font-bold mb-8">More from the blog</h3>
+    <div id="relatedGrid" class="grid md:grid-cols-3 gap-5"></div>
+  </div>
+</main>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg,#0071e3,#a855f7);padding:5rem 0;text-align:center;color:#fff">
+  <div class="max-w-xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-4">Ready to see Acodax in action?</h2>
+    <p class="text-blue-100 mb-7">Book a free demo with our UAE team.</p>
+    <a href="contact.html" style="background:#fff;color:#0071e3;font-weight:700;padding:.85rem 2.2rem;border-radius:980px;font-size:1rem;display:inline-block">Book Free Demo</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <img src="assets/images/Acodax-logo-4.png" alt="Acodax" class="h-7" style="filter:brightness(2)"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+          <span style="display:none;font-size:1.1rem;font-weight:900;color:#fff">aco<span style="color:#3a8fc7">dax</span></span>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">AI-powered ERP built for UAE businesses.</p>
+      </div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Product</h5><div class="flex flex-col gap-2"><a href="features.html" class="footer-link">Features</a><a href="modules.html" class="footer-link">Modules</a><a href="pricing.html" class="footer-link">Pricing</a></div></div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Company</h5><div class="flex flex-col gap-2"><a href="blog.html" class="footer-link">Blog</a><a href="contact.html" class="footer-link">Contact</a><a href="partner.html" class="footer-link">Partner Registration</a></div></div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Contact</h5><div class="flex flex-col gap-2 text-gray-500 text-sm"><span><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+971 52 1069062</span><span><i class="fa-solid fa-envelope mr-2 text-blue-400"></i>info@acodax.com</span><span><i class="fa-solid fa-location-dot mr-2 text-blue-400"></i>Dubai, UAE</span></div></div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-gray-600 text-sm">© 2026 Acodax Technology LLC. All rights reserved.</p>
+      <div class="flex gap-4"><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-instagram"></i></a><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-facebook"></i></a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="acobot.js"></script>
+<script>
+// Parse URL params
+const params = new URLSearchParams(window.location.search);
+const postId  = params.get('id');
+const fallbackUrl = params.get('url') || 'https://acodax.com/blog';
+
+const catColors = {
+  erp:        ['#e8f1fb','#0071e3'],
+  ai:         ['#f0e8ff','#a855f7'],
+  accounting: ['#e8fff3','#34c759'],
+  uae:        ['#fff3e8','#f97316'],
+  guides:     ['#e8f1fb','#0071e3'],
+  Uncategorized:['#f0f0f5','#86868b'],
+  Operations: ['#e8fff3','#34c759'],
+};
+
+function stripTags(h){return h.replace(/<[^>]+>/g,'')}
+function formatDate(d){try{return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}catch{return d}}
+function readTime(content){return Math.max(2,Math.ceil(stripTags(content).split(/\s+/).length/200))}
+
+async function loadPost() {
+  if (!postId) { showError(); return; }
+  try {
+    const r = await fetch(`https://acodax.com/wp-json/wp/v2/posts/${postId}?_embed`);
+    if (!r.ok) throw new Error('Not found');
+    const p = await r.json();
+
+    // Title
+    document.title = stripTags(p.title.rendered) + ' — Acodax Blog';
+    document.getElementById('postTitle').innerHTML = p.title.rendered;
+
+    // Category
+    const cats = p._embedded?.['wp:term']?.[0] || [];
+    const catName = cats[0]?.name || 'ERP';
+    const [cbg, cfg] = catColors[catName] || ['#e8f1fb','#0071e3'];
+    const catEl = document.getElementById('postCat');
+    catEl.textContent = catName;
+    catEl.style.background = cbg;
+    catEl.style.color = cfg;
+
+    // Meta
+    document.getElementById('postMeta').textContent =
+      formatDate(p.date) + ' · ' + readTime(p.content.rendered) + ' min read';
+
+    // Featured image
+    const imgUrl = p._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+    if (imgUrl) {
+      document.getElementById('postFeatImg').innerHTML =
+        `<img src="${imgUrl}" alt="${stripTags(p.title.rendered)}" style="width:100%;border-radius:18px;max-height:400px;object-fit:cover;box-shadow:0 8px 30px rgba(0,0,0,.1)"/>`;
+    }
+
+    // Body
+    document.getElementById('postBody').innerHTML = p.content.rendered;
+
+    // Show
+    document.getElementById('skeleton').style.display = 'none';
+    document.getElementById('postContent').classList.remove('hidden');
+
+    // Load related posts
+    loadRelated(postId, cats[0]?.id);
+  } catch {
+    showError();
+  }
+}
+
+async function loadRelated(currentId, catId) {
+  try {
+    const url = catId
+      ? `https://acodax.com/wp-json/wp/v2/posts?per_page=3&_embed&categories=${catId}&exclude=${currentId}`
+      : `https://acodax.com/wp-json/wp/v2/posts?per_page=3&_embed&exclude=${currentId}`;
+    const r = await fetch(url);
+    if (!r.ok) return;
+    const posts = await r.json();
+    if (!posts.length) return;
+    const grid = document.getElementById('relatedGrid');
+    grid.innerHTML = posts.map(p => {
+      const img = p._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+      const imgHtml = img
+        ? `<img src="${img}" style="width:100%;height:140px;object-fit:cover"/>`
+        : `<div style="height:140px;background:linear-gradient(135deg,#e8f1fb,#f0e8ff);display:flex;align-items:center;justify-content:center;font-size:2rem">📰</div>`;
+      return `<a href="blog-post.html?id=${p.id}" class="rel-card block">
+        ${imgHtml}
+        <div style="padding:1rem">
+          <div style="font-size:.85rem;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:.4rem">${stripTags(p.title.rendered)}</div>
+          <div style="font-size:.75rem;color:var(--text3)">${formatDate(p.date)}</div>
+        </div>
+      </a>`;
+    }).join('');
+    document.getElementById('relatedSection').classList.remove('hidden');
+  } catch {}
+}
+
+function showError() {
+  document.getElementById('skeleton').style.display = 'none';
+  document.getElementById('postError').classList.remove('hidden');
+}
+
+loadPost();
+</script>
+</body>
+</html>

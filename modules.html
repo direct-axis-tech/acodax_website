@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modules — Acodax ERP</title>
+<meta name="description" content="Explore all Acodax ERP modules: Accounting, Inventory, CRM, HR, Manufacturing, Projects and more."/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Inter",Arial,sans-serif;
+  --bg:#f5f5f7;--surface:#ffffff;--surface2:#fafafa;
+  --border:#e5e7eb;--border2:#f0f0f0;
+  --text:#1d1d1f;--text2:#424245;--text3:#86868b;
+  --cyan:#0071e3;--cyan-lt:#e8f1fb;
+  --purple:#a855f7;--orange:#f97316;--green:#34c759;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f5f5f7}::-webkit-scrollbar-thumb{background:#c7c7cc;border-radius:3px}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200}
+.navbar-inner{background:rgba(245,245,247,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06);padding:.75rem 0}
+.nav-link{font-size:.875rem;font-weight:500;color:var(--text2);transition:color .2s;letter-spacing:-.01em}
+.nav-link:hover,.nav-link.active{color:var(--cyan)}
+.btn-cta{background:var(--cyan);color:#fff;font-size:.875rem;font-weight:600;padding:.5rem 1.1rem;border-radius:980px;transition:all .25s}
+.btn-cta:hover{background:#0077ed;transform:scale(1.02)}
+.grad-blue{background:linear-gradient(135deg,#0071e3,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-warm{background:linear-gradient(135deg,#f97316,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:.75rem}
+.section-tag::before,.section-tag::after{content:'';height:1px;width:18px;background:currentColor;opacity:.5}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;transition:all .35s cubic-bezier(.4,0,.2,1)}
+.card:hover{border-color:#c7d8f0;box-shadow:0 8px 40px rgba(0,113,227,.08);transform:translateY(-4px)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-l.visible{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-r.visible{opacity:1;transform:none}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.18;animation:blobMove 10s ease-in-out infinite alternate}
+@keyframes blobMove{0%{transform:scale(1)}100%{transform:scale(1.15) translate(20px,-20px)}}
+/* Module card nav */
+.mod-nav-btn{padding:.5rem 1.1rem;border-radius:980px;font-size:.82rem;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .25s;white-space:nowrap}
+.mod-nav-btn:hover,.mod-nav-btn.active{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+/* Module section */
+.module-row{padding:6rem 0;border-bottom:1px solid var(--border2)}
+.module-row:last-child{border-bottom:none}
+.module-icon-lg{width:72px;height:72px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:1.5rem}
+.feature-check{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
+.feature-check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;margin-top:2px}
+/* Industries */
+.industry-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:1.5rem;text-align:center;transition:all .3s;cursor:pointer}
+.industry-card:hover{border-color:#c7d8f0;box-shadow:0 4px 20px rgba(0,113,227,.06);transform:translateY(-3px)}
+/* CTA */
+.cta-section{background:linear-gradient(135deg,#0071e3 0%,#a855f7 100%)}
+footer{background:#1d1d1f;color:#f5f5f7}
+.footer-link{color:#86868b;font-size:.85rem;transition:color .2s}
+.footer-link:hover{color:#f5f5f7}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/Acodax-logo-2.png" alt="Acodax" class="h-8"
+             onerror="this.onerror=null;this.outerHTML='<span style=\'font-size:1.3rem;font-weight:900;color:#1d1d1f;letter-spacing:-.03em\'>aco<span style=\'color:#0071e3\'>dax</span></span>'"/>
+        <span style="display:none"></span>
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="modules.html" class="nav-link active">Modules</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://app.acodax.com" class="hidden md:block" style="color:var(--cyan);font-size:.875rem;font-weight:500;padding:.5rem 1rem;border-radius:980px">Sign In</a>
+        <a href="contact.html" class="btn-cta">Get Started</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative pt-32 pb-20 overflow-hidden" style="background:linear-gradient(180deg,#eef5ff 0%,var(--bg) 100%)">
+  <div class="hero-blob w-96 h-96 bg-purple-400" style="top:-80px;right:-60px"></div>
+  <div class="hero-blob w-80 h-80 bg-blue-300" style="bottom:-40px;left:-40px;animation-delay:4s"></div>
+  <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+    <div class="reveal">
+      <span class="section-tag">ERP Modules</span>
+      <h1 class="text-5xl md:text-6xl font-bold tracking-tight mt-2 mb-5">One platform,<br/><span class="grad-blue">every department</span></h1>
+      <p class="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">Acodax integrates all your business functions into a single, connected system. No more data silos, no more switching between apps.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE NAV -->
+<div class="sticky bg-white border-b border-gray-100 z-50 py-4 shadow-sm" style="top:64px">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex gap-2 overflow-x-auto pb-1" style="scrollbar-width:none">
+      <button class="mod-nav-btn active" onclick="scrollToModule('accounting',this)"><i class="fa-solid fa-calculator mr-1"></i>Accounting</button>
+      <button class="mod-nav-btn" onclick="scrollToModule('inventory',this)"><i class="fa-solid fa-boxes-stacked mr-1"></i>Inventory</button>
+      <button class="mod-nav-btn" onclick="scrollToModule('crm',this)"><i class="fa-solid fa-users mr-1"></i>CRM</button>
+      <button class="mod-nav-btn" onclick="scrollToModule('hr',this)"><i class="fa-solid fa-user-tie mr-1"></i>HR & Payroll</button>
+      <button class="mod-nav-btn" onclick="scrollToModule('projects',this)"><i class="fa-solid fa-diagram-project mr-1"></i>Projects</button>
+      <button class="mod-nav-btn" onclick="scrollToModule('manufacturing',this)"><i class="fa-solid fa-industry mr-1"></i>Manufacturing</button>
+      <button class="mod-nav-btn" onclick="scrollToModule('pos',this)"><i class="fa-solid fa-cash-register mr-1"></i>POS</button>
+      <button class="mod-nav-btn" onclick="scrollToModule('assets',this)"><i class="fa-solid fa-server mr-1"></i>Assets</button>
+      <button class="mod-nav-btn" onclick="scrollToModule('purchase',this)"><i class="fa-solid fa-cart-shopping mr-1"></i>Purchase</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULES -->
+<div class="max-w-7xl mx-auto px-6">
+
+  <!-- ACCOUNTING -->
+  <div id="accounting" class="module-row flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex-1 reveal-l">
+      <div class="module-icon-lg" style="background:#e8f1fb"><i class="fa-solid fa-calculator text-blue-500"></i></div>
+      <span class="section-tag">Module 01</span>
+      <h2 class="text-4xl font-bold mt-1 mb-4">Accounting & Finance</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">Complete double-entry accounting, multi-currency support, bank reconciliation, and UAE VAT compliance. Generate FTA-ready returns in minutes.</p>
+      <div class="space-y-2">
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Chart of accounts & journal entries</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Multi-currency & multi-company</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Bank feeds & auto-reconciliation</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">UAE VAT returns & FTA filing</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">P&L, Balance Sheet, Cash Flow reports</span></div>
+      </div>
+    </div>
+    <div class="flex-1 reveal-r">
+      <div class="card p-6" style="background:linear-gradient(135deg,#f8fbff,#f0e8ff20)">
+        <div class="flex items-center gap-3 mb-5 pb-4 border-b border-gray-100">
+          <div class="w-8 h-8 rounded-full" style="background:#0071e3"></div>
+          <div><div class="text-sm font-semibold">Accounting Dashboard</div><div class="text-xs text-gray-400">Live Overview</div></div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mb-5">
+          <div class="p-3 rounded-xl" style="background:#e8f1fb"><div class="text-xs text-gray-500">Revenue</div><div class="text-xl font-bold text-blue-600 mt-0.5">AED 8.2M</div><div class="text-xs" style="color:#34c759">▲ 14%</div></div>
+          <div class="p-3 rounded-xl" style="background:#e8fff3"><div class="text-xs text-gray-500">Net Profit</div><div class="text-xl font-bold text-green-600 mt-0.5">AED 1.9M</div><div class="text-xs" style="color:#34c759">▲ 22%</div></div>
+          <div class="p-3 rounded-xl" style="background:#fff3e8"><div class="text-xs text-gray-500">Receivables</div><div class="text-xl font-bold text-orange-500 mt-0.5">AED 733K</div><div class="text-xs text-gray-400">93 invoices</div></div>
+          <div class="p-3 rounded-xl" style="background:#f0e8ff"><div class="text-xs text-gray-500">Payables</div><div class="text-xl font-bold text-purple-600 mt-0.5">AED 412K</div><div class="text-xs text-gray-400">41 bills</div></div>
+        </div>
+        <div class="text-xs font-semibold text-gray-500 mb-2">Monthly Revenue</div>
+        <div class="flex items-end gap-1.5 h-16">
+          <div class="flex-1 rounded-t" style="height:55%;background:#0071e3;opacity:.3"></div>
+          <div class="flex-1 rounded-t" style="height:65%;background:#0071e3;opacity:.4"></div>
+          <div class="flex-1 rounded-t" style="height:75%;background:#0071e3;opacity:.5"></div>
+          <div class="flex-1 rounded-t" style="height:60%;background:#0071e3;opacity:.4"></div>
+          <div class="flex-1 rounded-t" style="height:85%;background:#0071e3;opacity:.6"></div>
+          <div class="flex-1 rounded-t" style="height:100%;background:#0071e3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVENTORY -->
+  <div id="inventory" class="module-row flex flex-col lg:flex-row-reverse items-center gap-16">
+    <div class="flex-1 reveal-r">
+      <div class="module-icon-lg" style="background:#e8fff3"><i class="fa-solid fa-boxes-stacked text-green-500"></i></div>
+      <span class="section-tag">Module 02</span>
+      <h2 class="text-4xl font-bold mt-1 mb-4">Inventory Management</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">Full warehouse management with real-time stock levels, multi-location tracking, serial/batch numbers, and automated reorder alerts.</p>
+      <div class="space-y-2">
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8fff3;color:#34c759">✓</div><span class="text-gray-600 text-sm">Multi-warehouse & bin locations</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8fff3;color:#34c759">✓</div><span class="text-gray-600 text-sm">Serial, batch & expiry tracking</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8fff3;color:#34c759">✓</div><span class="text-gray-600 text-sm">Automated reorder & purchase suggestions</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8fff3;color:#34c759">✓</div><span class="text-gray-600 text-sm">Barcode scanning & mobile stock-taking</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8fff3;color:#34c759">✓</div><span class="text-gray-600 text-sm">Landed cost & average cost valuation</span></div>
+      </div>
+    </div>
+    <div class="flex-1 reveal-l">
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-gray-500 mb-4">Stock Overview</div>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between p-3 rounded-xl" style="background:#f5f5f7">
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background:#e8fff3">📦</div><div><div class="text-sm font-semibold">Laptop Dell XPS 15</div><div class="text-xs text-gray-400">Electronics</div></div></div>
+            <div class="text-right"><div class="text-sm font-bold text-green-500">124 units</div><div class="text-xs text-gray-400">In stock</div></div>
+          </div>
+          <div class="flex items-center justify-between p-3 rounded-xl" style="background:#fff3e8">
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background:#fff3e8">🖨️</div><div><div class="text-sm font-semibold">HP LaserJet Pro</div><div class="text-xs text-gray-400">Peripherals</div></div></div>
+            <div class="text-right"><div class="text-sm font-bold text-orange-500">8 units</div><div class="text-xs text-orange-400">Low stock ⚠️</div></div>
+          </div>
+          <div class="flex items-center justify-between p-3 rounded-xl" style="background:#f0e8ff">
+            <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style="background:#f0e8ff">🖥️</div><div><div class="text-sm font-semibold">Monitor LG 27"</div><div class="text-xs text-gray-400">Displays</div></div></div>
+            <div class="text-right"><div class="text-sm font-bold text-purple-500">56 units</div><div class="text-xs text-gray-400">In stock</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRM -->
+  <div id="crm" class="module-row flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex-1 reveal-l">
+      <div class="module-icon-lg" style="background:#f0e8ff"><i class="fa-solid fa-users text-purple-500"></i></div>
+      <span class="section-tag">Module 03</span>
+      <h2 class="text-4xl font-bold mt-1 mb-4">CRM & Sales</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">Track leads, manage pipelines, and close deals faster. Full integration with accounting means quotes convert to invoices with one click.</p>
+      <div class="space-y-2">
+        <div class="feature-check"><div class="feature-check-dot" style="background:#f0e8ff;color:#a855f7">✓</div><span class="text-gray-600 text-sm">Lead & opportunity pipeline (Kanban)</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#f0e8ff;color:#a855f7">✓</div><span class="text-gray-600 text-sm">Quotations, sales orders & invoices</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#f0e8ff;color:#a855f7">✓</div><span class="text-gray-600 text-sm">Email integration & activity logging</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#f0e8ff;color:#a855f7">✓</div><span class="text-gray-600 text-sm">Sales targets & performance reports</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#f0e8ff;color:#a855f7">✓</div><span class="text-gray-600 text-sm">Customer portals & self-service</span></div>
+      </div>
+    </div>
+    <div class="flex-1 reveal-r">
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-gray-500 mb-4">Sales Pipeline</div>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-2"><div class="text-xs text-gray-500 w-24">Prospecting</div><div class="flex-1 h-6 rounded-lg flex items-center px-2" style="background:#e8f1fb"><span class="text-xs font-semibold text-blue-600">24 leads · AED 880K</span></div></div>
+          <div class="flex items-center gap-2"><div class="text-xs text-gray-500 w-24">Qualified</div><div class="flex-1 h-6 rounded-lg flex items-center px-2" style="background:#f0e8ff;width:80%"><span class="text-xs font-semibold text-purple-600">18 leads · AED 640K</span></div></div>
+          <div class="flex items-center gap-2"><div class="text-xs text-gray-500 w-24">Proposal</div><div class="h-6 rounded-lg flex items-center px-2" style="background:#fff3e8;width:60%"><span class="text-xs font-semibold text-orange-600">11 leads · AED 420K</span></div></div>
+          <div class="flex items-center gap-2"><div class="text-xs text-gray-500 w-24">Negotiation</div><div class="h-6 rounded-lg flex items-center px-2" style="background:#e8fff3;width:40%"><span class="text-xs font-semibold text-green-600">7 leads · AED 230K</span></div></div>
+          <div class="flex items-center gap-2"><div class="text-xs text-gray-500 w-24">Won ✓</div><div class="h-6 rounded-lg flex items-center px-2" style="background:#34c75920;width:25%"><span class="text-xs font-semibold" style="color:#34c759">3 deals · AED 124K</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HR -->
+  <div id="hr" class="module-row flex flex-col lg:flex-row-reverse items-center gap-16">
+    <div class="flex-1 reveal-r">
+      <div class="module-icon-lg" style="background:#fff3e8"><i class="fa-solid fa-user-tie text-orange-500"></i></div>
+      <span class="section-tag">Module 04</span>
+      <h2 class="text-4xl font-bold mt-1 mb-4">HR & Payroll</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">Manage your entire workforce lifecycle — from recruitment to payroll. UAE WPS compliant, with automated gratuity, leave, and attendance.</p>
+      <div class="space-y-2">
+        <div class="feature-check"><div class="feature-check-dot" style="background:#fff3e8;color:#f97316">✓</div><span class="text-gray-600 text-sm">Employee profiles & org chart</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#fff3e8;color:#f97316">✓</div><span class="text-gray-600 text-sm">UAE WPS payroll & gratuity calculation</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#fff3e8;color:#f97316">✓</div><span class="text-gray-600 text-sm">Leave management & attendance</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#fff3e8;color:#f97316">✓</div><span class="text-gray-600 text-sm">Performance reviews & appraisals</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#fff3e8;color:#f97316">✓</div><span class="text-gray-600 text-sm">Employee self-service portal</span></div>
+      </div>
+    </div>
+    <div class="flex-1 reveal-l">
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-gray-500 mb-4">HR Overview</div>
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="text-center p-3 rounded-xl" style="background:#fff3e8"><div class="text-2xl font-bold text-orange-500">247</div><div class="text-xs text-gray-400">Employees</div></div>
+          <div class="text-center p-3 rounded-xl" style="background:#e8fff3"><div class="text-2xl font-bold text-green-500">98%</div><div class="text-xs text-gray-400">Attendance</div></div>
+          <div class="text-center p-3 rounded-xl" style="background:#e8f1fb"><div class="text-2xl font-bold text-blue-500">12</div><div class="text-xs text-gray-400">On Leave</div></div>
+        </div>
+        <div class="text-xs font-semibold text-gray-500 mb-3">Department Headcount</div>
+        <div class="space-y-2">
+          <div class="flex items-center gap-2"><span class="text-xs text-gray-500 w-20">Sales</span><div class="flex-1 h-2 rounded bg-gray-100"><div class="h-2 rounded bg-blue-400" style="width:65%"></div></div><span class="text-xs text-gray-500 w-6">65</span></div>
+          <div class="flex items-center gap-2"><span class="text-xs text-gray-500 w-20">Operations</span><div class="flex-1 h-2 rounded bg-gray-100"><div class="h-2 rounded bg-orange-400" style="width:45%"></div></div><span class="text-xs text-gray-500 w-6">45</span></div>
+          <div class="flex items-center gap-2"><span class="text-xs text-gray-500 w-20">Finance</span><div class="flex-1 h-2 rounded bg-gray-100"><div class="h-2 rounded bg-purple-400" style="width:30%"></div></div><span class="text-xs text-gray-500 w-6">30</span></div>
+          <div class="flex items-center gap-2"><span class="text-xs text-gray-500 w-20">IT</span><div class="flex-1 h-2 rounded bg-gray-100"><div class="h-2 rounded bg-green-400" style="width:20%"></div></div><span class="text-xs text-gray-500 w-6">20</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div id="projects" class="module-row flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex-1 reveal-l">
+      <div class="module-icon-lg" style="background:#e8f1fb"><i class="fa-solid fa-diagram-project text-blue-500"></i></div>
+      <span class="section-tag">Module 05</span>
+      <h2 class="text-4xl font-bold mt-1 mb-4">Project Management</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">Plan, execute, and bill projects from a single platform. Timesheets, task tracking, Gantt charts, and profitability analysis — all connected to accounting.</p>
+      <div class="space-y-2">
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Gantt charts & milestone tracking</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Timesheet & resource management</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Budget vs actual cost tracking</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Customer billing & progress invoicing</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Work order management</span></div>
+      </div>
+    </div>
+    <div class="flex-1 reveal-r">
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-gray-500 mb-4">Active Projects</div>
+        <div class="space-y-3">
+          <div class="p-3 rounded-xl border border-gray-100">
+            <div class="flex justify-between mb-2"><span class="text-sm font-semibold">Office Fit-Out — DIFC</span><span class="text-xs px-2 py-0.5 rounded-full" style="background:#e8fff3;color:#34c759">On Track</span></div>
+            <div class="h-1.5 rounded bg-gray-100 mb-1"><div class="h-1.5 rounded bg-blue-400" style="width:72%"></div></div>
+            <div class="flex justify-between text-xs text-gray-400"><span>72% complete</span><span>Due: 15 Jul</span></div>
+          </div>
+          <div class="p-3 rounded-xl border border-gray-100">
+            <div class="flex justify-between mb-2"><span class="text-sm font-semibold">ERP Implementation</span><span class="text-xs px-2 py-0.5 rounded-full" style="background:#fff3e8;color:#f97316">At Risk</span></div>
+            <div class="h-1.5 rounded bg-gray-100 mb-1"><div class="h-1.5 rounded bg-orange-400" style="width:45%"></div></div>
+            <div class="flex justify-between text-xs text-gray-400"><span>45% complete</span><span>Due: 1 Aug</span></div>
+          </div>
+          <div class="p-3 rounded-xl border border-gray-100">
+            <div class="flex justify-between mb-2"><span class="text-sm font-semibold">Warehouse Expansion</span><span class="text-xs px-2 py-0.5 rounded-full" style="background:#e8f1fb;color:#0071e3">Planning</span></div>
+            <div class="h-1.5 rounded bg-gray-100 mb-1"><div class="h-1.5 rounded bg-purple-400" style="width:18%"></div></div>
+            <div class="flex justify-between text-xs text-gray-400"><span>18% complete</span><span>Due: 30 Sep</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANUFACTURING -->
+  <div id="manufacturing" class="module-row flex flex-col lg:flex-row-reverse items-center gap-16">
+    <div class="flex-1 reveal-r">
+      <div class="module-icon-lg" style="background:#f0e8ff"><i class="fa-solid fa-industry text-purple-500"></i></div>
+      <span class="section-tag">Module 06</span>
+      <h2 class="text-4xl font-bold mt-1 mb-4">Manufacturing</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">Full MRP with Bill of Materials, production planning, work centre scheduling, and quality control. Built for discrete and process manufacturing.</p>
+      <div class="space-y-2">
+        <div class="feature-check"><div class="feature-check-dot" style="background:#f0e8ff;color:#a855f7">✓</div><span class="text-gray-600 text-sm">Bill of Materials (BOM) management</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#f0e8ff;color:#a855f7">✓</div><span class="text-gray-600 text-sm">Production orders & scheduling</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#f0e8ff;color:#a855f7">✓</div><span class="text-gray-600 text-sm">Work centre & machine management</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#f0e8ff;color:#a855f7">✓</div><span class="text-gray-600 text-sm">Quality control & inspection</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#f0e8ff;color:#a855f7">✓</div><span class="text-gray-600 text-sm">Cost of goods manufactured reports</span></div>
+      </div>
+    </div>
+    <div class="flex-1 reveal-l">
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-gray-500 mb-4">Production Overview</div>
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <div class="p-3 rounded-xl text-center" style="background:#f0e8ff"><div class="text-2xl font-bold text-purple-500">34</div><div class="text-xs text-gray-400">Active Orders</div></div>
+          <div class="p-3 rounded-xl text-center" style="background:#e8fff3"><div class="text-2xl font-bold text-green-500">89%</div><div class="text-xs text-gray-400">Efficiency</div></div>
+        </div>
+        <div class="text-xs font-semibold text-gray-500 mb-2">Production Line Status</div>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between items-center p-2 rounded-lg" style="background:#f5f5f7"><span class="text-gray-600">Line A — Assembly</span><span class="px-2 py-0.5 rounded-full text-xs" style="background:#e8fff3;color:#34c759">Running</span></div>
+          <div class="flex justify-between items-center p-2 rounded-lg" style="background:#f5f5f7"><span class="text-gray-600">Line B — Packaging</span><span class="px-2 py-0.5 rounded-full text-xs" style="background:#e8fff3;color:#34c759">Running</span></div>
+          <div class="flex justify-between items-center p-2 rounded-lg" style="background:#f5f5f7"><span class="text-gray-600">Line C — Testing</span><span class="px-2 py-0.5 rounded-full text-xs" style="background:#fff3e8;color:#f97316">Maintenance</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POS -->
+  <div id="pos" class="module-row flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex-1 reveal-l">
+      <div class="module-icon-lg" style="background:#e8fff3"><i class="fa-solid fa-cash-register text-green-500"></i></div>
+      <span class="section-tag">Module 07</span>
+      <h2 class="text-4xl font-bold mt-1 mb-4">Point of Sale</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">A fast, touch-friendly POS that works on any device. Real-time inventory sync, loyalty programs, and integrated payment terminals.</p>
+      <div class="space-y-2">
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8fff3;color:#34c759">✓</div><span class="text-gray-600 text-sm">Touch-optimised interface for tablets & kiosks</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8fff3;color:#34c759">✓</div><span class="text-gray-600 text-sm">Offline mode — keeps selling during outages</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8fff3;color:#34c759">✓</div><span class="text-gray-600 text-sm">Loyalty points, vouchers & promotions</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8fff3;color:#34c759">✓</div><span class="text-gray-600 text-sm">Integrated card payment terminals</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8fff3;color:#34c759">✓</div><span class="text-gray-600 text-sm">Instant sync with inventory & accounting</span></div>
+      </div>
+    </div>
+    <div class="flex-1 reveal-r">
+      <!-- MacBook monitor mockup with POS screenshot -->
+      <div style="position:relative;filter:drop-shadow(0 30px 60px rgba(0,0,0,.18))">
+        <!-- Lid -->
+        <div style="background:linear-gradient(to bottom,#e8e8e8,#d4d4d4);border-radius:14px 14px 0 0;padding:16px 12px 0;position:relative">
+          <!-- Camera -->
+          <div style="position:absolute;top:7px;left:50%;transform:translateX(-50%);width:6px;height:6px;background:#5a5a5a;border-radius:50%"></div>
+          <!-- Screen bezel -->
+          <div style="background:#0f0f0f;border-radius:6px;overflow:hidden;aspect-ratio:16/10;position:relative">
+            <!-- Actual POS screenshot -->
+            <img src="assets/images/136207.jpg"
+                 alt="Acodax POS Interface"
+                 style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block"
+                 onerror="this.style.background='#0f0f0f'"/>
+            <!-- Glass sheen -->
+            <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 60%);pointer-events:none"></div>
+          </div>
+        </div>
+        <!-- Chin -->
+        <div style="background:linear-gradient(to bottom,#d4d4d4,#c4c4c4);height:16px;border-radius:0 0 6px 6px;position:relative">
+          <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:52px;height:4px;background:#afafaf;border-radius:3px 3px 0 0"></div>
+        </div>
+        <!-- Base stand -->
+        <div style="display:flex;justify-content:center">
+          <div style="width:120px;height:10px;background:linear-gradient(to bottom,#c0c0c0,#b0b0b0);border-radius:0 0 8px 8px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSETS -->
+  <div id="assets" class="module-row flex flex-col lg:flex-row-reverse items-center gap-16">
+    <div class="flex-1 reveal-r">
+      <div class="module-icon-lg" style="background:#e8f1fb"><i class="fa-solid fa-server text-blue-500"></i></div>
+      <span class="section-tag">Module 08</span>
+      <h2 class="text-4xl font-bold mt-1 mb-4">Fixed Asset Management</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">Track all your physical and intangible assets through their full lifecycle. Automated depreciation, maintenance schedules, and disposal workflows.</p>
+      <div class="space-y-2">
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Asset register & categorisation</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Straight-line & declining balance depreciation</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Maintenance scheduling & history</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Disposal, transfer & write-off</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#e8f1fb;color:#0071e3">✓</div><span class="text-gray-600 text-sm">Auto journal entries for depreciation</span></div>
+      </div>
+    </div>
+    <div class="flex-1 reveal-l">
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-gray-500 mb-4">Asset Summary</div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 rounded-xl" style="background:#e8f1fb"><div class="text-xs text-gray-500">Total Assets</div><div class="text-xl font-bold text-blue-600">AED 4.2M</div></div>
+          <div class="p-3 rounded-xl" style="background:#e8fff3"><div class="text-xs text-gray-500">Net Book Value</div><div class="text-xl font-bold text-green-600">AED 2.8M</div></div>
+          <div class="p-3 rounded-xl" style="background:#f0e8ff"><div class="text-xs text-gray-500">Depreciation YTD</div><div class="text-xl font-bold text-purple-600">AED 340K</div></div>
+          <div class="p-3 rounded-xl" style="background:#fff3e8"><div class="text-xs text-gray-500">Assets Due Service</div><div class="text-xl font-bold text-orange-500">7</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PURCHASE -->
+  <div id="purchase" class="module-row flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex-1 reveal-l">
+      <div class="module-icon-lg" style="background:#fff3e8"><i class="fa-solid fa-cart-shopping text-orange-500"></i></div>
+      <span class="section-tag">Module 09</span>
+      <h2 class="text-4xl font-bold mt-1 mb-4">Purchase Management</h2>
+      <p class="text-gray-500 leading-relaxed mb-6">Streamline your entire procurement cycle from RFQ to payment. Vendor management, 3-way matching, and spend analytics in one place.</p>
+      <div class="space-y-2">
+        <div class="feature-check"><div class="feature-check-dot" style="background:#fff3e8;color:#f97316">✓</div><span class="text-gray-600 text-sm">RFQ & purchase order management</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#fff3e8;color:#f97316">✓</div><span class="text-gray-600 text-sm">Vendor portal & performance scoring</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#fff3e8;color:#f97316">✓</div><span class="text-gray-600 text-sm">3-way matching (PO/GRN/Invoice)</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#fff3e8;color:#f97316">✓</div><span class="text-gray-600 text-sm">Approval workflows & spend limits</span></div>
+        <div class="feature-check"><div class="feature-check-dot" style="background:#fff3e8;color:#f97316">✓</div><span class="text-gray-600 text-sm">Spend analytics by category & vendor</span></div>
+      </div>
+    </div>
+    <div class="flex-1 reveal-r">
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-gray-500 mb-4">Purchase Pipeline</div>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-center justify-between p-3 rounded-xl" style="background:#f5f5f7">
+            <div><div class="font-semibold text-gray-700">PO-2024-0891</div><div class="text-xs text-gray-400">Dell Technologies · AED 48,500</div></div>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:#e8f1fb;color:#0071e3">Sent to Vendor</span>
+          </div>
+          <div class="flex items-center justify-between p-3 rounded-xl" style="background:#f5f5f7">
+            <div><div class="font-semibold text-gray-700">PO-2024-0892</div><div class="text-xs text-gray-400">Stationery World · AED 3,200</div></div>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:#e8fff3;color:#34c759">Received</span>
+          </div>
+          <div class="flex items-center justify-between p-3 rounded-xl" style="background:#f5f5f7">
+            <div><div class="font-semibold text-gray-700">PO-2024-0893</div><div class="text-xs text-gray-400">Office Supplies Co · AED 7,800</div></div>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:#fff3e8;color:#f97316">Awaiting Approval</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- INDUSTRIES -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <span class="section-tag">Industries</span>
+      <h2 class="text-4xl font-bold mt-2">Built for your industry</h2>
+      <p class="text-gray-500 mt-3 max-w-xl mx-auto">Pre-configured workflows and templates for the sectors that drive the UAE economy.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 reveal">
+      <div class="industry-card"><div class="text-2xl mb-2">🏗️</div><div class="text-sm font-semibold text-gray-700">Construction</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">🛒</div><div class="text-sm font-semibold text-gray-700">Retail</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">🏥</div><div class="text-sm font-semibold text-gray-700">Healthcare</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">🍽️</div><div class="text-sm font-semibold text-gray-700">F&B</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">🏭</div><div class="text-sm font-semibold text-gray-700">Manufacturing</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">🚢</div><div class="text-sm font-semibold text-gray-700">Logistics</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">🏨</div><div class="text-sm font-semibold text-gray-700">Hospitality</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">🎓</div><div class="text-sm font-semibold text-gray-700">Education</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">⚡</div><div class="text-sm font-semibold text-gray-700">Energy</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">🏢</div><div class="text-sm font-semibold text-gray-700">Real Estate</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">💼</div><div class="text-sm font-semibold text-gray-700">Professional</div></div>
+      <div class="industry-card"><div class="text-2xl mb-2">🌐</div><div class="text-sm font-semibold text-gray-700">Tech & IT</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section py-24 text-center text-white">
+  <div class="max-w-2xl mx-auto px-6 reveal">
+    <h2 class="text-4xl font-bold mb-4">See all modules in action</h2>
+    <p class="text-blue-100 mb-8 text-lg">Book a personalised demo — we'll walk you through the modules most relevant to your business.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="contact.html" style="background:#fff;color:#0071e3;font-weight:700;padding:.85rem 2.2rem;border-radius:980px;font-size:1rem;display:inline-block">Book a Demo</a>
+      <a href="pricing.html" style="border:2px solid rgba(255,255,255,.5);color:#fff;font-weight:600;padding:.85rem 2.2rem;border-radius:980px;font-size:1rem;display:inline-block">View Pricing →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <img src="assets/images/Acodax-logo-4.png" alt="Acodax" class="h-7" style="filter:brightness(2)"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+          <span style="display:none;font-size:1.1rem;font-weight:900;color:#fff">aco<span style="color:#3a8fc7">dax</span></span>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">AI-powered ERP built for UAE businesses.</p>
+      </div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Product</h5><div class="flex flex-col gap-2"><a href="features.html" class="footer-link">Features</a><a href="modules.html" class="footer-link">Modules</a><a href="pricing.html" class="footer-link">Pricing</a></div></div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Company</h5><div class="flex flex-col gap-2"><a href="blog.html" class="footer-link">Blog</a><a href="contact.html" class="footer-link">Contact</a><a href="partner.html" class="footer-link" style="color:#3a8fc7">Partner Registration</a></div></div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Contact</h5><div class="flex flex-col gap-2 text-gray-500 text-sm"><span><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+971 4 123 4567</span><span><i class="fa-solid fa-envelope mr-2 text-blue-400"></i>info@acodax.com</span><span><i class="fa-solid fa-location-dot mr-2 text-blue-400"></i>Dubai, UAE</span></div></div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-gray-600 text-sm">© 2024 Acodax. All rights reserved.</p>
+      <div class="flex gap-4"><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-twitter"></i></a><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-facebook"></i></a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+
+function scrollToModule(id, btn){
+  document.querySelectorAll('.mod-nav-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const el=document.getElementById(id);
+  if(el){const top=el.getBoundingClientRect().top+window.scrollY-120;window.scrollTo({top,behavior:'smooth'})}
+}
+</script>
+<script src="acobot.js"></script>
+</body>
+</html>

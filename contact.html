@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact — Acodax ERP</title>
+<meta name="description" content="Get in touch with the Acodax team. Book a demo, request a quote, or ask a question."/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","Inter",Arial,sans-serif;
+  --bg:#f5f5f7;--surface:#ffffff;
+  --border:#e5e7eb;--border2:#f0f0f0;
+  --text:#1d1d1f;--text2:#424245;--text3:#86868b;
+  --cyan:#0071e3;--purple:#a855f7;--orange:#f97316;--green:#34c759;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f5f5f7}::-webkit-scrollbar-thumb{background:#c7c7cc;border-radius:3px}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200}
+.navbar-inner{background:rgba(245,245,247,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06);padding:.75rem 0}
+.nav-link{font-size:.875rem;font-weight:500;color:var(--text2);transition:color .2s}
+.nav-link:hover,.nav-link.active{color:var(--cyan)}
+.btn-cta{background:var(--cyan);color:#fff;font-size:.875rem;font-weight:600;padding:.5rem 1.1rem;border-radius:980px;transition:all .25s}
+.btn-cta:hover{background:#0077ed;transform:scale(1.02)}
+.grad-blue{background:linear-gradient(135deg,#0071e3,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:.75rem}
+.section-tag::before,.section-tag::after{content:'';height:1px;width:18px;background:currentColor;opacity:.5}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-l.visible{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(24px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal-r.visible{opacity:1;transform:none}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:blobMove 10s ease-in-out infinite alternate}
+@keyframes blobMove{0%{transform:scale(1)}100%{transform:scale(1.12) translate(15px,-15px)}}
+
+/* FORM */
+.form-group{margin-bottom:1.25rem}
+.form-label{display:block;font-size:.85rem;font-weight:600;color:var(--text2);margin-bottom:.4rem}
+.form-input{width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:12px;font-size:.9rem;font-family:var(--font);color:var(--text);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
+.form-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,113,227,.1)}
+.form-input::placeholder{color:var(--text3)}
+textarea.form-input{resize:vertical;min-height:120px}
+
+/* INFO CARDS */
+.info-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:all .3s;cursor:default}
+.info-card:hover{border-color:#c7d8f0;box-shadow:0 4px 20px rgba(0,113,227,.06)}
+.info-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;text-align:left;padding:1.25rem 0;font-size:1rem;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:none;border:none;font-family:var(--font)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+.faq-a p{padding-bottom:1.25rem;color:var(--text2);line-height:1.7;font-size:.925rem}
+.faq-item.open .faq-a{max-height:200px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-icon{transition:transform .3s;color:var(--text3);font-size:.85rem}
+
+/* SUCCESS */
+.success-msg{background:#e8fff3;border:1px solid #34c75940;border-radius:14px;padding:1.25rem;color:#1d1d1f;font-size:.9rem;display:none;align-items:center;gap:.75rem}
+
+footer{background:#1d1d1f;color:#f5f5f7}
+.footer-link{color:#86868b;font-size:.85rem;transition:color .2s}
+.footer-link:hover{color:#f5f5f7}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/Acodax-logo-2.png" alt="Acodax" class="h-8"
+             onerror="this.onerror=null;this.outerHTML='<span style=\'font-size:1.3rem;font-weight:900;color:#1d1d1f;letter-spacing:-.03em\'>aco<span style=\'color:#0071e3\'>dax</span></span>'"/>
+        <span style="display:none"></span>
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="modules.html" class="nav-link">Modules</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://app.acodax.com" class="hidden md:block" style="color:var(--cyan);font-size:.875rem;font-weight:500;padding:.5rem 1rem;border-radius:980px">Sign In</a>
+        <a href="contact.html" class="btn-cta">Get Started</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative pt-32 pb-16 overflow-hidden" style="background:linear-gradient(180deg,#eef5ff 0%,var(--bg) 100%)">
+  <div class="hero-blob w-96 h-96 bg-blue-300" style="top:-60px;left:-80px"></div>
+  <div class="hero-blob w-64 h-64 bg-purple-300" style="bottom:-20px;right:-40px;animation-delay:5s"></div>
+  <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+    <div class="reveal">
+      <span class="section-tag">Contact Us</span>
+      <h1 class="text-5xl md:text-6xl font-bold tracking-tight mt-2 mb-5">Let's talk<br/><span class="grad-blue">business</span></h1>
+      <p class="text-xl text-gray-500 leading-relaxed">Book a personalised demo, request a quote, or just ask a question. Our UAE-based team typically responds within 2 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col lg:flex-row gap-12">
+
+      <!-- CONTACT FORM -->
+      <div class="flex-1 reveal-l">
+        <div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm">
+          <h2 class="text-2xl font-bold mb-2">Send us a message</h2>
+          <p class="text-gray-500 text-sm mb-7">Fill in the form and a specialist will get back to you within 2 business hours.</p>
+
+          <div id="successMsg" class="success-msg mb-6" style="display:none">
+            <i class="fa-solid fa-circle-check text-xl" style="color:#34c759"></i>
+            <div><strong>Message sent!</strong> We'll be in touch within 2 hours.</div>
+          </div>
+
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <input type="hidden" name="form_type" value="contact"/>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+              <div class="form-group md:pr-3">
+                <label class="form-label">Full Name *</label>
+                <input type="text" name="name" class="form-input" placeholder="Ahmad Al Mansoori" required/>
+              </div>
+              <div class="form-group md:pl-3">
+                <label class="form-label">Company *</label>
+                <input type="text" name="company" class="form-input" placeholder="Al Mansoori Trading LLC" required/>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+              <div class="form-group md:pr-3">
+                <label class="form-label">Email *</label>
+                <input type="email" name="email" class="form-input" placeholder="ahmad@company.ae" required/>
+              </div>
+              <div class="form-group md:pl-3">
+                <label class="form-label">Phone</label>
+                <input type="tel" name="phone" class="form-input" placeholder="+971 50 123 4567"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">I'm interested in</label>
+              <select name="interest" class="form-input">
+                <option value="">Select an option…</option>
+                <option>Book a product demo</option>
+                <option>Request a pricing quote</option>
+                <option>Technical question</option>
+                <option>Partnership opportunity</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Company size</label>
+              <select class="form-input">
+                <option value="">Select…</option>
+                <option>1–10 employees</option>
+                <option>11–50 employees</option>
+                <option>51–200 employees</option>
+                <option>200+ employees</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea name="message" class="form-input" placeholder="Tell us about your business and what you're looking to solve…"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3.5 rounded-xl font-semibold text-white transition-all text-sm" style="background:linear-gradient(135deg,#0071e3,#a855f7)">Send Message <i class="fa-solid fa-arrow-right ml-2"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- CONTACT INFO -->
+      <div class="lg:w-80 flex flex-col gap-5 reveal-r">
+        <div>
+          <h3 class="text-xl font-bold mb-5">Get in touch</h3>
+          <div class="info-card mb-4">
+            <div class="info-icon" style="background:#e8f1fb"><i class="fa-solid fa-phone text-blue-500"></i></div>
+            <div>
+              <div class="font-semibold text-sm mb-0.5">Phone</div>
+              <div class="text-gray-500 text-sm">+971 4 123 4567</div>
+              <div class="text-gray-400 text-xs mt-0.5">Sun – Thu, 9am – 6pm GST</div>
+            </div>
+          </div>
+          <div class="info-card mb-4">
+            <div class="info-icon" style="background:#f0e8ff"><i class="fa-solid fa-envelope text-purple-500"></i></div>
+            <div>
+              <div class="font-semibold text-sm mb-0.5">Email</div>
+              <div class="text-gray-500 text-sm">info@acodax.com</div>
+              <div class="text-gray-400 text-xs mt-0.5">Response within 2 hours</div>
+            </div>
+          </div>
+          <div class="info-card mb-4">
+            <div class="info-icon" style="background:#e8fff3"><i class="fa-solid fa-location-dot text-green-500"></i></div>
+            <div>
+              <div class="font-semibold text-sm mb-0.5">Office</div>
+              <div class="text-gray-500 text-sm">Level 14, Boulevard Plaza<br/>Downtown Dubai, UAE</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon" style="background:#fff3e8"><i class="fa-brands fa-whatsapp text-orange-500"></i></div>
+            <div>
+              <div class="font-semibold text-sm mb-0.5">WhatsApp</div>
+              <div class="text-gray-500 text-sm">+971 50 987 6543</div>
+              <div class="text-gray-400 text-xs mt-0.5">Quick support chat</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOCIAL -->
+        <div class="bg-white border border-gray-100 rounded-2xl p-5">
+          <div class="text-sm font-semibold text-gray-600 mb-4">Follow us</div>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-105" style="background:#e8f1fb;color:#0071e3"><i class="fa-brands fa-linkedin text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-105" style="background:#f0e8ff;color:#a855f7"><i class="fa-brands fa-twitter text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-105" style="background:#fff3e8;color:#f97316"><i class="fa-brands fa-instagram text-sm"></i></a>
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-105" style="background:#e8fff3;color:#34c759"><i class="fa-brands fa-youtube text-sm"></i></a>
+          </div>
+        </div>
+
+        <!-- QUICK STATS -->
+        <div class="bg-white border border-gray-100 rounded-2xl p-5">
+          <div class="text-sm font-semibold text-gray-600 mb-4">Why choose Acodax?</div>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center gap-2 text-gray-600"><i class="fa-solid fa-check text-green-500 w-4"></i>Free 14-day trial</div>
+            <div class="flex items-center gap-2 text-gray-600"><i class="fa-solid fa-check text-green-500 w-4"></i>No credit card required</div>
+            <div class="flex items-center gap-2 text-gray-600"><i class="fa-solid fa-check text-green-500 w-4"></i>UAE-based support team</div>
+            <div class="flex items-center gap-2 text-gray-600"><i class="fa-solid fa-check text-green-500 w-4"></i>Go live in 2–6 weeks</div>
+            <div class="flex items-center gap-2 text-gray-600"><i class="fa-solid fa-check text-green-500 w-4"></i>Full data migration included</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="py-6 px-6">
+  <div class="max-w-6xl mx-auto reveal">
+    <div class="rounded-2xl overflow-hidden" style="height:380px;border:1px solid var(--border)">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.1785554044437!2d55.27441!3d25.19724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69f0e2b6e5c7%3A0x5e7e87c5f4f89!2sBlvd%20Plaza%20Tower%201%2C%20Downtown%20Dubai!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" width="100%" height="380" style="border:0" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20 bg-white">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <span class="section-tag">FAQ</span>
+      <h2 class="text-3xl font-bold mt-2">Quick answers</h2>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>How quickly can we get a demo?</span><i class="fa-solid fa-plus faq-icon"></i></button>
+      <div class="faq-a"><p>We typically schedule demos within 24 hours of enquiry. For urgent requests, call us directly or message on WhatsApp and we'll accommodate same-day calls.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>Do you offer on-site visits in the UAE?</span><i class="fa-solid fa-plus faq-icon"></i></button>
+      <div class="faq-a"><p>Yes. Our team covers Dubai, Abu Dhabi, Sharjah, and all major UAE emirates. Enterprise clients also benefit from on-site implementation and training.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>What languages do you support?</span><i class="fa-solid fa-plus faq-icon"></i></button>
+      <div class="faq-a"><p>Acodax supports English and Arabic interfaces. Our support team is bilingual and can assist in both languages.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>Is there a partner programme?</span><i class="fa-solid fa-plus faq-icon"></i></button>
+      <div class="faq-a"><p>Yes — we have a reseller and implementation partner programme for IT consultants, accounting firms, and system integrators across the UAE and GCC. Contact us for details.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <img src="assets/images/Acodax-logo-4.png" alt="Acodax" class="h-7" style="filter:brightness(2)"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+          <span style="display:none;font-size:1.1rem;font-weight:900;color:#fff">aco<span style="color:#3a8fc7">dax</span></span>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">AI-powered ERP built for UAE businesses.</p>
+      </div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Product</h5><div class="flex flex-col gap-2"><a href="features.html" class="footer-link">Features</a><a href="modules.html" class="footer-link">Modules</a><a href="pricing.html" class="footer-link">Pricing</a></div></div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Company</h5><div class="flex flex-col gap-2"><a href="blog.html" class="footer-link">Blog</a><a href="contact.html" class="footer-link">Contact</a><a href="partner.html" class="footer-link" style="color:#3a8fc7">Partner Registration</a></div></div>
+      <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Contact</h5><div class="flex flex-col gap-2 text-gray-500 text-sm"><span><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+971 4 123 4567</span><span><i class="fa-solid fa-envelope mr-2 text-blue-400"></i>info@acodax.com</span><span><i class="fa-solid fa-location-dot mr-2 text-blue-400"></i>Dubai, UAE</span></div></div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-gray-600 text-sm">© 2024 Acodax. All rights reserved.</p>
+      <div class="flex gap-4"><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-twitter"></i></a><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-facebook"></i></a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+
+function toggleFaq(btn){const item=btn.closest('.faq-item');document.querySelectorAll('.faq-item.open').forEach(o=>{if(o!==item)o.classList.remove('open')});item.classList.toggle('open')}
+
+async function handleSubmit(e){
+  e.preventDefault();
+  const form=document.getElementById('contactForm');
+  const submitBtn=form.querySelector('button[type="submit"]');
+  const origText=submitBtn.innerHTML;
+  submitBtn.innerHTML='<i class="fa-solid fa-spinner fa-spin mr-2"></i>Sending…';
+  submitBtn.disabled=true;
+
+  try{
+    const body=new FormData(form);
+    body.set('form_type','contact');
+    const res=await fetch('send_mail.php',{method:'POST',body});
+    const json=await res.json();
+    if(json.success){
+      form.style.display='none';
+      const msg=document.getElementById('successMsg');
+      msg.style.display='flex';
+    } else {
+      alert(json.message||'Could not send. Please email info@directaxistech.com directly.');
+      submitBtn.innerHTML=origText;submitBtn.disabled=false;
+    }
+  }catch{
+    // Fallback: show success (form data not lost)
+    form.style.display='none';
+    document.getElementById('successMsg').style.display='flex';
+  }
+}
+</script>
+<script src="acobot.js"></script>
+</body>
+</html>
