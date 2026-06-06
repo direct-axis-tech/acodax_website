@@ -505,26 +505,26 @@ footer{background:#1d1d1f;color:#f5f5f7}
 <!-- ══════════════════════════════════════════
      TRUSTED LOGOS
 ══════════════════════════════════════════ -->
-<section style="background:#091f3a;padding:3rem 0;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)">
+<section style="background:#f0f4f8;padding:3rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0">
   <div class="max-w-7xl mx-auto px-5">
-    <p style="text-align:center;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1.75rem">Trusted by businesses across UAE</p>
+    <p style="text-align:center;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#64748b;margin-bottom:1.75rem">Trusted by businesses across UAE</p>
     <div class="marquee-wrap">
       <div class="marquee-track">
-        <img src="assets/images/32.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
-        <img src="assets/images/34.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
-        <img src="assets/images/35.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
-        <img src="assets/images/36.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
-        <img src="assets/images/38.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
-        <img src="assets/images/40.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
-        <img src="assets/images/41.png"  class="h-9 object-contain opacity-40 hover:opacity-70 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/32.png"  class="h-9 object-contain opacity-60 hover:opacity-90 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/34.png"  class="h-9 object-contain opacity-60 hover:opacity-90 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/35.png"  class="h-9 object-contain opacity-60 hover:opacity-90 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/36.png"  class="h-9 object-contain opacity-60 hover:opacity-90 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/38.png"  class="h-9 object-contain opacity-60 hover:opacity-90 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/40.png"  class="h-9 object-contain opacity-60 hover:opacity-90 transition-opacity" onerror="this.remove()"/>
+        <img src="assets/images/41.png"  class="h-9 object-contain opacity-60 hover:opacity-90 transition-opacity" onerror="this.remove()"/>
         <!-- duplicate for loop -->
-        <img src="assets/images/32.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
-        <img src="assets/images/34.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
-        <img src="assets/images/35.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
-        <img src="assets/images/36.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
-        <img src="assets/images/38.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
-        <img src="assets/images/40.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
-        <img src="assets/images/41.png"  class="h-9 object-contain opacity-40" onerror="this.remove()"/>
+        <img src="assets/images/32.png"  class="h-9 object-contain opacity-60" onerror="this.remove()"/>
+        <img src="assets/images/34.png"  class="h-9 object-contain opacity-60" onerror="this.remove()"/>
+        <img src="assets/images/35.png"  class="h-9 object-contain opacity-60" onerror="this.remove()"/>
+        <img src="assets/images/36.png"  class="h-9 object-contain opacity-60" onerror="this.remove()"/>
+        <img src="assets/images/38.png"  class="h-9 object-contain opacity-60" onerror="this.remove()"/>
+        <img src="assets/images/40.png"  class="h-9 object-contain opacity-60" onerror="this.remove()"/>
+        <img src="assets/images/41.png"  class="h-9 object-contain opacity-60" onerror="this.remove()"/>
       </div>
     </div>
   </div>
@@ -844,15 +844,54 @@ footer{background:#1d1d1f;color:#f5f5f7}
     </div>
 
     <div class="reveal" style="position:relative">
-      <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80%;height:200px;background:radial-gradient(ellipse,rgba(0,113,227,.06),transparent 70%);pointer-events:none"></div>
+      <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80%;height:200px;background:radial-gradient(ellipse,rgba(0,113,227,.08),transparent 70%);pointer-events:none"></div>
+
+      <!-- MacBook -->
       <div class="mac-lid" style="max-width:900px;margin:0 auto;position:relative">
         <div class="mac-camera"></div>
         <div class="mac-screen" style="height:420px">
           <img id="macScreenImg" src="assets/images/dashboard1.png"
-               style="width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .4s" onerror="this.style.background='#1d1d1f'"/>
+               style="width:100%;height:100%;object-fit:cover;object-position:top left;transition:opacity .5s" onerror="this.style.background='#1d1d1f'"/>
+          <!-- Right-edge fade — hides empty space, blends into section bg -->
+          <div id="macScreenFade" style="position:absolute;right:0;top:0;width:32%;height:100%;background:linear-gradient(to right,transparent,#091f3a 88%);pointer-events:none;z-index:3;transition:opacity .45s"></div>
         </div>
       </div>
       <div class="mac-chin" style="max-width:900px;margin:0 auto;position:relative"><div class="mac-base-bar"></div></div>
+
+      <!-- Floating metric cards — fill the faded right zone creatively -->
+      <div style="position:absolute;right:calc(50% - 470px);top:8%;display:flex;flex-direction:column;gap:.7rem;z-index:10;pointer-events:none" class="hidden xl:flex">
+
+        <!-- Receivables -->
+        <div style="background:rgba(6,20,44,.96);border:1px solid rgba(79,168,232,.22);border-radius:14px;padding:.8rem 1.05rem;box-shadow:0 8px 28px rgba(0,0,0,.45);width:168px;animation:floatSlow 7s ease-in-out infinite">
+          <div style="font-size:.56rem;font-weight:700;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.28rem">Total Receivables</div>
+          <div style="font-size:1.08rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1">AED 73,661</div>
+          <div style="display:flex;align-items:center;gap:.28rem;margin-top:.3rem">
+            <svg width="8" height="7" viewBox="0 0 8 7"><path d="M4 0L8 7H0Z" fill="#34c759"/></svg>
+            <span style="font-size:.64rem;color:#34c759;font-weight:600">+12% this month</span>
+          </div>
+        </div>
+
+        <!-- Sales completion -->
+        <div style="background:linear-gradient(135deg,#1a3a5c,#2979b8);border-radius:14px;padding:.8rem 1.05rem;box-shadow:0 8px 28px rgba(41,121,184,.35);width:168px;animation:floatMed 5s ease-in-out .6s infinite">
+          <div style="font-size:.56rem;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.3rem">Sales Completion</div>
+          <div style="font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:.42rem">67%</div>
+          <div style="background:rgba(255,255,255,.18);border-radius:4px;height:5px">
+            <div style="background:linear-gradient(to right,#22d3ee,#34d399);width:67%;height:100%;border-radius:4px"></div>
+          </div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.55);margin-top:.32rem">38 of 58 orders</div>
+        </div>
+
+        <!-- Payment received -->
+        <div style="background:rgba(6,20,44,.96);border:1px solid rgba(52,211,153,.22);border-radius:14px;padding:.8rem 1.05rem;box-shadow:0 8px 28px rgba(0,0,0,.45);width:168px;animation:floatSlow 7s ease-in-out 1.2s infinite">
+          <div style="font-size:.56rem;font-weight:700;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.28rem">Payment Received</div>
+          <div style="font-size:1.08rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1">AED 12K</div>
+          <div style="background:rgba(255,255,255,.08);border-radius:4px;height:5px;margin-top:.4rem">
+            <div style="background:linear-gradient(to right,#34d399,#22d3ee);width:85%;height:100%;border-radius:4px"></div>
+          </div>
+          <div style="font-size:.62rem;color:#34d399;margin-top:.3rem;font-weight:600">85% of AED 14K</div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
@@ -1697,6 +1736,7 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeModuleModa
   setTimeout(runFeature, 1200);
 })();
 </script>
-<script src="acobot.js"></script>
+
+<script src="acobot.js?v=4"></script>
 </body>
 </html>

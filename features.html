@@ -342,6 +342,7 @@ const progObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isInte
 document.querySelectorAll('.prog-bar').forEach(el=>progObs.observe(el));
 function toggleFaq(btn){const item=btn.closest('.faq-item');document.querySelectorAll('.faq-item.open').forEach(o=>{if(o!==item)o.classList.remove('open')});item.classList.toggle('open')}
 </script>
-<script src="acobot.js"></script>
+
+<script src="acobot.js?v=4"></script>
 </body>
 </html>

@@ -269,7 +269,7 @@ footer{background:#1d1d1f;color:#f5f5f7}
   </div>
 </footer>
 
-<script src="acobot.js"></script>
+
 <script>
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1});
 document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
@@ -308,5 +308,6 @@ async function submitPartner(e) {
   }
 }
 </script>
+<script src="acobot.js?v=4"></script>
 </body>
 </html>
