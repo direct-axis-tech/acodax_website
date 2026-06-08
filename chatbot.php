@@ -10,8 +10,19 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { exit(0); }
 
+// ── Load .env ────────────────────────────────────────────────────
+$env = [];
+$envFile = __DIR__ . '/.env';
+if (file_exists($envFile)) {
+    foreach (file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        if (strpos(trim($line), '#') === 0 || strpos($line, '=') === false) continue;
+        [$key, $val] = explode('=', $line, 2);
+        $env[trim($key)] = trim($val);
+    }
+}
+
 // ── Config ──────────────────────────────────────────────────────
-$API_KEY = 'AIzaSyCmPH28U1A7l8ShUa4GS0nHOag20qzU8nQ';
+$API_KEY = $env['GEMINI_API_KEY'] ?? '';
 $MODEL   = 'gemini-2.5-flash';
 $URL     = "https://generativelanguage.googleapis.com/v1beta/models/{$MODEL}:generateContent?key={$API_KEY}";
 $TO_EMAIL = 'navas@directaxistech.com';
@@ -144,7 +155,7 @@ RULES:
 - Never ask two things at once.
 - Set show_industry_options true only when asking about industry.
 - Once all 4 are collected, say thanks and tell them the team will be in touch.
-- If the question is NOT related to ERP, business software, or Acodax — politely excuse yourself. Example: "That's a bit outside my area! I'm only trained for ERP and business software topics. Anything I can help with on that front?"
+- If the question is NOT related to ERP, business software, or Acodax — politely excuse yourself. Example: \"That's a bit outside my area! I'm only trained for ERP and business software topics. Anything I can help with on that front?\"
 
 HISTORY: Read collected_data from your previous JSON replies — never ask for something already collected.
 " . ($knowledgeText ? "\nKNOWLEDGE BASE:\n{$knowledgeText}\n" : "") . "
