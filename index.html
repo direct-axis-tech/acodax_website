@@ -40,7 +40,7 @@
   --red:      #f87171;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
 body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#071e38}::-webkit-scrollbar-thumb{background:#1e3a5f;border-radius:3px}
 
@@ -76,6 +76,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:h
 /* ── FLOATING ANIMATIONS ── */
 .float-slow{animation:floatSlow 7s ease-in-out infinite}
 .float-med{animation:floatMed 5s ease-in-out infinite}
+.hero-chip{transition:opacity .65s ease}
 @keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes floatMed{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 
@@ -253,6 +254,20 @@ footer{background:#1d1d1f;color:#f5f5f7}
   .feature-row .order-first{order:-1}
 }
 
+@media(max-width:900px){
+  .app-grid{grid-template-columns:1fr !important;gap:2.5rem !important}
+}
+
+@media(max-width:680px){
+  .phones-row{flex-direction:column !important;gap:2.5rem !important}
+  .phone-shell{width:210px !important;height:438px !important}
+}
+
+@media(max-width:480px){
+  .hero-stats{gap:1.25rem !important}
+  .stat-num{font-size:2.1rem}
+}
+
 /* ── HERO WORD ANIMATION ── */
 @keyframes heroWord{
   from{opacity:0;transform:translateY(32px);filter:blur(3px)}
@@ -350,7 +365,7 @@ footer{background:#1d1d1f;color:#f5f5f7}
         </div>
 
         <!-- Stats row -->
-        <div style="display:flex;gap:2rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.07);animation:heroWord .65s .72s ease both;opacity:0">
+        <div class="hero-stats" style="display:flex;gap:2rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.07);animation:heroWord .65s .72s ease both;opacity:0">
           <div>
             <div class="stat-num" id="cnt1">0</div>
             <div class="stat-label">Businesses</div>
@@ -425,70 +440,85 @@ footer{background:#1d1d1f;color:#f5f5f7}
           <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 0L12.1 7.9L20 10L12.1 12.1L10 20L7.9 12.1L0 10L7.9 7.9Z" fill="#22d3ee" opacity=".7"/></svg>
         </div>
 
-        <!-- 1. Blue notification card — top -->
-        <div style="position:absolute;top:-20px;right:52px;background:linear-gradient(135deg,#3b5bdb,#4fa8e8);border-radius:14px;padding:.65rem 1rem;box-shadow:0 8px 30px rgba(59,91,219,.45);z-index:15;animation:floatMed 5s ease-in-out infinite">
+        <!-- 1. AI Invoice Import — top right card -->
+        <div class="hero-chip" style="position:absolute;top:-22px;right:50px;background:linear-gradient(135deg,#3b5bdb,#4fa8e8);border-radius:14px;padding:.65rem 1rem;box-shadow:0 8px 30px rgba(59,91,219,.45);z-index:15;animation:floatMed 5s ease-in-out infinite">
           <div style="font-size:.6rem;font-weight:700;color:rgba(255,255,255,.72);letter-spacing:.09em;text-transform:uppercase;display:flex;align-items:center;gap:.3rem;margin-bottom:.22rem">
-            <svg width="9" height="9" viewBox="0 0 10 10"><path d="M5 0L6.2 3.8L10 5L6.2 6.2L5 10L3.8 6.2L0 5L3.8 3.8Z" fill="currentColor"/></svg>
-            AcoBot AI
+            <i class="fa-solid fa-wand-magic-sparkles" style="font-size:8px"></i>AcoBot AI
           </div>
-          <div style="font-size:.88rem;font-weight:700;color:#fff;white-space:nowrap">New invoice matched!</div>
+          <div style="font-size:.88rem;font-weight:700;color:#fff;white-space:nowrap">AI Invoice Import</div>
         </div>
 
-        <!-- 2. Revenue metric chip — top left -->
-        <div style="position:absolute;top:16px;left:-50px;background:rgba(6,16,34,.96);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.5rem .9rem;box-shadow:0 6px 22px rgba(0,0,0,.45);z-index:15;animation:floatSlow 7s ease-in-out .8s infinite">
-          <div style="font-size:.57rem;font-weight:700;color:rgba(255,255,255,.42);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.18rem">Revenue</div>
-          <div style="display:flex;align-items:center;gap:.32rem">
-            <svg width="13" height="11" viewBox="0 0 13 11"><path d="M6.5 0L13 11H0Z" fill="#34c759"/></svg>
-            <span style="font-size:1.05rem;font-weight:800;color:#fff;line-height:1">12%</span>
+        <!-- 2. ZATCA Compliant — top left chip -->
+        <div class="hero-chip" style="position:absolute;top:14px;left:-52px;background:rgba(6,16,34,.96);border:1px solid rgba(52,211,153,.22);border-radius:12px;padding:.5rem .9rem;box-shadow:0 6px 22px rgba(0,0,0,.45);z-index:15;animation:floatSlow 7s ease-in-out .8s infinite">
+          <div style="font-size:.57rem;font-weight:700;color:rgba(255,255,255,.42);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.18rem">Saudi Arabia</div>
+          <div style="display:flex;align-items:center;gap:.35rem">
+            <i class="fa-solid fa-shield-halved" style="font-size:10px;color:#34d399"></i>
+            <span style="font-size:.88rem;font-weight:800;color:#fff;line-height:1;white-space:nowrap">ZATCA Phase 2</span>
           </div>
         </div>
 
-        <!-- 3. Sales Agent dark pill — mid left -->
-        <div style="position:absolute;top:43%;left:-16px;background:#0d1c32;border:1.5px solid rgba(255,255,255,.1);border-radius:40px;padding:.45rem 1rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:15;animation:floatMed 5s ease-in-out 1.3s infinite">
-          <div style="width:22px;height:22px;border-radius:8px;background:rgba(79,168,232,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <i class="fa-solid fa-chart-line" style="font-size:9px;color:#4fa8e8"></i>
+        <!-- 3. WhatsApp Integration — mid left pill -->
+        <div class="hero-chip" style="position:absolute;top:32%;left:-20px;background:#0d1c32;border:1.5px solid rgba(37,211,102,.2);border-radius:40px;padding:.45rem 1rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:15;animation:floatMed 5s ease-in-out 1.3s infinite">
+          <div style="width:22px;height:22px;border-radius:8px;background:rgba(37,211,102,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fa-brands fa-whatsapp" style="font-size:11px;color:#25d366"></i>
           </div>
-          <span style="font-size:.78rem;font-weight:600;color:#e2e8f0;white-space:nowrap">Sales Agent</span>
+          <span style="font-size:.78rem;font-weight:600;color:#e2e8f0;white-space:nowrap">WhatsApp Integration</span>
         </div>
 
-        <!-- 4. Generate Invoice — gradient-border pill, right -->
-        <div style="position:absolute;top:25%;right:-40px;padding:1.5px;border-radius:40px;background:linear-gradient(135deg,#22d3ee,#34d399);box-shadow:0 6px 20px rgba(34,211,238,.18);z-index:15;animation:floatSlow 7s ease-in-out .4s infinite">
+        <!-- 4. Payment Links — upper right gradient pill -->
+        <div class="hero-chip" style="position:absolute;top:22%;right:-44px;padding:1.5px;border-radius:40px;background:linear-gradient(135deg,#22d3ee,#34d399);box-shadow:0 6px 20px rgba(34,211,238,.18);z-index:15;animation:floatSlow 7s ease-in-out .4s infinite">
           <div style="background:#06101e;border-radius:38px;padding:.48rem 1.15rem;display:flex;align-items:center;gap:.48rem">
-            <svg width="12" height="12" viewBox="0 0 12 12" style="flex-shrink:0"><path d="M6 0L7.2 4.6L12 6L7.2 7.4L6 12L4.8 7.4L0 6L4.8 4.6Z" fill="#22d3ee"/></svg>
-            <span style="font-size:.78rem;font-weight:600;color:#fff;white-space:nowrap">Generate Invoice</span>
+            <i class="fa-solid fa-link" style="font-size:9px;color:#22d3ee;flex-shrink:0"></i>
+            <span style="font-size:.78rem;font-weight:600;color:#fff;white-space:nowrap">Payment Links</span>
           </div>
         </div>
 
-        <!-- 5. Customer Agent dark pill — bottom left -->
-        <div style="position:absolute;bottom:66px;left:-34px;background:#0d1c32;border:1.5px solid rgba(255,255,255,.1);border-radius:40px;padding:.45rem 1rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:15;animation:floatMed 5s ease-in-out 2s infinite">
-          <div style="width:22px;height:22px;border-radius:8px;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <i class="fa-solid fa-headset" style="font-size:9px;color:#22d3ee"></i>
+        <!-- 5. Report Analysis — mid right purple pill -->
+        <div class="hero-chip" style="position:absolute;top:54%;right:-32px;padding:1.5px;border-radius:40px;background:linear-gradient(135deg,#a855f7,#7c3aed);box-shadow:0 6px 20px rgba(168,85,247,.25);z-index:15;animation:floatMed 5s ease-in-out 1s infinite">
+          <div style="background:#06101e;border-radius:38px;padding:.48rem 1.15rem;display:flex;align-items:center;gap:.48rem">
+            <i class="fa-solid fa-chart-bar" style="font-size:9px;color:#a855f7;flex-shrink:0"></i>
+            <span style="font-size:.78rem;font-weight:600;color:#fff;white-space:nowrap">Report Analysis</span>
           </div>
-          <span style="font-size:.78rem;font-weight:600;color:#e2e8f0;white-space:nowrap">Customer Agent</span>
         </div>
 
-        <!-- 6. VAT Assistant progress card — bottom right -->
-        <div style="position:absolute;bottom:34px;right:-38px;background:linear-gradient(135deg,#3b5bdb,#2979b8);border-radius:14px;padding:.75rem 1rem;width:160px;box-shadow:0 8px 28px rgba(59,91,219,.4);z-index:15;animation:floatSlow 7s ease-in-out 1.6s infinite">
+        <!-- 6. Customer Portal — mid left pill -->
+        <div class="hero-chip" style="position:absolute;top:56%;left:-26px;background:#0d1c32;border:1.5px solid rgba(79,168,232,.2);border-radius:40px;padding:.45rem 1rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:15;animation:floatSlow 6s ease-in-out 1.8s infinite">
+          <div style="width:22px;height:22px;border-radius:8px;background:rgba(79,168,232,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fa-solid fa-users" style="font-size:8px;color:#4fa8e8"></i>
+          </div>
+          <span style="font-size:.78rem;font-weight:600;color:#e2e8f0;white-space:nowrap">Customer Portal</span>
+        </div>
+
+        <!-- 7. Business Chatbot — bottom left pill -->
+        <div class="hero-chip" style="position:absolute;bottom:66px;left:-34px;background:#0d1c32;border:1.5px solid rgba(168,85,247,.2);border-radius:40px;padding:.45rem 1rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:15;animation:floatMed 5s ease-in-out 2s infinite">
+          <div style="width:22px;height:22px;border-radius:8px;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fa-solid fa-robot" style="font-size:9px;color:#a855f7"></i>
+          </div>
+          <span style="font-size:.78rem;font-weight:600;color:#e2e8f0;white-space:nowrap">Business Chatbot</span>
+        </div>
+
+        <!-- 8. Risk Analysis — bottom right card -->
+        <div class="hero-chip" style="position:absolute;bottom:32px;right:-40px;background:linear-gradient(135deg,#92400e,#d97706);border-radius:14px;padding:.75rem 1rem;width:155px;box-shadow:0 8px 28px rgba(217,119,6,.3);z-index:15;animation:floatSlow 7s ease-in-out 1.6s infinite">
           <div style="font-size:.58rem;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:.3rem;margin-bottom:.35rem">
-            <i class="fa-solid fa-circle-check" style="color:#34d399;font-size:.68rem"></i>
-            VAT Assistant
+            <i class="fa-solid fa-triangle-exclamation" style="color:#fcd34d;font-size:.68rem"></i>
+            Risk Analysis
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.45rem">
-            <span style="font-size:.78rem;font-weight:600;color:#fff">Filing Completion</span>
-            <span style="font-size:.82rem;font-weight:800;color:#fff">85%</span>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
+            <span style="font-size:.78rem;font-weight:600;color:#fff">Business Score</span>
+            <span style="font-size:.82rem;font-weight:800;color:#fcd34d">Low Risk</span>
           </div>
           <div style="background:rgba(255,255,255,.18);border-radius:4px;height:5px;overflow:hidden">
-            <div style="background:linear-gradient(to right,#22d3ee,#34d399);width:85%;height:100%;border-radius:4px"></div>
+            <div style="background:linear-gradient(to right,#fcd34d,#f97316);width:78%;height:100%;border-radius:4px"></div>
           </div>
         </div>
 
-        <!-- 7. Send Invoice — gradient-border pill, bottom center -->
-        <div style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);padding:1.5px;border-radius:40px;background:linear-gradient(135deg,#22d3ee,#34d399);box-shadow:0 6px 22px rgba(52,211,153,.18);z-index:15;animation:floatMed 5s ease-in-out .7s infinite;white-space:nowrap">
+        <!-- 9. E-Invoice — bottom centre pill -->
+        <div class="hero-chip" style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);padding:1.5px;border-radius:40px;background:linear-gradient(135deg,#22d3ee,#34d399);box-shadow:0 6px 22px rgba(52,211,153,.18);z-index:15;animation:floatMed 5s ease-in-out .7s infinite;white-space:nowrap">
           <div style="background:#06101e;border-radius:38px;padding:.48rem 1.2rem;display:flex;align-items:center;gap:.5rem">
             <div style="width:20px;height:20px;border-radius:7px;background:rgba(52,211,153,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <i class="fa-solid fa-paper-plane" style="font-size:8px;color:#34d399"></i>
+              <i class="fa-solid fa-file-invoice" style="font-size:8px;color:#34d399"></i>
             </div>
-            <span style="font-size:.78rem;font-weight:600;color:#fff">Send Invoice</span>
+            <span style="font-size:.78rem;font-weight:600;color:#fff">E-Invoice</span>
           </div>
         </div>
       </div>
@@ -636,14 +666,14 @@ footer{background:#1d1d1f;color:#f5f5f7}
         </a>
       </div>
       <div class="feature-img-wrap reveal-r">
-        <img src="assets/images/Ai-powered.png" alt="AI Features" style="width:100%;display:block" onerror="this.parentElement.style.background='#f0f4ff';this.parentElement.style.height='300px'"/>
+        <img src="assets/images/stock-ai-features.jpg" alt="AI Features" style="width:100%;display:block" onerror="this.parentElement.style.background='#f0f4ff';this.parentElement.style.height='300px'"/>
       </div>
     </div>
 
     <!-- Feature 2 -->
     <div class="feature-row reveal">
       <div class="feature-img-wrap reveal-l">
-        <img src="assets/images/E-invoice.png" alt="E-Invoice" style="width:100%;display:block" onerror="this.parentElement.style.background='#f0fff4';this.parentElement.style.height='300px'"/>
+        <img src="assets/images/stock-einvoice2.jpg" alt="E-Invoice" style="width:100%;display:block" onerror="this.parentElement.style.background='#f0fff4';this.parentElement.style.height='300px'"/>
       </div>
       <div class="reveal-r">
         <div class="section-tag"><i class="fa-solid fa-file-invoice"></i>E-Invoice</div>
@@ -672,7 +702,7 @@ footer{background:#1d1d1f;color:#f5f5f7}
         </div>
       </div>
       <div class="feature-img-wrap reveal-r">
-        <img src="assets/images/Effortless-Integrations.png" alt="Integrations" style="width:100%;display:block" onerror="this.parentElement.style.background='#f0f4ff';this.parentElement.style.height='300px'"/>
+        <img src="assets/images/stock-integrations.jpg" alt="Integrations" style="width:100%;display:block" onerror="this.parentElement.style.background='#f0f4ff';this.parentElement.style.height='300px'"/>
       </div>
     </div>
   </div>
@@ -683,7 +713,7 @@ footer{background:#1d1d1f;color:#f5f5f7}
 ══════════════════════════════════════════ -->
 <section style="padding:6rem 0;background:linear-gradient(135deg,#030d1c 0%,#051628 50%,#08102a 100%);overflow:hidden">
   <div class="max-w-7xl mx-auto px-5">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center" class="reveal">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center" class="reveal app-grid">
       <!-- Text -->
       <div class="reveal-l">
         <div class="section-tag">Mobile App</div>
@@ -700,7 +730,7 @@ footer{background:#1d1d1f;color:#f5f5f7}
       </div>
 
       <!-- Phones -->
-      <div style="display:flex;justify-content:center;align-items:flex-end;gap:1.5rem" class="reveal-r">
+      <div style="display:flex;justify-content:center;align-items:flex-end;gap:1.5rem" class="reveal-r phones-row">
         <div class="phone-shell float-slow">
           <!-- Side buttons -->
           <div class="btn-action"></div>
@@ -1106,44 +1136,25 @@ function switchDash(src,btn){
 }
 
 // ── BLOG POSTS ──
-const fallbackPosts=[
-  {title:'Common ERP Implementation Mistakes',link:'https://acodax.com/2026/01/24/common-erp-implementation-mistakes-and-how-to-avoid-them/',cat:'ERP UAE',date:'Jan 24, 2026',bg:'#e8f4ff',icon:'fa-triangle-exclamation',ic:'#0071e3',ex:'Learn the most common ERP pitfalls and how to avoid them for a successful rollout in your UAE business.'},
-  {title:'Why SMEs in UAE Are Moving to Cloud ERP',link:'https://acodax.com/2026/01/24/why-smes-in-uae-are-moving-to-cloud-erp-systems/',cat:'Operations',date:'Jan 24, 2026',bg:'#f3ebff',icon:'fa-cloud',ic:'#a855f7',ex:'SMEs across the UAE are rapidly shifting from traditional systems to cloud ERP for better agility and cost savings.'},
-  {title:'How ERP Helps Trading Businesses Manage Inventory',link:'https://acodax.com/2026/01/24/how-erp-helps-trading-businesses-manage-inventory/',cat:'Operations',date:'Jan 24, 2026',bg:'#fff3e8',icon:'fa-boxes-stacked',ic:'#f97316',ex:'See how Acodax ERP streamlines stock management with real-time tracking and automated reorder alerts.'},
-];
 async function loadBlog(){
   const grid=document.getElementById('blogGrid');
-  let posts=[];
-  try{const r=await fetch('https://acodax.com/wp-json/wp/v2/posts?per_page=3&_embed',{signal:AbortSignal.timeout(6000)});if(r.ok)posts=await r.json();}catch{}
-  const render=posts.length?posts.map((p,i)=>{
-    const thumb=p._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-    const cat=p._embedded?.['wp:term']?.[0]?.[0]?.name||'ERP';
-    const date=new Date(p.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-    const ex=p.excerpt?.rendered?.replace(/<[^>]*>/g,'').trim().substring(0,110)+'...';
+  try{
+    const r=await fetch('data/blogs.json');
+    const posts=await r.json();
     const bgs=['#e8f4ff','#f3ebff','#fff3e8'];
-    return `<a href="${p.link}" target="_blank" class="blog-card" style="text-decoration:none">
-      <div style="height:180px;overflow:hidden;background:${bgs[i%3]}">
-        ${thumb?`<img src="${thumb}" class="blog-img" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<div style=height:180px;background:${bgs[i%3]};display:flex;align-items:center;justify-content:center><i class=fa-solid fa-newspaper style=font-size:3rem;color:#ccc></i></div>'" />`:`<div style="display:flex;align-items:center;justify-content:center;height:100%"><i class="fa-solid fa-newspaper" style="font-size:3rem;color:#ccc"></i></div>`}
-      </div>
-      <div style="padding:1.25rem">
-        <div style="font-size:.72rem;font-weight:600;color:var(--cyan);margin-bottom:.5rem">${cat} · ${date}</div>
-        <div style="font-size:.95rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.4">${p.title.rendered}</div>
-        <div style="font-size:.82rem;color:var(--text3);line-height:1.55">${ex}</div>
-        <div style="display:flex;align-items:center;gap:.35rem;font-size:.82rem;font-weight:600;color:var(--cyan);margin-top:1rem">Read more <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i></div>
-      </div>
-    </a>`;
-  }):fallbackPosts.map(p=>`<a href="${p.link}" target="_blank" class="blog-card" style="text-decoration:none">
-    <div style="height:180px;background:${p.bg};display:flex;align-items:center;justify-content:center">
-      <i class="fa-solid ${p.icon}" style="font-size:3rem;color:${p.ic};opacity:.5"></i>
-    </div>
-    <div style="padding:1.25rem">
-      <div style="font-size:.72rem;font-weight:600;color:var(--cyan);margin-bottom:.5rem">${p.cat} · ${p.date}</div>
-      <div style="font-size:.95rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.4">${p.title}</div>
-      <div style="font-size:.82rem;color:var(--text3);line-height:1.55">${p.ex}</div>
-      <div style="display:flex;align-items:center;gap:.35rem;font-size:.82rem;font-weight:600;color:var(--cyan);margin-top:1rem">Read more <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i></div>
-    </div>
-  </a>`);
-  grid.innerHTML=render.join('');
+    grid.innerHTML=posts.slice(0,3).map((p,i)=>`
+      <a href="blog-post.html?id=${p.id}" class="blog-card" style="text-decoration:none">
+        <div style="height:180px;overflow:hidden;background:${bgs[i%3]}">
+          <img src="${p.img}" class="blog-img" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"/>
+        </div>
+        <div style="padding:1.25rem">
+          <div style="font-size:.72rem;font-weight:600;color:var(--cyan);margin-bottom:.5rem">${p.cat.toUpperCase()} · ${new Date(p.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
+          <div style="font-size:.95rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.4">${p.title}</div>
+          <div style="font-size:.82rem;color:var(--text3);line-height:1.55">${p.excerpt}</div>
+          <div style="display:flex;align-items:center;gap:.35rem;font-size:.82rem;font-weight:600;color:var(--cyan);margin-top:1rem">Read more <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i></div>
+        </div>
+      </a>`).join('');
+  }catch{}
 }
 loadBlog();
 
@@ -1734,6 +1745,49 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeModuleModa
 
   // Start after the headline animation settles
   setTimeout(runFeature, 1200);
+})();
+
+// ── Hero chip cycling — always 4 visible ─────────────────────────
+(function(){
+  const all = Array.from(document.querySelectorAll('.hero-chip'));
+  if(all.length < 2) return;
+  const SHOW = 4;
+
+  // Shuffle array in-place
+  function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a; }
+
+  // Pick a random item from array
+  const pick = a => a[Math.floor(Math.random()*a.length)];
+
+  // Randomise initial visible set, hide the rest immediately (no transition yet)
+  const order = shuffle([...all]);
+  order.forEach((c,i) => { c.style.transition='none'; c.style.opacity = i < SHOW ? '1' : '0'; });
+
+  // Re-enable transition after initial hide
+  requestAnimationFrame(()=> requestAnimationFrame(()=>{
+    all.forEach(c => c.style.transition = '');
+  }));
+
+  let visible = new Set(order.slice(0, SHOW));
+  let hidden  = new Set(order.slice(SHOW));
+
+  function swap(){
+    const out = pick([...visible]);
+    const inn = pick([...hidden]);
+
+    out.style.opacity = '0';
+    visible.delete(out); hidden.add(out);
+
+    // Bring new one in after fade-out completes
+    setTimeout(()=>{
+      inn.style.opacity = '1';
+      hidden.delete(inn); visible.add(inn);
+    }, 700);
+
+    setTimeout(swap, 1800 + Math.random() * 2400);
+  }
+
+  setTimeout(swap, 2200);
 })();
 </script>
 

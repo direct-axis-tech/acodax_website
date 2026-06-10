@@ -14,7 +14,7 @@
   --cyan:#0071e3;--purple:#a855f7;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
 body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f5f5f7}::-webkit-scrollbar-thumb{background:#c7c7cc;border-radius:3px}
 .navbar{position:fixed;top:0;left:0;right:0;z-index:200}
@@ -182,88 +182,80 @@ const fallbackUrl = params.get('url') || 'https://acodax.com/blog';
 
 const catColors = {
   erp:        ['#e8f1fb','#0071e3'],
+  operations: ['#e8fff3','#34c759'],
+  invoicing:  ['#fff3e8','#f97316'],
+  finance:    ['#f0e8ff','#a855f7'],
+  payments:   ['#e8fff3','#059669'],
   ai:         ['#f0e8ff','#a855f7'],
   accounting: ['#e8fff3','#34c759'],
-  uae:        ['#fff3e8','#f97316'],
-  guides:     ['#e8f1fb','#0071e3'],
-  Uncategorized:['#f0f0f5','#86868b'],
-  Operations: ['#e8fff3','#34c759'],
 };
 
 function stripTags(h){return h.replace(/<[^>]+>/g,'')}
 function formatDate(d){try{return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}catch{return d}}
 function readTime(content){return Math.max(2,Math.ceil(stripTags(content).split(/\s+/).length/200))}
 
+let allPosts = [];
+
+async function loadAllPosts() {
+  const r = await fetch('data/blogs.json');
+  allPosts = await r.json();
+}
+
 async function loadPost() {
   if (!postId) { showError(); return; }
   try {
-    const r = await fetch(`https://acodax.com/wp-json/wp/v2/posts/${postId}?_embed`);
-    if (!r.ok) throw new Error('Not found');
-    const p = await r.json();
+    await loadAllPosts();
+    const p = allPosts.find(x => x.id == postId);
+    if (!p) { showError(); return; }
 
-    // Title
-    document.title = stripTags(p.title.rendered) + ' — Acodax Blog';
-    document.getElementById('postTitle').innerHTML = p.title.rendered;
+    document.title = p.title + ' — Acodax Blog';
+    document.getElementById('postTitle').textContent = p.title;
 
-    // Category
-    const cats = p._embedded?.['wp:term']?.[0] || [];
-    const catName = cats[0]?.name || 'ERP';
-    const [cbg, cfg] = catColors[catName] || ['#e8f1fb','#0071e3'];
+    const catName = p.cat || 'erp';
+    const [cbg, cfg] = catColors[catName] || catColors['erp'];
     const catEl = document.getElementById('postCat');
-    catEl.textContent = catName;
+    catEl.textContent = catName.toUpperCase();
     catEl.style.background = cbg;
     catEl.style.color = cfg;
 
-    // Meta
     document.getElementById('postMeta').textContent =
-      formatDate(p.date) + ' · ' + readTime(p.content.rendered) + ' min read';
+      formatDate(p.date) + ' · ' + p.read + ' read';
 
-    // Featured image
-    const imgUrl = p._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-    if (imgUrl) {
-      document.getElementById('postFeatImg').innerHTML =
-        `<img src="${imgUrl}" alt="${stripTags(p.title.rendered)}" style="width:100%;border-radius:18px;max-height:400px;object-fit:cover;box-shadow:0 8px 30px rgba(0,0,0,.1)"/>`;
-    }
+    document.getElementById('postFeatImg').innerHTML =
+      `<img src="${p.img}" alt="${p.title}" style="width:100%;border-radius:18px;max-height:420px;object-fit:cover;box-shadow:0 8px 30px rgba(0,0,0,.1)"/>`;
 
-    // Body
-    document.getElementById('postBody').innerHTML = p.content.rendered;
+    // Render structured blocks
+    const bodyHtml = (p.blocks || []).map(b =>
+      b.type === 'h'
+        ? `<h2 style="font-size:1.25rem;font-weight:700;color:var(--text);margin:1.8rem 0 .6rem;line-height:1.3">${b.text}</h2>`
+        : `<p style="margin-bottom:1rem;line-height:1.75;color:var(--text2)">${b.text}</p>`
+    ).join('');
+    document.getElementById('postBody').innerHTML = bodyHtml;
 
-    // Show
     document.getElementById('skeleton').style.display = 'none';
     document.getElementById('postContent').classList.remove('hidden');
 
-    // Load related posts
-    loadRelated(postId, cats[0]?.id);
-  } catch {
+    loadRelated(p.id, p.cat);
+  } catch(e) {
     showError();
   }
 }
 
-async function loadRelated(currentId, catId) {
-  try {
-    const url = catId
-      ? `https://acodax.com/wp-json/wp/v2/posts?per_page=3&_embed&categories=${catId}&exclude=${currentId}`
-      : `https://acodax.com/wp-json/wp/v2/posts?per_page=3&_embed&exclude=${currentId}`;
-    const r = await fetch(url);
-    if (!r.ok) return;
-    const posts = await r.json();
-    if (!posts.length) return;
-    const grid = document.getElementById('relatedGrid');
-    grid.innerHTML = posts.map(p => {
-      const img = p._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-      const imgHtml = img
-        ? `<img src="${img}" style="width:100%;height:140px;object-fit:cover"/>`
-        : `<div style="height:140px;background:linear-gradient(135deg,#e8f1fb,#f0e8ff);display:flex;align-items:center;justify-content:center;font-size:2rem">📰</div>`;
-      return `<a href="blog-post.html?id=${p.id}" class="rel-card block">
-        ${imgHtml}
-        <div style="padding:1rem">
-          <div style="font-size:.85rem;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:.4rem">${stripTags(p.title.rendered)}</div>
-          <div style="font-size:.75rem;color:var(--text3)">${formatDate(p.date)}</div>
-        </div>
-      </a>`;
-    }).join('');
-    document.getElementById('relatedSection').classList.remove('hidden');
-  } catch {}
+function loadRelated(currentId, cat) {
+  const related = allPosts.filter(p => p.id != currentId && p.cat === cat).slice(0, 3);
+  const others  = allPosts.filter(p => p.id != currentId).slice(0, 3);
+  const posts   = related.length ? related : others;
+  if (!posts.length) return;
+  const grid = document.getElementById('relatedGrid');
+  grid.innerHTML = posts.map(p => `
+    <a href="blog-post.html?id=${p.id}" class="rel-card block">
+      <img src="${p.img}" style="width:100%;height:140px;object-fit:cover" onerror="this.style.background='#e8f1fb'"/>
+      <div style="padding:1rem">
+        <div style="font-size:.85rem;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:.4rem">${p.title}</div>
+        <div style="font-size:.75rem;color:var(--text3)">${formatDate(p.date)}</div>
+      </div>
+    </a>`).join('');
+  document.getElementById('relatedSection').classList.remove('hidden');
 }
 
 function showError() {

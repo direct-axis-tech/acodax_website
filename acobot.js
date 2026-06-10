@@ -148,6 +148,14 @@
     .acb-hsub  { color:rgba(255,255,255,.5); font-size:.7rem; display:flex; align-items:center; gap:4px; margin-top:2px; }
     .acb-dot   { width:7px; height:7px; border-radius:50%; background:#34d399; animation:acbDotPulse 2s ease-in-out infinite; }
     @keyframes acbDotPulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    #acb-close {
+      width:28px; height:28px; border-radius:50%; border:none; cursor:pointer;
+      background:rgba(255,255,255,.08); color:rgba(255,255,255,.6);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+      transition:background .2s, color .2s; margin-left:auto;
+      font-size:14px; line-height:1;
+    }
+    #acb-close:hover { background:rgba(255,255,255,.18); color:#fff; }
 
     /* Progress chips */
     #acb-chips {
@@ -283,6 +291,7 @@
         <div class="acb-hname">AcoBot</div>
         <div class="acb-hsub"><span class="acb-dot"></span>Online &nbsp;·&nbsp; Acodax Support</div>
       </div>
+      <button id="acb-close" aria-label="Close chat">&#x2715;</button>
     </div>
     <div id="acb-chips">
       <span class="acb-chip" data-f="company_name">Company</span>
@@ -309,6 +318,7 @@
 
   // ── Events ────────────────────────────────────────────────────
   launcher.addEventListener('click', toggle);
+  document.getElementById('acb-close').addEventListener('click', toggle);
   inp.addEventListener('input',   () => { btn.disabled = !inp.value.trim() || isTyping; });
   inp.addEventListener('keydown', e  => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
   btn.addEventListener('click', send);

@@ -16,7 +16,7 @@
   --cyan:#0071e3;--purple:#a855f7;--orange:#f97316;--green:#34c759;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
 body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f5f5f7}::-webkit-scrollbar-thumb{background:#c7c7cc;border-radius:3px}
 .navbar{position:fixed;top:0;left:0;right:0;z-index:200}
@@ -203,25 +203,14 @@ footer{background:#1d1d1f;color:#f5f5f7}
       <div><h5 class="font-semibold text-gray-200 mb-4 text-sm">Contact</h5><div class="flex flex-col gap-2 text-gray-500 text-sm"><span><i class="fa-solid fa-phone mr-2 text-blue-400"></i>+971 4 123 4567</span><span><i class="fa-solid fa-envelope mr-2 text-blue-400"></i>info@acodax.com</span><span><i class="fa-solid fa-location-dot mr-2 text-blue-400"></i>Dubai, UAE</span></div></div>
     </div>
     <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-gray-600 text-sm">© 2024 Acodax. All rights reserved.</p>
+      <p class="text-gray-600 text-sm">© 2026 Acodax. All rights reserved.</p>
       <div class="flex gap-4"><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-twitter"></i></a><a href="#" class="text-gray-600 hover:text-blue-400 transition-colors"><i class="fa-brands fa-facebook"></i></a></div>
     </div>
   </div>
 </footer>
 
 <script>
-// Fallback posts
-const fallbackPosts=[
-  {id:1,title:'How UAE Businesses Are Using AI to Close the Books Faster',excerpt:'Discover how AI-powered accounting tools are helping UAE finance teams reduce month-end close time by up to 60%.',cat:'ai',emoji:'🤖',date:'15 May 2024',read:'6 min',link:'blog-post.html?id=1'},
-  {id:2,title:'UAE VAT Filing 2024: What Every Business Needs to Know',excerpt:'A complete guide to FTA VAT requirements, deadlines, and how ERP software can automate your quarterly submissions.',cat:'accounting',emoji:'📋',date:'8 May 2024',read:'8 min',link:'blog-post.html?id=2'},
-  {id:3,title:'The Complete Guide to ERP Implementation in Dubai',excerpt:'Step-by-step walkthrough for selecting, implementing, and going live with an ERP system — from a Dubai SME perspective.',cat:'erp',emoji:'🏗️',date:'2 May 2024',read:'12 min',link:'blog-post.html?id=3'},
-  {id:4,title:"5 Signs Your Business Has Outgrown QuickBooks",excerpt:"If you're managing multiple companies, struggling with inventory, or can't get real-time reports — it might be time to upgrade.",cat:'guides',emoji:'📊',date:'25 Apr 2024',read:'5 min',link:'blog-post.html?id=4'},
-  {id:5,title:"UAE Free Zone Business Setup: ERP Requirements",excerpt:"A look at the accounting, payroll, and compliance requirements for free zone entities in Dubai, Abu Dhabi, and Sharjah.",cat:'uae',emoji:'🇦🇪',date:'18 Apr 2024',read:'7 min',link:'blog-post.html?id=5'},
-  {id:6,title:"Inventory Valuation Methods Explained: FIFO vs Average Cost",excerpt:"Which inventory valuation method is right for your UAE business? We break down FIFO, LIFO, and average cost with real examples.",cat:'accounting',emoji:'📦',date:'10 Apr 2024',read:'6 min',link:'blog-post.html?id=6'},
-  {id:7,title:"How to Build a Real-Time Financial Dashboard for Your CEO",excerpt:"A step-by-step guide to setting up executive dashboards that update live — with no spreadsheet exports needed.",cat:'guides',emoji:'📈',date:'3 Apr 2024',read:'9 min',link:'blog-post.html?id=7'},
-  {id:8,title:"WPS Payroll in the UAE: Complete Compliance Guide",excerpt:"Everything you need to know about the Wage Protection System — submission timelines, formats, and how to automate it.",cat:'uae',emoji:'💼',date:'27 Mar 2024',read:'7 min',link:'blog-post.html?id=8'},
-  {id:9,title:"AI in ERP: What's Actually Real vs What's Marketing Hype",excerpt:"We cut through the buzzwords to explain which AI features in modern ERP systems deliver genuine value for mid-sized businesses.",cat:'ai',emoji:'🧠',date:'20 Mar 2024',read:'10 min',link:'blog-post.html?id=9'},
-];
+// Posts loaded from local data file
 
 const catColors={erp:['#e8f1fb','#0071e3'],ai:['#f0e8ff','#a855f7'],accounting:['#e8fff3','#34c759'],uae:['#fff3e8','#f97316'],guides:['#e8f1fb','#0071e3']};
 let allPosts=[],displayedCount=6,activeCat='all',searchQuery='';
@@ -233,10 +222,10 @@ function stripTags(h){return h.replace(/<[^>]+>/g,'')}
 function buildCard(p,featured=false){
   const c=p.cat||'erp';
   const [cbg,cfg]=catColors[c]||['#e8f1fb','#0071e3'];
-  const imgHtml=p.img?`<img src="${p.img}" class="blog-img" onerror="this.outerHTML='<div class=\'blog-img-placeholder\' style=\'background:linear-gradient(135deg,${cbg},#f0f0f5)\'>${p.emoji||'📰'}</div>'">`:`<div class="blog-img-placeholder" style="background:linear-gradient(135deg,${cbg},#f0f0f5)">${p.emoji||'📰'}</div>`;
+  const imgHtml=`<img src="${p.img}" class="blog-img" onerror="this.style.background='linear-gradient(135deg,${cbg},#f0f0f5)'">`;
   if(featured){
     return`<a href="${p.link}" class="featured-card block hover:shadow-lg transition-shadow overflow-hidden rounded-2xl border border-gray-100 bg-white flex flex-col lg:flex-row">
-      <div class="lg:w-1/2"><div class="featured-img-placeholder" style="background:linear-gradient(135deg,${cbg},#f0f0f5);height:300px;display:flex;align-items:center;justify-content:center;font-size:4rem">${p.emoji||'📰'}</div></div>
+      <div class="lg:w-1/2"><img src="${p.img}" style="width:100%;height:300px;object-fit:cover" onerror="this.style.background='linear-gradient(135deg,${cbg},#f0f0f5)'"></div>
       <div class="p-8 lg:w-1/2 flex flex-col justify-center">
         <span class="blog-cat pill mb-3" style="background:${cbg};color:${cfg}">${(c||'ERP').toUpperCase()}</span>
         <h2 class="text-2xl font-bold leading-snug mb-3">${decodeHtml(p.title)}</h2>
@@ -283,25 +272,15 @@ function filterCat(btn){activeCat=btn.dataset.cat;document.querySelectorAll('.ca
 function filterPosts(){searchQuery=document.getElementById('searchInput').value.toLowerCase();displayedCount=6;render()}
 function clearSearch(){document.getElementById('searchInput').value='';searchQuery='';render()}
 
-// Fetch from WordPress
+// Load from local data
 async function fetchPosts(){
-  try{
-    const r=await fetch('https://acodax.com/wp-json/wp/v2/posts?per_page=12&_embed');
-    if(!r.ok)throw new Error();
-    const data=await r.json();
-    allPosts=data.map((p,i)=>{
-      const cats=['erp','ai','accounting','uae','guides'];
-      const emojis=['📊','🤖','📋','🇦🇪','📖','💡','🏗️','📦','💼'];
-      return{
-        id:p.id,title:p.title.rendered,
-        excerpt:stripTags(p.excerpt.rendered).slice(0,140)+'…',
-        link:'blog-post.html?id='+p.id,
-        img:p._embedded?.['wp:featuredmedia']?.[0]?.source_url||null,
-        date:formatDate(p.date),read:Math.max(3,Math.ceil(stripTags(p.content.rendered).split(' ').length/200))+' min',
-        cat:cats[i%cats.length],emoji:emojis[i%emojis.length]
-      };
-    });
-  }catch{allPosts=fallbackPosts}
+  const r=await fetch('data/blogs.json');
+  const data=await r.json();
+  allPosts=data.map(p=>({
+    ...p,
+    date: formatDate(p.date),
+    link: 'blog-post.html?id='+p.id,
+  }));
   document.getElementById('shimmerGrid').style.display='none';
   render();
 }
