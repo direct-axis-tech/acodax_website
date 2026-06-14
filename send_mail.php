@@ -3,13 +3,12 @@
  * Acodax Mail Handler
  * ─────────────────────────────────────────────────────────────
  * Handles form submissions from contact.html and partner.html.
- * Uses Gmail SMTP via PHPMailer. Credentials loaded from .env
+ * Sends via Gmail SMTP (STARTTLS + AUTH LOGIN) using a minimal
+ * built-in client — no external libraries required.
  *
  * SETUP:
- *   1. Fill in GMAIL_USER and GMAIL_APP_KEY in .env
- *   2. Install PHPMailer:  composer require phpmailer/phpmailer
- *      OR download from https://github.com/PHPMailer/PHPMailer
- *      and place the /src folder next to this file as /PHPMailer/src/
+ *   Fill in GMAIL_USER and GMAIL_APP_KEY in .env (Gmail App Password,
+ *   from https://myaccount.google.com/apppasswords)
  * ─────────────────────────────────────────────────────────────
  */
 
@@ -35,7 +34,7 @@ if (file_exists($envFile)) {
 
 $gmailUser = $env['GMAIL_USER'] ?? '';
 $gmailPass = $env['GMAIL_APP_KEY'] ?? '';
-$recipient = $env['MAIL_TO'] ?? 'info@directaxistech.com';
+$recipient = $env['MAIL_TO'] ?? 'navas@directaxistech.com';
 
 // ── Sanitize helper ───────────────────────────────────────────
 function clean($v) { return htmlspecialchars(strip_tags(trim($v ?? ''))); }
@@ -97,55 +96,118 @@ $bodyHtml = <<<HTML
 </html>
 HTML;
 
-// ── Send via PHPMailer ────────────────────────────────────────
+// ── Send via Gmail SMTP (minimal built-in client, no dependencies) ──
 $sent = false;
 $error = '';
 
-// Try Composer autoload first, then manual path
-$autoloads = [
-    __DIR__ . '/vendor/autoload.php',
-    __DIR__ . '/PHPMailer/src/PHPMailer.php',
-];
-
-$phpmailerAvailable = file_exists($autoloads[0]);
-
-if ($phpmailerAvailable) {
-    try {
-        require_once $autoloads[0];
-        $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = $gmailUser;
-        $mail->Password   = $gmailPass;
-        $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
-        $mail->CharSet    = 'UTF-8';
-
-        $mail->setFrom($gmailUser ?: 'noreply@acodax.com', 'Acodax Website');
-        $mail->addAddress($recipient, 'Direct Axis Tech');
-        if (!empty($replyEmail)) $mail->addReplyTo($replyEmail);
-
-        $mail->isHTML(true);
-        $mail->Subject = $subject;
-        $mail->Body    = $bodyHtml;
-        $mail->AltBody = strip_tags(str_replace(['<td', '<tr'], ["\n<td", "\n<tr"], $bodyHtml));
-
-        $mail->send();
-        $sent = true;
-    } catch (\Exception $e) {
-        $error = $e->getMessage();
+/**
+ * Send one SMTP command (or just read a reply if $command is null) and
+ * verify the reply code is one of $expectedCodes. Throws on mismatch.
+ */
+function smtp_expect($socket, $command, array $expectedCodes) {
+    if ($command !== null) {
+        fwrite($socket, $command . "\r\n");
     }
+    $response = '';
+    do {
+        $line = fgets($socket, 515);
+        if ($line === false) {
+            throw new Exception('SMTP connection closed unexpectedly');
+        }
+        $response .= $line;
+    } while (isset($line[3]) && $line[3] === '-');
+
+    $code = (int) substr($response, 0, 3);
+    if (!in_array($code, $expectedCodes, true)) {
+        throw new Exception('SMTP error: ' . trim($response));
+    }
+    return $response;
 }
 
-// Fallback: PHP mail()
-if (!$sent) {
-    $headers  = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: Acodax Website <noreply@acodax.com>\r\n";
-    if (!empty($replyEmail)) $headers .= "Reply-To: {$replyEmail}\r\n";
-    $sent  = mail($recipient, $subject, $bodyHtml, $headers);
-    $error = $sent ? '' : 'PHP mail() failed. Configure SMTP or install PHPMailer.';
+function smtp_send_mail($host, $port, $username, $password, $fromEmail, $fromName, $toEmail, $toName, $subject, $htmlBody, $altBody, $replyTo) {
+    $socket = @stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, 15);
+    if (!$socket) {
+        throw new Exception("Could not connect to {$host}:{$port} — {$errstr} ({$errno})");
+    }
+    stream_set_timeout($socket, 15);
+
+    $localHost = gethostname() ?: 'localhost';
+
+    smtp_expect($socket, null, [220]);
+    smtp_expect($socket, "EHLO {$localHost}", [250]);
+    smtp_expect($socket, 'STARTTLS', [220]);
+
+    if (!@stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
+        throw new Exception('TLS handshake with SMTP server failed');
+    }
+
+    smtp_expect($socket, "EHLO {$localHost}", [250]);
+    smtp_expect($socket, 'AUTH LOGIN', [334]);
+    smtp_expect($socket, base64_encode($username), [334]);
+    smtp_expect($socket, base64_encode(str_replace(' ', '', $password)), [235]);
+
+    smtp_expect($socket, "MAIL FROM:<{$fromEmail}>", [250]);
+    smtp_expect($socket, "RCPT TO:<{$toEmail}>", [250, 251]);
+    smtp_expect($socket, 'DATA', [354]);
+
+    $boundary = 'acodax-' . bin2hex(random_bytes(12));
+
+    $headers   = [];
+    $headers[] = 'Date: ' . date('r');
+    $headers[] = 'To: ' . ($toName !== '' ? "{$toName} <{$toEmail}>" : $toEmail);
+    $headers[] = 'From: ' . ($fromName !== '' ? "{$fromName} <{$fromEmail}>" : $fromEmail);
+    if (!empty($replyTo)) {
+        $headers[] = "Reply-To: {$replyTo}";
+    }
+    $headers[] = 'Subject: =?UTF-8?B?' . base64_encode($subject) . '?=';
+    $headers[] = 'Message-ID: <' . bin2hex(random_bytes(16)) . '@' . preg_replace('/^.*@/', '', $fromEmail) . '>';
+    $headers[] = 'MIME-Version: 1.0';
+    $headers[] = "Content-Type: multipart/alternative; boundary=\"{$boundary}\"";
+
+    $message  = implode("\r\n", $headers) . "\r\n\r\n";
+    $message .= "--{$boundary}\r\n";
+    $message .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $message .= "Content-Transfer-Encoding: base64\r\n\r\n";
+    $message .= chunk_split(base64_encode($altBody));
+    $message .= "--{$boundary}\r\n";
+    $message .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $message .= "Content-Transfer-Encoding: base64\r\n\r\n";
+    $message .= chunk_split(base64_encode($htmlBody));
+    $message .= "--{$boundary}--\r\n";
+
+    // Dot-stuff any line that begins with '.' per RFC 5321
+    $message = preg_replace('/^\./m', '..', $message);
+
+    fwrite($socket, $message);
+    smtp_expect($socket, '.', [250]);
+
+    smtp_expect($socket, 'QUIT', [221]);
+    fclose($socket);
+
+    return true;
+}
+
+try {
+    if ($gmailUser === '' || $gmailPass === '') {
+        throw new Exception('GMAIL_USER / GMAIL_APP_KEY not configured in .env');
+    }
+    smtp_send_mail(
+        'smtp.gmail.com',
+        587,
+        $gmailUser,
+        $gmailPass,
+        $gmailUser,
+        'Acodax Website',
+        $recipient,
+        'Direct Axis Tech',
+        $subject,
+        $bodyHtml,
+        strip_tags(str_replace(['<td', '<tr'], ["\n<td", "\n<tr"], $bodyHtml)),
+        $replyEmail
+    );
+    $sent = true;
+} catch (\Exception $e) {
+    $error = $e->getMessage();
 }
 
 echo json_encode([
