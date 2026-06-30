@@ -33,12 +33,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:h
 .hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:blobMove 10s ease-in-out infinite alternate}
 @keyframes blobMove{0%{transform:scale(1)}100%{transform:scale(1.15) translate(15px,-15px)}}
 
-/* TOGGLE */
-.toggle-wrap{display:inline-flex;align-items:center;background:#fff;border:1px solid var(--border);border-radius:980px;padding:.25rem;gap:.25rem}
-.toggle-btn{padding:.5rem 1.25rem;border-radius:980px;font-size:.875rem;font-weight:600;cursor:pointer;transition:all .25s;border:none;background:transparent;color:var(--text3);font-family:var(--font)}
-.toggle-btn.active{background:var(--cyan);color:#fff}
-.save-badge{font-size:.7rem;font-weight:700;padding:.15rem .5rem;border-radius:980px;background:#34c75920;color:#34c759;margin-left:.5rem}
-
 /* PRICING CARDS */
 .price-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:2.5rem;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
 .price-card.popular{border-color:#0071e3;box-shadow:0 0 0 1px #0071e3,0 20px 60px rgba(0,113,227,.12)}
@@ -110,14 +104,6 @@ footer{background:#1d1d1f;color:#f5f5f7}
       <span class="section-tag">Pricing</span>
       <h1 class="text-5xl md:text-6xl font-bold tracking-tight mt-2 mb-5">Simple, transparent<br/><span class="grad-blue">pricing</span></h1>
       <p class="text-xl text-gray-500 leading-relaxed mb-8">No hidden fees, no per-module charges. Everything included from day one.</p>
-      <!-- BILLING TOGGLE -->
-      <div class="flex items-center justify-center gap-3">
-        <div class="toggle-wrap">
-          <button class="toggle-btn active" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
-          <button class="toggle-btn" id="btn-annual" onclick="setBilling('annual')">Annual</button>
-        </div>
-        <span class="save-badge">Save 20%</span>
-      </div>
     </div>
   </div>
 </section>
@@ -132,10 +118,10 @@ footer{background:#1d1d1f;color:#f5f5f7}
         <div class="text-sm font-semibold text-gray-500 mb-1 uppercase tracking-widest">Starter</div>
         <div class="flex items-end gap-1 mt-2 mb-1">
           <span class="text-sm font-semibold text-gray-400 mb-3 mr-1">AED</span>
-          <span class="price-amount grad-blue" id="price-starter">149</span>
+          <span class="price-amount grad-blue" id="price-starter">399</span>
           <span class="price-per mb-2">/ month</span>
         </div>
-        <div class="text-xs text-gray-400 mb-1" id="bill-note-starter">Billed annually</div>
+        <div class="text-xs text-gray-400 mb-1" id="bill-note-starter">Billed monthly</div>
         <div class="text-xs text-gray-400 mb-5">2 users · 1 company</div>
         <a href="contact.html" class="block text-center py-3 rounded-xl font-semibold text-sm transition-all" style="border:1.5px solid var(--cyan);color:var(--cyan)" onmouseover="this.style.background='#0071e3';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--cyan)'">Start Free Trial</a>
         <div class="mt-6 pt-6 border-t border-gray-100">
@@ -157,22 +143,21 @@ footer{background:#1d1d1f;color:#f5f5f7}
         <div class="text-sm font-semibold text-blue-600 mb-1 uppercase tracking-widest">Business</div>
         <div class="flex items-end gap-1 mt-2 mb-1">
           <span class="text-sm font-semibold text-gray-400 mb-3 mr-1">AED</span>
-          <span class="price-amount grad-blue" id="price-business">499</span>
+          <span class="price-amount grad-blue" id="price-business">999</span>
           <span class="price-per mb-2">/ month</span>
         </div>
-        <div class="text-xs text-gray-400 mb-1" id="bill-note-business">Billed annually</div>
-        <div class="text-xs text-gray-400 mb-5">Up to 10 users · Up to 3 companies</div>
+        <div class="text-xs text-gray-400 mb-1" id="bill-note-business">Billed monthly</div>
+        <div class="text-xs text-gray-400 mb-5">Up to 10 users</div>
         <a href="contact.html" class="block text-center py-3 rounded-xl font-semibold text-sm transition-all text-white" style="background:linear-gradient(135deg,#0071e3,#a855f7)">Start Free Trial</a>
         <div class="mt-6 pt-6 border-t border-blue-100">
           <div class="text-xs font-semibold text-gray-400 mb-3 uppercase tracking-wider">Everything in Starter, plus</div>
           <div class="check-item"><i class="fa-solid fa-check"></i>CRM & Sales pipeline</div>
           <div class="check-item"><i class="fa-solid fa-check"></i>Project Management</div>
-          <div class="check-item"><i class="fa-solid fa-check"></i>Fixed Assets</div>
           <div class="check-item"><i class="fa-solid fa-check"></i>Advanced analytics</div>
           <div class="check-item"><i class="fa-solid fa-check"></i>AcoBot AI assistant</div>
           <div class="check-item"><i class="fa-solid fa-check"></i><span style="font-weight:600;color:#0071e3">AI Purchase Invoice Scan</span></div>
           <div class="check-item"><i class="fa-solid fa-check"></i>POS Terminal</div>
-          <div class="check-item"><i class="fa-solid fa-check"></i>Multi-company (up to 3)</div>
+          <div class="check-item"><i class="fa-solid fa-check"></i>Multi-company</div>
           <div class="check-item"><i class="fa-solid fa-check"></i>Priority support</div>
         </div>
       </div>
@@ -345,15 +330,6 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 // FAQ
 function toggleFaq(btn){const item=btn.closest('.faq-item');document.querySelectorAll('.faq-item.open').forEach(o=>{if(o!==item)o.classList.remove('open')});item.classList.toggle('open')}
-
-// Billing toggle
-const prices={starter:{monthly:499,annual:399},business:{monthly:999,annual:799}};
-function setBilling(mode){
-  document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('btn-'+mode).classList.add('active');
-  document.getElementById('price-starter').textContent=prices.starter[mode];
-  document.getElementById('price-business').textContent=prices.business[mode];
-}
 </script>
 
 <script src="acobot.js?v=4"></script>
